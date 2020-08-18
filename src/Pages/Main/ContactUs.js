@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import ContactMap from "./ContactMap";
 
 const ContactUs = () => {
   return (
@@ -17,7 +18,7 @@ const ContactUs = () => {
           <p className="contactType">Fax</p>
           <p>215.573.6073</p>
         </ContactInfo>
-        <ContactMap></ContactMap>
+        <ContactMap />
       </ContactUsRow>
     </ContactUsFrame>
   );
@@ -26,8 +27,7 @@ export default ContactUs;
 
 const ContactUsFrame = styled.div`
   opacity: 0.8;
-  display: flex;
-  width: 100vw;
+  width: 100%;
   height: 590px;
   margin-top: 80px;
   background: url("Images/contact.jpg") no-repeat;
@@ -36,14 +36,16 @@ const ContactUsFrame = styled.div`
 
 const ContactUsRow = styled.div`
   width: 1140px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin: 0 auto;
-  padding: 80px 0;
+  padding: 100px 0;
 `;
 
 const ContactInfo = styled.section`
   width: 40%;
   color: white;
-  margin-top: 50px;
   font-size: 20px;
   text-align: center;
 
@@ -60,8 +62,4 @@ const ContactInfo = styled.section`
   p {
     line-height: 1.2;
   }
-`;
-
-const ContactMap = styled.div`
-  width: 60%;
 `;

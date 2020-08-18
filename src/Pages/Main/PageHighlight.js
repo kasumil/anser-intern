@@ -40,7 +40,7 @@ const PageHighlight = () => {
 export default PageHighlight;
 
 const MainHighLights = styled.div`
-  width: 100vw;
+  width: 100%;
   padding: 90px 0;
   background-image: linear-gradient(160deg, #2e55a4 60%, #06aafc 100%);
 
