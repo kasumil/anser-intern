@@ -1,0 +1,15 @@
+{
+  "data": [
+    {
+      "item": "your account info"
+    },
+    { "item": "preferences" },
+    { "item": "running queries (beta)" },
+    { "item": "running queries (legacy)" },
+    { "item": "saved queries & codes" },
+    { "item": "products" },
+    { "item": "change password" },
+    { "item": "expiration extension" },
+    { "item": "change institution" }
+  ]
+}
