@@ -103,7 +103,7 @@ const Nav = () => {
                         tabItems.map((el, i) => {
                           return (
                             <li key={i}>
-                              <Link to="/">{el.item}</Link>
+                              <Link to="/">{el}</Link>
                             </li>
                           );
                         })}
