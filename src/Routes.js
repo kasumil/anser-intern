@@ -3,13 +3,15 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Nav from "./Components/Nav/Nav";
 import AccountInfo from "./Pages/AccountInfo";
 import SignIn from "./Pages/SignIn";
+import Footer from "./Components/Footer";
 
 function Routes() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={Nav} />
+        <Route />
       </Switch>
+      <Footer />
     </Router>
   );
 }
