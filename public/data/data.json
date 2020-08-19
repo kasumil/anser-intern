@@ -9,5 +9,89 @@
     "terms": "You last accepted on May 28, 2020. \n",
     "repName": "Bryan Hua",
     "repEmail": "bhua@merage.uci.edu"
-  }
+  },
+
+  "slideData": [
+    {
+      "id": 1,
+      "paragraph": "WRDS offers a “complete package” for academic and professional business research: Financial and markets data from the most reliable third-party sources; a convenient data access interface tailored to research applications; a PC-SAS link with sample programs that allows you to access and manipulate data directly from your personal computer; and a responsive technical support staff. Put simply, WRDS is the only single source solution for your business research needs.",
+      "attribution": "Paul Chaney, Professor",
+      "caption": "Owen Graduate School of Management at Vanderbilt University"
+    },
+    {
+      "id": 2,
+      "paragraph": "Once again, you guys are on top of it. I really, really, really appreciate your quick response and I am grateful for the wonderful and prompt responses that I get to any question I ask. It is truly a pleasure to work with your team. Thanks again.",
+      "attribution": "Eduardo Tinoco",
+      "caption": "Librarian, University of Southern California"
+    },
+    {
+      "id": 3,
+      "paragraph": "The beauty of the system is that wherever you go, whatever system you use, the data are accessible and appear in identical form. It reduces the time researchers spend extracting data and allows them to concentrate on analysis.",
+      "attribution": "Richard J. Herring",
+      "caption": "Jacob Safra Professor of International Banking, The Wharton School of Business"
+    },
+    {
+      "id": 4,
+      "paragraph": "I wanted to express my pleasure with the WRDS system and support. It took me just 5 minutes to download data. I have requested assistance from the WRDS staff on several occasions, and have always received prompt, courteous, and knowledgeable assistance. Furthermore, I have found the WRDS sample programs to be extremely helpful. If only WRDS had been available sooner, my cv would be much longer.",
+      "attribution": "Judith A. Chevalier",
+      "caption": "Professor of Economics and Finance, Yale School of Management"
+    },
+    {
+      "id": 5,
+      "paragraph": "WRDS is the gold standard for a research and data platform and has been indispensable for my research. WRDS has been an important contributor to the development of empirical research in academic finance over the last decade. The professional and technical staff at WRDS are always a few steps ahead of the needs of finance academics.",
+      "attribution": "Robin Greenwood",
+      "caption": "Associate Professor, Harvard Business School, Harvard University"
+    },
+    {
+      "id": 6,
+      "paragraph": "It raises the performance bar - and expectations - for students and faculty alike. It takes the chore out of analysis and places added emphasis directly on critical thinking, which is what students should be doing.",
+      "attribution": "Robert W. Holthausen",
+      "caption": "Nomura Securities Co. Professor of Accounting and Finance, The Wharton School Publication: Wired@Wharton"
+    },
+    {
+      "id": 7,
+      "paragraph": "The seamless access to Wharton's financial data sets has been a key component of my curriculum development. It has influenced my lecture style, which now combines a formal lecture with a directed recitation. This teaching technique allows the students to see the data unfold in real time.",
+      "attribution": "Dr. Michael Phelan",
+      "caption": "Associate Professor of Statistics, The Wharton SchoolPublication: The Wharton Research Data System, Information at your fingertips"
+    },
+    {
+      "id": 8,
+      "paragraph": "The comprehensive data and the user-friendly learning materials at WRDS have raised the productivity of academia tremendously. The earlier you learn how to take advantage of WRDS, the more productive and innovative you will be.",
+      "attribution": "Jianfeng Yu",
+      "caption": "Jianshu Chair Professor of Finance, PBC School of Finance, Tsinghua University"
+    }
+  ],
+
+  "latestNews": [
+    {
+      "title": "Audit Analytics European Data Enables Insight Into Key Audit Matters",
+      "link": "https://wrds-www.wharton.upenn.edu/pages/news/audit-analytics-european-data-enables-insight-key-audit-matters/",
+      "date": "August 3, 2020"
+    },
+    {
+      "title": "Audit Analytics Europe",
+      "link": "https://wrds-www.wharton.upenn.edu/pages/data-announcements/audit-analytics-europe/",
+      "date": "August 3, 2020"
+    },
+    {
+      "title": "Downtime Scheduled for August 26, 2020",
+      "link": "https://wrds-www.wharton.upenn.edu/pages/news/downtime-scheduled-august-26-2020/",
+      "date": "July 29, 2020"
+    },
+    {
+      "title": "Do work connections impact mutual fund investment ideas?",
+      "link": "https://wrds-www.wharton.upenn.edu/pages/news/do-work-connections-impact-mutual-fund-investment-ideas/",
+      "date": "July 28, 2020"
+    },
+    {
+      "title": "NEW Learning Resources for Researchers, Instructors, and Librarians",
+      "link": "https://wrds-www.wharton.upenn.edu/pages/news/new-learning-resources-researchers-instructors-and-librarians/",
+      "date": "July 21, 2020"
+    },
+    {
+      "title": "Research Examines Role of Governance in Portfolio Results",
+      "link": "https://wrds-www.wharton.upenn.edu/pages/news/research-examines-role-governance-portfolio-results/",
+      "date": "June 30, 2020"
+    }
+  ]
 }

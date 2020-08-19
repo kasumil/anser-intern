@@ -1,77 +1,80 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import Nav from "../Components/Nav/Nav";
 import styled from "styled-components";
 
 const AccountInfo = () => {
   const [userInfo, setUserInfo] = useState([]);
   useEffect(() => {
-    fetch("/data/data.json")
-      .then((res) => res.json())
-      .then((res) => setUserInfo(res.data));
+    axios.get("/data/data.json").then((res) => setUserInfo(res.data.data));
   });
 
   const mailTo = () => {
     window.location.href = "mailto:bhua@merage.uci.edu";
   };
   return (
-    <AccountInfoFrame>
-      <PageHeader>Your Account</PageHeader>
-      <PageContent>
-        <h2>{userInfo.user}</h2>
-        <InfoTable>
-          <tbody>
-            <tr>
-              <th>Username</th>
-              <td>{userInfo.userName}</td>
-            </tr>
-            <tr>
-              <th>School</th>
-              <td>{userInfo.school}</td>
-            </tr>
-            <tr>
-              <th>Email</th>
-              <td>{userInfo.email}</td>
-            </tr>
-            <tr>
-              <th>Account Type</th>
-              <td>{userInfo.accountType}</td>
-            </tr>
-            <tr>
-              <th>Last Password Change</th>
-              <td>{userInfo.passwordChange}</td>
-            </tr>
-            <tr>
-              <th>Terms of Use Acceptance</th>
-              <td>
-                {userInfo.terms}
-                <p>
-                  You must review and accept the
-                  <Link to="https://wrds-www.wharton.upenn.edu/users/your-account/#">
-                    WRDS Terms of Use
+    <>
+      <Nav />
+      <AccountInfoFrame>
+        <PageHeader>Your Account</PageHeader>
+        <PageContent>
+          <h2>{userInfo.user}</h2>
+          <InfoTable>
+            <tbody>
+              <tr>
+                <th>Username</th>
+                <td>{userInfo.userName}</td>
+              </tr>
+              <tr>
+                <th>School</th>
+                <td>{userInfo.school}</td>
+              </tr>
+              <tr>
+                <th>Email</th>
+                <td>{userInfo.email}</td>
+              </tr>
+              <tr>
+                <th>Account Type</th>
+                <td>{userInfo.accountType}</td>
+              </tr>
+              <tr>
+                <th>Last Password Change</th>
+                <td>{userInfo.passwordChange}</td>
+              </tr>
+              <tr>
+                <th>Terms of Use Acceptance</th>
+                <td>
+                  {userInfo.terms}
+                  <p>
+                    You must review and accept the
+                    <Link to="https://wrds-www.wharton.upenn.edu/users/your-account/#">
+                      WRDS Terms of Use
+                    </Link>
+                    annually.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </InfoTable>
+        </PageContent>
+        <PageContent>
+          <h2>WRDS Representatives</h2>
+          <InfoTable>
+            <tbody>
+              <tr>
+                <th>{userInfo.repName}</th>
+                <td>
+                  <Link onClick={mailTo} to="/">
+                    {userInfo.repEmail}
                   </Link>
-                  annually.
-                </p>
-              </td>
-            </tr>
-          </tbody>
-        </InfoTable>
-      </PageContent>
-      <PageContent>
-        <h2>WRDS Representatives</h2>
-        <InfoTable>
-          <tbody>
-            <tr>
-              <th>{userInfo.repName}</th>
-              <td>
-                <Link onClick={mailTo} to="/">
-                  {userInfo.repEmail}
-                </Link>
-              </td>
-            </tr>
-          </tbody>
-        </InfoTable>
-      </PageContent>
-    </AccountInfoFrame>
+                </td>
+              </tr>
+            </tbody>
+          </InfoTable>
+        </PageContent>
+      </AccountInfoFrame>
+    </>
   );
 };
 
