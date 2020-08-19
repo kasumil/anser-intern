@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
+import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCog, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faCog } from "@fortawesome/free-solid-svg-icons";
 import { TAB_ITEM_URL, USER_DATA_URL } from "../../config";
+import Login from "./Login";
+import Logout from "./Logout";
+import TopPanel from "./TopPanel";
 
-const Nav = () => {
-  const [isLogin, setIsLogin] = useState(false);
+const Nav = ({ loginStatus }) => {
   const [isFold, setIsFold] = useState(true);
   const [tabItems, setTabItems] = useState([]);
   const [userData, setUserData] = useState([]);
@@ -33,11 +36,6 @@ const Nav = () => {
   useEffect(() => {
     customAxiosFunctions();
   }, []);
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-    setIsLogin(!isLogin);
-  };
 
   const handleFold = () => {
     setIsFold(!isFold);
@@ -67,11 +65,9 @@ const Nav = () => {
           <ul>
             <li>
               <div>
-                {!isLogin ? (
+                {!loginStatus ? (
                   <>
-                    <Link to="/login" onClick={handleLogin}>
-                      Login
-                    </Link>
+                    <Login />
                     <Link to="/users/password-reset">Password Reset</Link>
                     <Link to="/register">Register</Link>
                     <a
@@ -108,10 +104,7 @@ const Nav = () => {
                           );
                         })}
                     </DropdownMenu>
-                    <Link to="/" onClick={handleLogin}>
-                      logout{" "}
-                      <FontAwesomeIcon icon={faSignOutAlt} className="logOut" />
-                    </Link>
+                    <Logout />
                   </>
                 )}
               </div>
@@ -119,11 +112,16 @@ const Nav = () => {
           </ul>
         </MainWrapper>
       </MainNav>
+      <TopPanel />
     </Header>
   );
 };
 
-export default Nav;
+const mapStateToProps = (state) => {
+  return { loginStatus: state.loginStatus };
+};
+
+export default connect(mapStateToProps)(Nav);
 
 const Header = styled.nav``;
 

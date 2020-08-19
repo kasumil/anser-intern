@@ -1,7 +1,3 @@
-export const SET_ISLOGIN = "SET_ISLOGIN";
+import loginActionsClass from "./loginActions";
 
-export function setIsLogin() {
-  return {
-    type: SET_ISLOGIN,
-  };
-}
+export const loginActions = new loginActionsClass();
