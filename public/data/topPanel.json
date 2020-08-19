@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "subtitle": "the wrds difference",
+      "nonsub": ["Enabling Impactful Research", "The WRDS Team"]
+    },
+    {
+      "subtitle": "FAQS",
+      "nonsub": ["Ways to Use WRDS", "Account Types"]
+    },
+    {
+      "subtitle": "NEWS",
+      "nonsub": ["Conferences", "Best Paper Awards", "New Data"]
+    },
+    {
+      "subtitle": "PRIVACY POLICY",
+      "nonsub": [
+        "WRDS Privacy and GDPR Policy",
+        "Accessability",
+        "Terms of Use"
+      ]
+    }
+  ]
+}
