@@ -9,6 +9,7 @@ import { TAB_ITEM_URL, USER_DATA_URL } from "../../config";
 import Login from "./Login";
 import Logout from "./Logout";
 import TopPanel from "./TopPanel";
+import NavHeader from "./Header/Header";
 
 const Nav = ({ loginStatus }) => {
   const [isFold, setIsFold] = useState(true);
@@ -42,78 +43,81 @@ const Nav = ({ loginStatus }) => {
   };
 
   return (
-    <Header>
-      <TopNav>
-        <NavContainer>
-          <MainHead>
-            <LogoBox>
-              <LogoContainer>
-                <Link to="/" title="WRDS Home" className="logoLink">
-                  <img
-                    alt="logo"
-                    src="https://wrds-www.wharton.upenn.edu/static/img/logo/Wharton_WRDS_logo.svg"
-                  />
-                </Link>
-              </LogoContainer>
-            </LogoBox>
-          </MainHead>
-        </NavContainer>
-      </TopNav>
-      <MainNav>
-        <MainWrapper>
-          <RedBar />
-          <ul>
-            <li>
-              <div>
-                {!loginStatus ? (
-                  <>
-                    <Login />
-                    <Link to="/users/password-reset">Password Reset</Link>
-                    <Link to="/register">Register</Link>
-                    <a
-                      href="https://wrds-support.wharton.upenn.edu/hc/en-us/requests/new?ticket_form_id=114093978532"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Contact
-                    </a>
-                  </>
-                ) : (
-                  <>
-                    <a
-                      href="https://wrds-support.wharton.upenn.edu/hc/en-us/requests/new?ticket_form_id=114093978532"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Contact
-                    </a>
-                    <Link to="/" className="userMenu" onClick={handleFold}>
-                      {userData.userName}'s account{" "}
-                      <FontAwesomeIcon icon={faCog} />
-                    </Link>
-                    <DropdownMenu
-                      className={!isFold && "show"}
-                      xPlacement="bottom-start"
-                    >
-                      {tabItems &&
-                        tabItems.map((el, i) => {
-                          return (
-                            <li key={i}>
-                              <Link to="/">{el}</Link>
-                            </li>
-                          );
-                        })}
-                    </DropdownMenu>
-                    <Logout />
-                  </>
-                )}
-              </div>
-            </li>
-          </ul>
-        </MainWrapper>
-      </MainNav>
-      <TopPanel />
-    </Header>
+    <>
+      <Header>
+        <TopNav>
+          <NavContainer>
+            <MainHead>
+              <LogoBox>
+                <LogoContainer>
+                  <Link to="/" title="WRDS Home" className="logoLink">
+                    <img
+                      alt="logo"
+                      src="https://wrds-www.wharton.upenn.edu/static/img/logo/Wharton_WRDS_logo.svg"
+                    />
+                  </Link>
+                </LogoContainer>
+              </LogoBox>
+            </MainHead>
+          </NavContainer>
+        </TopNav>
+        <MainNav>
+          <MainWrapper>
+            <RedBar />
+            <ul>
+              <li>
+                <div>
+                  {!loginStatus ? (
+                    <>
+                      <Login />
+                      <Link to="/users/password-reset">Password Reset</Link>
+                      <Link to="/register">Register</Link>
+                      <a
+                        href="https://wrds-support.wharton.upenn.edu/hc/en-us/requests/new?ticket_form_id=114093978532"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Contact
+                      </a>
+                    </>
+                  ) : (
+                    <>
+                      <a
+                        href="https://wrds-support.wharton.upenn.edu/hc/en-us/requests/new?ticket_form_id=114093978532"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Contact
+                      </a>
+                      <Link to="/" className="userMenu" onClick={handleFold}>
+                        {userData.userName}'s account{" "}
+                        <FontAwesomeIcon icon={faCog} />
+                      </Link>
+                      <DropdownMenu
+                        className={!isFold && "show"}
+                        xPlacement="bottom-start"
+                      >
+                        {tabItems &&
+                          tabItems.map((el, i) => {
+                            return (
+                              <li key={i}>
+                                <Link to="/">{el}</Link>
+                              </li>
+                            );
+                          })}
+                      </DropdownMenu>
+                      <Logout />
+                    </>
+                  )}
+                </div>
+              </li>
+            </ul>
+          </MainWrapper>
+        </MainNav>
+        <TopPanel />
+      </Header>
+      <NavHeader />
+    </>
   );
 };
 

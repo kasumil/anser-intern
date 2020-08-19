@@ -80,6 +80,7 @@ export default Main;
 const MainFrame = styled.div`
   width: 1140px;
   margin: 0 auto;
+  margin-top: 3rem;
   font-size: 36px;
   font-weight: bolder;
 

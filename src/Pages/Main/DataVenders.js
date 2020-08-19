@@ -113,6 +113,7 @@ const AllDataVenders = styled.button`
   color: #fff;
   border-radius: 0;
   outline: none;
+  border: 1px solid #004785;
   background-color: #004785;
   cursor: pointer;
 
