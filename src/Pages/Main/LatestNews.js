@@ -122,6 +122,7 @@ const MainFrameRow = styled.div`
     margin: 0;
     padding: 0;
     font-size: 18px;
+    border: 1px solid #004785;
   }
 
   figure {

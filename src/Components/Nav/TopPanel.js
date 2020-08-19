@@ -47,7 +47,11 @@ const TopPanel = () => {
               </Link>
             </TabItems>
             <TabItems>
-              <Link to="" className="about" onClick={handleFold}>
+              <Link
+                to=""
+                className={`about ${isFold ? "open" : ""}`}
+                onClick={handleFold}
+              >
                 <FontAwesomeIcon icon={faInfoCircle} /> About
               </Link>
             </TabItems>
@@ -64,9 +68,9 @@ const TopPanel = () => {
               <Row>
                 {topPanelData.map((el, i) => {
                   return (
-                    <Col>
+                    <Col key={i}>
                       <ul>
-                        <li className="subTitle" key={i}>
+                        <li className="subTitle">
                           <Link to="">{el.subtitle}</Link>
                         </li>
                         {el.nonsub.map((el, i) => {
@@ -128,7 +132,7 @@ const TabItems = styled.li`
   a {
     padding: 5px 15px;
     font-size: 16px;
-    font-weight: 300;
+    font-weight: 350;
     letter-spacing: 0.5px;
     line-height: 1.5;
     color: #fff;
@@ -147,6 +151,11 @@ const TabItems = styled.li`
       border-bottom: 0;
       border-right: 0.3em solid transparent;
       border-left: 0.3em solid transparent;
+    }
+
+    &.open {
+      background: #f3f3f4;
+      color: #2e55a4;
     }
 
     i:before {
