@@ -2,56 +2,86 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-
 function Footer() {
-  return(
+  return (
     <Section>
       <Container>
         <HighTitle>
           <LinkContainer>
             <Link className="imglink" to="">
-              <Imglogo src="https://wrds-www.wharton.upenn.edu/static/img/logo/wharton_white.svg" alt="The Wharton School Logo"/>
+              <Imglogo
+                src="https://wrds-www.wharton.upenn.edu/static/img/logo/wharton_white.svg"
+                alt="The Wharton School Logo"
+              />
             </Link>
-            <Link className="textdeco" to="">Wharton Research Data Services</Link>
+            <Link className="textdeco" to="">
+              Wharton Research Data Services
+            </Link>
           </LinkContainer>
           <RightList>
             <ListContainer>
               <ListBundle>
                 <UnoderedList>
                   <List>
-                    <Link className="LinkText" to="">About WRDS</Link>
-                    <Link className="LinkText" to="">WRDS FAQs</Link>
-                    <Link className="LinkText" to="">WRDS News</Link>
-                    <Link className="LinkText" to="">Our Team</Link>
+                    <Link className="LinkText" to="">
+                      About WRDS
+                    </Link>
+                    <Link className="LinkText" to="">
+                      WRDS FAQs
+                    </Link>
+                    <Link className="LinkText" to="">
+                      WRDS News
+                    </Link>
+                    <Link className="LinkText" to="">
+                      Our Team
+                    </Link>
                   </List>
                 </UnoderedList>
               </ListBundle>
               <ListBundle>
                 <UnoderedList>
-                    <List>
-                      <Link className="LinkText" to="">3 Ways to use WRDS</Link>
-                      <Link className="LinkText" to="">WRDS Account Types</Link>
-                      <Link className="LinkText" to="">Terms of Use</Link>
-                    </List>
-                  </UnoderedList>
+                  <List>
+                    <Link className="LinkText" to="">
+                      3 Ways to use WRDS
+                    </Link>
+                    <Link className="LinkText" to="">
+                      WRDS Account Types
+                    </Link>
+                    <Link className="LinkText" to="">
+                      Terms of Use
+                    </Link>
+                  </List>
+                </UnoderedList>
               </ListBundle>
               <ListBundle>
                 <UnoderedList>
-                    <List>
-                      <Link className="LinkText" to="">Account Preferences</Link>
-                      <Link className="LinkText" to="">Info / Support Request</Link>
-                      <Link className="LinkText" to="">Privacy Policy</Link>
-                    </List>
-                  </UnoderedList>
+                  <List>
+                    <Link className="LinkText" to="">
+                      Account Preferences
+                    </Link>
+                    <Link className="LinkText" to="">
+                      Info / Support Request
+                    </Link>
+                    <Link className="LinkText" to="">
+                      Privacy Policy
+                    </Link>
+                  </List>
+                </UnoderedList>
               </ListBundle>
               <ListBundle>
                 <UnoderedList>
-                    <List>
-                      <Link className="LinkText" to="">Sample Data</Link>
-                      <Link className="LinkText" to="">Conference Calendar</Link>
-                      <Link className="LinkText" to="">Impactful Research</Link>
-                    </List>
-                  </UnoderedList>
+                  <List>
+                    <Link className="LinkText" to="">
+                      Sample Data
+                    </Link>
+                    <Link className="LinkText" to="">
+                      Conference Calendar
+                    </Link>
+                    <Link className="LinkText" to="">
+                      Impactful Research
+                    </Link>
+                  </List>
+                </UnoderedList>
               </ListBundle>
             </ListContainer>
           </RightList>
@@ -59,14 +89,15 @@ function Footer() {
         <UndersubTitle>
           <Copyright>
             <SmallTitle>
-            Unless otherwise noted, all material is © 1993-2020, The Wharton School, University of Pennsylvania. All rights reserved.
+              Unless otherwise noted, all material is © 1993-2020, The Wharton
+              School, University of Pennsylvania. All rights reserved.
             </SmallTitle>
           </Copyright>
         </UndersubTitle>
       </Container>
     </Section>
-  )
-};
+  );
+}
 
 export default Footer;
 
@@ -74,8 +105,8 @@ export default Footer;
 const Section = styled.div`
   padding: 40px 0 15px;
   border-bottom: 4px solid #a90533;
-  background: #2E55A4;
-  color: #FFFFFF;
+  background: #2e55a4;
+  color: #ffffff;
 `;
 
 //모든 것을 담는 컨테이너
@@ -90,13 +121,13 @@ const Container = styled.div`
 const HighTitle = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin:0 -15px;
+  margin: 0 -15px;
 `;
 
 const LinkContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding : 0 15px;
+  padding: 0 15px;
   margin-bottom: 16px;
 
   .imglink {
@@ -104,7 +135,7 @@ const LinkContainer = styled.div`
     width: 360px;
   }
 
-  .textdeco{
+  .textdeco {
     color: white;
 
     &:hover {
@@ -124,7 +155,7 @@ const RightList = styled.div`
   position: relative;
   flex: 0 0 66.66667%;
   max-width: 66.66667%;
-  padding:0 15px;
+  padding: 0 15px;
   width: 100%;
 `;
 
@@ -140,7 +171,7 @@ const ListBundle = styled.div`
   flex: 0 0 25%;
   max-width: 25%;
   width: 100%;
-  padding:0 15px;
+  padding: 0 15px;
   position: relative;
 `;
 
@@ -153,20 +184,22 @@ const UnoderedList = styled.ul`
   padding-inline-start: 0;
 `;
 
-const List= styled.li`
+const List = styled.li`
   display: flex;
   flex-direction: column;
 
-  .LinkText{
-    color : white;
-    font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  .LinkText {
+    color: white;
+    font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif,
+      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+      "Noto Color Emoji";
     background-color: transparent;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
     text-align: left;
 
-    &:hover{
+    &:hover {
       text-decoration: underline;
     }
   }
@@ -185,7 +218,7 @@ const Copyright = styled.div`
   flex: 0 0 100%;
   max-width: 100%;
   width: 100%;
-  padding:0 15px;
+  padding: 0 15px;
 `;
 
 const SmallTitle = styled.small`

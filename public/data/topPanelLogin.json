@@ -1,0 +1,33 @@
+{
+  "data": [
+    {
+      "subtitle": "VENDORS",
+      "nonsub": [
+        "CRSP",
+        "Compustat - Capital IQ",
+        "IBES",
+        "TAQ",
+        "WRDS SEC Analytics Suite"
+      ]
+    },
+    {
+      "subtitle": "CONCEPTS",
+      "nonsub": [
+        "Stock Prices",
+        "Company Financials",
+        "Earnings Forecasts & Ratings",
+        "Corporate Governance & Ownership",
+        "Economics Data",
+        "Marketing Data"
+      ]
+    },
+    {
+      "subtitle": "COMPANIES / VARIABLES",
+      "nonsub": ["Find Companies", "Find Variables"]
+    },
+    {
+      "subtitle": "QUERIES",
+      "nonsub": ["Currently Running Queries", "Recent Queries", "Saved Queries"]
+    }
+  ]
+}

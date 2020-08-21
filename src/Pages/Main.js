@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
-import Nav from "../Components/Nav/Nav";
+import MainNav from "../Components/Nav/MainNav";
 import PageHighlight from "./Main/PageHighlight";
 import Testinominals from "./Main/Testinominals";
 import DataVenders from "./Main/DataVenders";
 import LatestNews from "./Main/LatestNews";
 import ContactUs from "./Main/ContactUs";
-import Footer from "../Components/Footer";
+import Footer from "../Components/Footer/Footer";
 
 const Main = () => {
   const [slideData, setSlideData] = useState([]);
@@ -27,7 +27,7 @@ const Main = () => {
 
   return (
     <>
-      <Nav />
+      <MainNav />
       <MainFrame>
         <img alt="headerImage" src="/Images/headerImage.jpeg" />
         <MainLinks>
