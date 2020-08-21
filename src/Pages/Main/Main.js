@@ -2,15 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
-import MainNav from "../Components/Nav/MainNav";
-import PageHighlight from "./Main/PageHighlight";
-import Testinominals from "./Main/Testinominals";
-import DataVenders from "./Main/DataVenders";
-import LatestNews from "./Main/LatestNews";
-import ContactUs from "./Main/ContactUs";
-import Footer from "../Components/Footer/Footer";
+import { connect } from "react-redux";
+import MainNav from "../../Components/Nav/MainNav";
+import Nav from "../../Components/Nav/Nav";
+import PageHighlight from "../Components/Main/PageHighlight";
+import Testinominals from "../Components/Main/Testinominals";
+import DataVenders from "../Components/Main/DataVenders";
+import LatestNews from "../Components/Main/LatestNews";
+import ContactUs from "../Components/Main/ContactUs";
+import Footer from "../../Components/Footer/Footer";
 
-const Main = () => {
+const Main = ({ loginStatus }) => {
   const [slideData, setSlideData] = useState([]);
   const [latestNews, setLatestNews] = useState([]);
 
@@ -23,11 +25,12 @@ const Main = () => {
           setLatestNews([...res.data.latestNews])
         )
       );
+    document.title = "Wharton Research Data Services";
   }, []);
 
   return (
     <>
-      <MainNav />
+      {!loginStatus ? <MainNav /> : <Nav />}
       <MainFrame>
         <img alt="headerImage" src="/Images/headerImage.jpeg" />
         <MainLinks>
@@ -75,7 +78,11 @@ const Main = () => {
   );
 };
 
-export default Main;
+const mapStateToProps = (state) => {
+  return { loginStatus: state.loginStatus };
+};
+
+export default connect(mapStateToProps)(Main);
 
 const MainFrame = styled.div`
   width: 1140px;
