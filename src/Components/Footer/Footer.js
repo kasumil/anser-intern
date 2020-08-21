@@ -188,11 +188,8 @@ const List = styled.li`
   display: flex;
   flex-direction: column;
 
-  .LinkText {
-    color: white;
-    font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif,
-      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-      "Noto Color Emoji";
+  .LinkText{
+    color : white;
     background-color: transparent;
     font-size: 1rem;
     font-weight: 400;

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Nav from "../../Components/Nav/Nav";
 import Footer from "../../Components/Footer/Footer";
+import { Univ_List } from "../../config";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
@@ -63,7 +64,7 @@ function Signup(props) {
 
   //대학교, 유저타입 백엔드통신용
   useEffect(() => {
-    fetch(`http://localhost:3000/data/univ.json`)
+    fetch(`${Univ_List}`)
       .then((res) => res.json())
       .then((res) => {
         setData(res);
@@ -136,13 +137,21 @@ function Signup(props) {
         <ContainerWrap>
           <InnerContent>
             <TitleContainer>
-              <FirstTitle>Register for WRDS</FirstTitle>
+              <FirstTitle>
+                Register for WRDS
+              </FirstTitle>
             </TitleContainer>
             <BodyContainer>
-              <FormTag action="." method="post" onsubmit="return check_form();">
+              <FormTag
+              action="."
+              method="post"
+              onsubmit="return check_form();"
+              >
                 {/* 유저네임 */}
                 <FormGroup>
-                  <LabelName>Username</LabelName>
+                  <LabelName>
+                    Username
+                  </LabelName>
                   <InputGroup>
                     <InputValue
                       onChange={inputValuedetector}
@@ -205,16 +214,18 @@ function Signup(props) {
                       placeholder="Email addresssername"
                     />
                     <ValidationBox>
-                      <SpanEmail honest={honest === "third"}>
+                      <SpanName
+                      honest={honest === "third"}
+                      >
                         Please enter your institutional email address.
-                      </SpanEmail>
-                      <SpanEmail honest={honest === "second"}>
+                      </SpanName>
+                      <SpanName honest={honest === "second"}>
                         This is a valid email address. Please select your
                         institution below.
-                      </SpanEmail>
-                      <SpanEmail color="#5CB85C" honest={honest === "first"}>
+                      </SpanName>
+                      <SpanName color="#5CB85C" honest={honest === "first"}>
                         This is a valid email address for the chosen subscriber.
-                      </SpanEmail>
+                      </SpanName>
                     </ValidationBox>
                   </InputGroup>
                 </FormGroup>
@@ -255,23 +266,29 @@ function Signup(props) {
                         );
                       })}
                   </select>
-                  <SmallText>The account type of this user.</SmallText>
+                  <SmallText>
+                    The account type of this user.
+                  </SmallText>
                 </FormGroup>
                 {/* 만료기간 */}
                 <FormGroup>
-                  <LabelName>Expiration date</LabelName>
+                  <LabelName>
+                    Expiration date
+                  </LabelName>
                   <InputGroup>
                     <ValidationBox>
-                      <SpanCalender calendar={calendar === "jan"}>
+                      <SpanName
+                      calendar={calendar === "jan"}
+                      >
                         Please enter a valid expiration date (YYYY-MM-DD).
-                      </SpanCalender>
-                      <SpanCalender
-                        color="#5CB85C"
-                        calendar={calendar === "feb"}
+                      </SpanName>
+                      <SpanName 
+                      color="#5CB85C" 
+                      calendar={calendar === "feb"}
                       >
                         This is a valid expiration date.
-                      </SpanCalender>
-                    </ValidationBox>
+                      </SpanName>
+                    </ValidationBox>  
                   </InputGroup>
                 </FormGroup>
                 {/* 부서 */}
@@ -300,7 +317,10 @@ function Signup(props) {
                     </Link>
                   </AcceptContract>
                 </FormGroup>
-                <SubmitBTN type="submit" onClick={submitBtn}>
+                <SubmitBTN
+                type="submit"
+                onClick={submitBtn}
+                >
                   Register for WRDS
                 </SubmitBTN>
               </FormTag>
@@ -405,7 +425,7 @@ const BodyContainer = styled.div`
   padding-left: 15px;
 
   .calenderposition {
-    background: #ffffff
+    background: #fff
       url(https://code.jquery.com/ui/1.10.3/themes/smoothness/images/ui-bg_flat_75_ffffff_40x100.png)
       50% 50% repeat-x;
     color: #222222;
@@ -442,7 +462,7 @@ const FormGroup = styled.div`
   .form-control {
     display: block;
     color: #495057;
-    background-color: #ffffff;
+    background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
     width: 100%;
@@ -471,7 +491,7 @@ const InputGroup = styled.div`
 const InputValue = styled.input`
   position: relative;
   color: #495057;
-  background-color: #ffffff;
+  background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #ced4da;
   display: block;
@@ -497,10 +517,10 @@ const ValidationBox = styled.div`
 
 // username 밸리데이션
 const SpanName = styled.span`
-  color: #ffffff;
-  background-color: ${(props) => props.color || "#c5093b"};
-  border-color: ${(props) => props.color || "#c5093b"};
-  display: ${({ valid }) => (valid ? "block" : "none")};
+  color: #fff;
+  background-color: ${props => props.color || "#c5093b"};
+  border-color: ${props => props.color || "#c5093b"};
+  display: ${props => props.valid || props.honest || props.calendar? "block": "none"};
   align-items: center;
   text-align: center;
   white-space: nowrap;
@@ -511,8 +531,7 @@ const SpanName = styled.span`
   font-weight: 400;
   line-height: 1.5;
   border-radius: 0.25rem;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+  z-index: 5;
 `;
 
 // 인풋창 아래에 있는 작은 글씨들
@@ -523,51 +542,10 @@ const SmallText = styled.small`
   font-weight: 400;
 `;
 
-// email 밸리데이션
-const SpanEmail = styled.span`
-  color: #ffffff;
-  background-color: ${(props) => props.color || "#c5093b"};
-  border-color: ${(props) => props.color || "#c5093b"};
-  display: ${({ honest }) => (honest ? "block" : "none")};
-  align-items: center;
-  text-align: center;
-  white-space: nowrap;
-  border: 1px solid #ced4da;
-  padding: 0.375rem 0.75rem;
-  margin-bottom: 0;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  border-radius: 0.25rem;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-`;
-
-// 달력 input 밸리데이션
-const SpanCalender = styled.span`
-  color: #ffffff;
-  background-color: ${(props) => props.color || "#c5093b"};
-  border-color: ${(props) => props.color || "#c5093b"};
-  display: ${({ calendar }) => (calendar ? "flex" : "none")};
-  align-items: center;
-  text-align: center;
-  white-space: nowrap;
-  border: 1px solid #ced4da;
-  padding: 0.375rem 0.75rem;
-  margin-bottom: 0;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  border-radius: 0.25rem;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  z-index: 5;
-`;
-
 //계약서 동의문구
 const AcceptContract = styled.h5`
-  margin-bottom: 0.5rem;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin-bottom: 0.5rem;
   font-weight: 500;
   line-height: 1.2;
   font-size: 1.25rem;
@@ -587,11 +565,7 @@ const AcceptContract = styled.h5`
 // 제출 버튼
 const SubmitBTN = styled.button`
   cursor: pointer;
-  padding: 0.5rem 1rem;
-  font-size: 1.25rem;
-  line-height: 1.5;
-  border-radius: 0;
-  color: #ffffff;
+  color: #fff;
   background-color: #004785;
   border-color: #004785;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),
@@ -601,7 +575,7 @@ const SubmitBTN = styled.button`
   vertical-align: middle;
   border: 1px solid transparent;
   transition: color 0.15s ease-in-out;
-  background-color: 0.15s ease-in-out;
-  border-color: 0.15s ease-in-out;
-  box-shadow: 0.15s ease-in-out;
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
 `;
