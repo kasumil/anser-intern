@@ -1,13 +1,50 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import Nav from "../Components/Nav/Nav";
 import Footer from "../Components/Footer/Footer";
+const { Kakao } = window;
 
 const SignIn = () => {
+  const history = useHistory();
+
+  const handleKakaoLogin = () => {
+    Kakao.Auth.login({
+      success: function (authObj) {
+        fetch("API주소", {
+          method: "POST",
+          body: JSON.stringify({
+            access_token: authObj.access_token,
+          }),
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            sessionStorage.setItem("access_token", res.access_token);
+            if (res.access_token) {
+              history.push("/");
+            }
+          });
+      },
+      fail: function (err) {
+        alert(JSON.stringify(err));
+      },
+    });
+  };
+
+  const handleKakaoLogout = () => {
+    Kakao.Auth.logout(function () {
+      sessionStorage.removeItem("access_token");
+      history.push("/");
+    });
+  };
+
+  const goToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <>
       <Nav />
@@ -24,6 +61,7 @@ const SignIn = () => {
       </SigninHeader>
       <Page>
         <SignInFrame>
+          <p onClick={handleKakaoLogout}>로그아웃 테스트</p>
           <PageHeader>Sign In</PageHeader>
           <button>
             <i className="fas fa-sign-in-alt" />
@@ -34,9 +72,18 @@ const SignIn = () => {
             Register
           </button>
           <SignInSection>
-            <p>Username</p>
+            <img
+              onClick={handleKakaoLogin}
+              alt="KakaoLogin"
+              src="/Images/kakao_login.png"
+            />
+            <figure>
+              <img alt="GoogleLogin" src="/Images/google_logo.png" />
+              <p>구글 로그인</p>
+            </figure>
+            <p className="inputTitle">Username</p>
             <input type="text" placeholder="Username" maxLength="15" />
-            <p>Password</p>
+            <p className="inputTitle">Password</p>
             <input type="password" placeholder="Password" />
           </SignInSection>
           <SignInButton>
@@ -67,10 +114,9 @@ const SignIn = () => {
             levels. WRDS democratizes data access so that all disciplines can
             easily search for concepts across the data repository.
           </p>
-          <button>Top to Section</button>
+          <button onClick={goToTop}>Top to Section</button>
         </NotificationFrame>
       </Page>
-      <Footer />
     </>
   );
 };
@@ -113,8 +159,7 @@ const Page = styled.div`
   display: flex;
   justify-content: space-between;
   width: 1140px;
-  margin: 0 auto;
-  padding: 20px 0;
+  margin: 100px auto;
 `;
 
 const SignInFrame = styled.div`
@@ -155,7 +200,45 @@ const SignInSection = styled.section`
   padding: 20px;
   border: 1px solid #ddd;
 
-  p {
+  img {
+    opacity: 0.8;
+    width: 100%;
+    margin-bottom: 5px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  figure {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 6px;
+    color: #ddd;
+    border: 1px solid #ddd;
+    cursor: pointer;
+
+    &:hover {
+      color: #333;
+      border: 1px solid #333;
+    }
+
+    img {
+      width: 9%;
+      margin: 0 2px;
+    }
+
+    p {
+      text-align: center;
+      width: 90%;
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+
+  .inputTitle {
     margin-bottom: 8px;
   }
 
