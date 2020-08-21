@@ -1,66 +1,120 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+import Nav from "../Components/Nav/Nav";
+import Footer from "../Components/Footer/Footer";
 
 const SignIn = () => {
   return (
-    <Page>
-      <SignInFrame>
-        <PageHeader>Sign In</PageHeader>
-        <button>
-          <i class="fas fa-sign-in-alt" />
-          Sign In
-        </button>
-        <button className="registerBtn">
-          <i class="fas fa-edit" />
-          Register
-        </button>
-        <SignInSection>
-          <p>Username</p>
-          <input type="text" placeholder="Username" maxLength="15" />
-          <p>Password</p>
-          <input type="password" placeholder="Password" />
-        </SignInSection>
-        <SignInButton>
-          <button className="loginBtn">Login</button>
-        </SignInButton>
-        <AccountButton>
-          <Link to="" className="register">
-            <i class="fas fa-edit" />
-            Register for a WRDS Account
-          </Link>
-          <Link to="">
-            <i class="fas fa-question-circle red" />
-            Forgot your password?
-          </Link>
-          <Link to="">
-            <i class="fas fa-truck red" />
-            Request Account Transfer
-          </Link>
-        </AccountButton>
-      </SignInFrame>
-      <NotificationFrame>
-        <p>
-          WRDS globally-accessed, efficient web-based service gives researchers
-          access to accurate, vetted data and WRDS doctoral-level experts. 500+
-          institutions in 35+ countries – supporting 75,000+ researchers. 600+
-          datasets from more than 50 vendors across multiple disciplines are
-          accessible to support users at all experience levels. WRDS
-          democratizes data access so that all disciplines can easily search for
-          concepts across the data repository.
-        </p>
-        <button>Top to Section</button>
-      </NotificationFrame>
-    </Page>
+    <>
+      <Nav />
+      <SigninHeader>
+        <Container>
+          <nav>
+            <ol>
+              <li>
+                <FontAwesomeIcon icon={faHome} /> Home
+              </li>
+            </ol>
+          </nav>
+        </Container>
+      </SigninHeader>
+      <Page>
+        <SignInFrame>
+          <PageHeader>Sign In</PageHeader>
+          <button>
+            <i className="fas fa-sign-in-alt" />
+            Sign In
+          </button>
+          <button className="registerBtn">
+            <i className="fas fa-edit" />
+            Register
+          </button>
+          <SignInSection>
+            <p>Username</p>
+            <input type="text" placeholder="Username" maxLength="15" />
+            <p>Password</p>
+            <input type="password" placeholder="Password" />
+          </SignInSection>
+          <SignInButton>
+            <button className="loginBtn">Login</button>
+          </SignInButton>
+          <AccountButton>
+            <Link to="" className="register">
+              <i className="fas fa-edit" />
+              Register for a WRDS Account
+            </Link>
+            <Link to="">
+              <i className="fas fa-question-circle red" />
+              Forgot your password?
+            </Link>
+            <Link to="">
+              <i className="fas fa-truck red" />
+              Request Account Transfer
+            </Link>
+          </AccountButton>
+        </SignInFrame>
+        <NotificationFrame>
+          <p>
+            WRDS globally-accessed, efficient web-based service gives
+            researchers access to accurate, vetted data and WRDS doctoral-level
+            experts. 500+ institutions in 35+ countries – supporting 75,000+
+            researchers. 600+ datasets from more than 50 vendors across multiple
+            disciplines are accessible to support users at all experience
+            levels. WRDS democratizes data access so that all disciplines can
+            easily search for concepts across the data repository.
+          </p>
+          <button>Top to Section</button>
+        </NotificationFrame>
+      </Page>
+      <Footer />
+    </>
   );
 };
-export default SignIn;
+
+const mapStateToProps = (state) => {
+  return { loginStatus: state.loginStatus };
+};
+
+export default connect(mapStateToProps)(SignIn);
+
+const SigninHeader = styled.div`
+  background-color: #e9ecef;
+`;
+
+const Container = styled.div`
+  padding: 0 15px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1170px;
+
+  nav {
+    ol {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1rem;
+      background-color: #e9ecef;
+      border-radius: 0.25rem;
+      font-size: 16px;
+      font-weight: 400;
+
+      li {
+        color: #6c757d;
+      }
+    }
+  }
+`;
 
 const Page = styled.div`
   display: flex;
   justify-content: space-between;
   width: 1140px;
   margin: 0 auto;
+  padding: 20px 0;
 `;
 
 const SignInFrame = styled.div`

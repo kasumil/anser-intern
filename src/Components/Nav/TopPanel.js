@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import axios from "axios";
+import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faDatabase,
@@ -10,17 +10,11 @@ import {
   faSignOutAlt,
   faArrowAltCircleRight,
 } from "@fortawesome/free-solid-svg-icons";
-import { TOP_PANEL_URL } from "../../config";
+import TopPanelData from "./TopPanelData";
+import TopPanelLoginData from "./TopPanelLoginData";
 
-const TopPanel = () => {
+const TopPanel = ({ loginStatus }) => {
   const [isFold, setIsFold] = useState(false);
-  const [topPanelData, setTopPanelData] = useState([]);
-
-  useEffect(() => {
-    axios.get(TOP_PANEL_URL).then((res) => {
-      setTopPanelData(res.data.data);
-    });
-  }, []);
 
   const handleFold = () => {
     setIsFold(!isFold);
@@ -33,7 +27,7 @@ const TopPanel = () => {
           <Tabs>
             <TabItems>
               <Link to="">
-                <i className="fa fa-area-chart" /> Analytics
+                <i className="fa fa-area-chart chart" /> Analytics
               </Link>
             </TabItems>
             <TabItems>
@@ -52,7 +46,12 @@ const TopPanel = () => {
                 className={`about ${isFold ? "open" : ""}`}
                 onClick={handleFold}
               >
-                <FontAwesomeIcon icon={faInfoCircle} /> About
+                {!loginStatus ? (
+                  <FontAwesomeIcon icon={faInfoCircle} />
+                ) : (
+                  <i className="fa fa-bar-chart bar" />
+                )}{" "}
+                {!loginStatus ? "About" : "Get Data"}
               </Link>
             </TabItems>
             <TabItems>
@@ -66,28 +65,22 @@ const TopPanel = () => {
           <NavContent>
             <NavContentItems>
               <Row>
-                {topPanelData.map((el, i) => {
-                  return (
-                    <Col key={i}>
-                      <ul>
-                        <li className="subTitle">
-                          <Link to="">{el.subtitle}</Link>
-                        </li>
-                        {el.nonsub.map((el, i) => {
-                          return (
-                            <li className="nonSub" key={i}>
-                              <Link to="">{el}</Link>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </Col>
-                  );
-                })}
+                {!loginStatus ? <TopPanelData /> : <TopPanelLoginData />})
               </Row>
               <NavButtonBox>
-                <NavButton href="https://wrds-www.wharton.upenn.edu/pages/about/">
-                  <FontAwesomeIcon icon={faInfoCircle} /> About WRDS{" "}
+                <NavButton
+                  href={
+                    !loginStatus
+                      ? "https://wrds-www.wharton.upenn.edu/pages/about/"
+                      : ""
+                  }
+                >
+                  {!loginStatus ? (
+                    <FontAwesomeIcon icon={faInfoCircle} />
+                  ) : (
+                    <i className="fa fa-bar-chart bar" />
+                  )}
+                  {!loginStatus ? " About WRDS " : " All Data "}
                   <FontAwesomeIcon icon={faArrowAltCircleRight} />
                 </NavButton>
               </NavButtonBox>
@@ -99,7 +92,11 @@ const TopPanel = () => {
   );
 };
 
-export default TopPanel;
+const mapStatetoProps = (state) => {
+  return { loginStatus: state.loginStatus };
+};
+
+export default connect(mapStatetoProps)(TopPanel);
 
 const MainPanel = styled.div`
   max-height: 42px;
@@ -158,8 +155,12 @@ const TabItems = styled.li`
       color: #2e55a4;
     }
 
-    i:before {
+    .chart:before {
       content: "\f1fe";
+    }
+
+    .bar:before {
+      content: "\f080";
     }
   }
 `;
@@ -186,62 +187,6 @@ const Row = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 0 -15px;
-`;
-
-const Col = styled.div`
-  display: flex;
-  position: relative;
-  padding: 0 15px;
-  flex: 0 0 25%;
-
-  ul {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    padding-left: 40px;
-    width: 100%;
-
-    .subTitle {
-      position: relative;
-      text-transform: uppercase;
-
-      a {
-        display: block;
-        padding: 10px 0;
-        font-size: 17px;
-        font-weight: 700;
-        letter-spacing: 0.7px;
-        color: #2e55a4;
-
-        &:after {
-          content: "";
-          position: absolute;
-          bottom: 4px;
-          left: 0;
-          width: 100%;
-          height: 1px;
-          background: #aaa;
-        }
-      }
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-
-    .nonSub {
-      a {
-        display: block;
-        padding: 5px 0;
-        font-size: 17px;
-        color: #004785;
-
-        &:hover {
-          color: #000;
-          text-decoration: underline;
-        }
-      }
-    }
-  }
 `;
 
 const NavButtonBox = styled.div`
@@ -272,5 +217,9 @@ const NavButton = styled.a`
   &:hover {
     background-color: #00335f;
     border-color: #002c52;
+  }
+
+  .bar:before {
+    content: "\f080";
   }
 `;

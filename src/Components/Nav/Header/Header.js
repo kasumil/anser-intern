@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
+import { loginActions } from "../../../redux/actions";
+
+const { setLogin } = loginActions;
 
 const NavHeader = ({ loginStatus }) => {
   const [form, setValues] = useState({
@@ -15,9 +18,12 @@ const NavHeader = ({ loginStatus }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-    console.log(form.username, form.password);
+    console.log(form);
+    if (loginStatus) {
+      setLogin(true);
+    }
   };
 
   return (
@@ -31,8 +37,8 @@ const NavHeader = ({ loginStatus }) => {
               </Logo>
               <h3>The Global Standard for Business Research</h3>
               {!loginStatus && (
-                <LoginInput onSubmit={handleSubmit}>
-                  <LoginForm>
+                <LoginInput>
+                  <LoginForm onSubmit={handleLogin}>
                     <FormRow>
                       <Forms>
                         <input
@@ -135,9 +141,7 @@ const LoginBox = styled.div`
   max-width: 50%;
 
   h3 {
-    margin: 0 auto;
-    margin-top: 0.5em;
-    margin-bottom: 1em;
+    margin: 0.5em auto 1em;
     max-width: 450px;
     font-size: 32px;
     font-weight: bold;

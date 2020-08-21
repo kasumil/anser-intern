@@ -9,6 +9,7 @@ import { TAB_ITEM_URL, USER_DATA_URL } from "../../config";
 import Login from "./Login";
 import Logout from "./Logout";
 import TopPanel from "./TopPanel";
+import NavHeader from "./Header/Header";
 
 const Nav = ({ loginStatus }) => {
   const [isFold, setIsFold] = useState(true);
@@ -115,6 +116,7 @@ const Nav = ({ loginStatus }) => {
         </MainNav>
         <TopPanel />
       </Header>
+      <NavHeader />
     </>
   );
 };
