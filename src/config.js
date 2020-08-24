@@ -4,6 +4,8 @@ export const USER_DATA_URL = "http://localhost:3000/data/data.json";
 
 export const TOP_PANEL_URL = "http://localhost:3000/data/topPanel.json";
 
+export const Univ_List = "http://localhost:3000/data/univ.json";
+
 export const Recapcha_Key = "6LfOwcAZAAAAANC40MGASlYC8agRNhJz2POqyEIQ";
 
 export const googleMapsApiKey = "AIzaSyDQWRJqEwj0XtcTztQLadhs4GWXQpKlyuU";
