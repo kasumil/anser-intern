@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import Nav from "../Components/Nav/Nav";
+import Nav from "../../Components/Nav/Nav";
 import styled from "styled-components";
 
 const AccountInfo = () => {

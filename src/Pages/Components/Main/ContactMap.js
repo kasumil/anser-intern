@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Marker } from "react-google-maps";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
-import { googleMapsApiKey } from "../../config";
+import { googleMapsApiKey } from "../../../config";
 
 const mapStyles = {
   height: "368px",
@@ -18,7 +18,6 @@ const ContactMap = () => {
   return (
     <MapFrame>
       <LoadScript googleMapsApiKey={googleMapsApiKey}>
-        >
         <GoogleMap
           mapContainerStyle={mapStyles}
           zoom={13}

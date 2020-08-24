@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
-import Nav from "../Components/Nav/Nav";
-import Footer from "../Components/Footer/Footer";
+import Nav from "../../Components/Nav/Nav";
+import Footer from "../../Components/Footer/Footer";
 const { Kakao } = window;
 
 const SignIn = () => {
+  useEffect(() => {
+    document.title = "Wharton WRDS Login";
+  });
   const history = useHistory();
 
   const handleKakaoLogin = () => {
@@ -48,17 +49,6 @@ const SignIn = () => {
   return (
     <>
       <Nav />
-      <SigninHeader>
-        <Container>
-          <nav>
-            <ol>
-              <li>
-                <FontAwesomeIcon icon={faHome} /> Home
-              </li>
-            </ol>
-          </nav>
-        </Container>
-      </SigninHeader>
       <Page>
         <SignInFrame>
           <p onClick={handleKakaoLogout}>로그아웃 테스트</p>
@@ -117,6 +107,7 @@ const SignIn = () => {
           <button onClick={goToTop}>Top to Section</button>
         </NotificationFrame>
       </Page>
+      <Footer />
     </>
   );
 };
@@ -126,34 +117,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(SignIn);
-
-const SigninHeader = styled.div`
-  background-color: #e9ecef;
-`;
-
-const Container = styled.div`
-  padding: 0 15px;
-  margin: 0 auto;
-  width: 100%;
-  max-width: 1170px;
-
-  nav {
-    ol {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 0.5rem 1rem;
-      margin-bottom: 1rem;
-      background-color: #e9ecef;
-      border-radius: 0.25rem;
-      font-size: 16px;
-      font-weight: 400;
-
-      li {
-        color: #6c757d;
-      }
-    }
-  }
-`;
 
 const Page = styled.div`
   display: flex;

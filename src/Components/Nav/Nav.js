@@ -4,7 +4,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCog } from "@fortawesome/free-solid-svg-icons";
+import { faCog, faHome } from "@fortawesome/free-solid-svg-icons";
 import { TAB_ITEM_URL, USER_DATA_URL } from "../../config";
 import Login from "./Login";
 import Logout from "./Logout";
@@ -115,6 +115,17 @@ const Nav = ({ loginStatus }) => {
         </MainNav>
         <TopPanel />
       </Header>
+      <SigninHeader>
+        <Container>
+          <nav>
+            <ol>
+              <li>
+                <FontAwesomeIcon icon={faHome} /> Home
+              </li>
+            </ol>
+          </nav>
+        </Container>
+      </SigninHeader>
     </>
   );
 };
@@ -266,6 +277,34 @@ const DropdownMenu = styled.ul`
           box-shadow: none;
           background: #222;
         }
+      }
+    }
+  }
+`;
+
+const SigninHeader = styled.div`
+  background-color: #e9ecef;
+`;
+
+const Container = styled.div`
+  padding: 0 15px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1170px;
+
+  nav {
+    ol {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1rem;
+      background-color: #e9ecef;
+      border-radius: 0.25rem;
+      font-size: 16px;
+      font-weight: 400;
+
+      li {
+        color: #6c757d;
       }
     }
   }

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import Nav from "../Components/Nav/Nav";
-import Footer from "../Components/Footer/Footer";
+import Nav from "../../Components/Nav/Nav";
+import Footer from "../../Components/Footer/Footer";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
-import { Recapcha_Key } from "../config";
+import { Recapcha_Key } from "../../config";
 import { addMonths } from "date-fns";
 import DatePicker from "react-datepicker";
 import ReCAPTCHA from "react-google-recaptcha";
