@@ -32,7 +32,9 @@ const Main = ({ loginStatus }) => {
     <>
       {!loginStatus ? <MainNav /> : <Nav />}
       <MainFrame>
-        <img alt="headerImage" src="/Images/headerImage.jpeg" />
+        <HeaderImage>
+          <img alt="headerImage" src="/Images/main.jpeg" />
+        </HeaderImage>
         <MainLinks>
           <figure>
             <Link to="">Researchers</Link>
@@ -96,11 +98,6 @@ const MainFrame = styled.div`
     text-align: center;
   }
 
-  img {
-    display: block;
-    margin: 0 auto 1rem;
-  }
-
   button {
     display: block;
     margin: 20px auto;
@@ -122,10 +119,24 @@ const MainFrame = styled.div`
   }
 `;
 
+const HeaderImage = styled.div`
+  margin: 0 auto 40px;
+  overflow: hidden;
+  width: 80%;
+  height: 400px;
+
+  img {
+    display: block;
+    margin: -80px auto 1rem;
+    width: 100%;
+  }
+`;
+
 const MainLinks = styled.div`
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: space-between;
+  margin: 0 auto;
   font-size: 1.75rem;
   border-bottom: 1px solid #ddd;
 
@@ -134,6 +145,7 @@ const MainLinks = styled.div`
     line-height: 1.2;
 
     a {
+      display: block;
       color: #004785;
       font-weight: 600;
       &:hover {
