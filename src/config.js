@@ -10,3 +10,6 @@ export const googleMapsApiKey = "AIzaSyDQWRJqEwj0XtcTztQLadhs4GWXQpKlyuU";
 
 export const TOP_PANEL_URL_LOGIN =
   "http://localhost:3000/data/topPanelLogin.json";
+
+export const GOOGLE_LOGIN_CLIENT_ID =
+  "697632851984-qrhpho1imlk2elk9ndrvpcsfc2pgn7k7.apps.googleusercontent.com";

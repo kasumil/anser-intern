@@ -52,8 +52,10 @@ const Nav = ({ loginStatus }) => {
                   <Link to="/" title="WRDS Home" className="logoLink">
                     <img
                       alt="logo"
-                      src="https://wrds-www.wharton.upenn.edu/static/img/logo/Wharton_WRDS_logo.svg"
+                      src="/images/HYU_symbol_basic_png.png"
+                      className="mainLogo"
                     />
+                    <img alt="logo" src="/images/hyu_typo_logo.png" />
                   </Link>
                 </LogoContainer>
               </LogoBox>
@@ -161,6 +163,7 @@ const LogoBox = styled.div`
 `;
 
 const LogoContainer = styled.div`
+  display: flex;
   max-width: 50%;
   flex: 0 0 50%;
 
@@ -169,10 +172,16 @@ const LogoContainer = styled.div`
     background-color: transparent;
 
     img {
-      padding-top: 50px;
-      width: 400px;
+      padding-top: 40px;
+      width: 150px;
       height: auto;
       vertical-align: middle;
+    }
+
+    .mainLogo {
+      width: 60px;
+      height: auto;
+      margin-right: 10px;
     }
   }
 `;
