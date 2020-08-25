@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Nav from "../Components/Nav/Nav";
+import StepOne from "./Components/CRSP/StepOne";
 import StepThree from "../Pages/Components/CRSP/StepThree";
 import Footer from "../Components/Footer/Footer";
 
@@ -35,6 +36,7 @@ const CRSP = () => {
           </SideBarList>
         </CRSPSideBar>
         <CRSPContent>
+          <StepOne />
           <StepThree />
         </CRSPContent>
       </CRSPFrame>
