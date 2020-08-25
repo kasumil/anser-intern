@@ -14,7 +14,6 @@ const StepThree = () => {
       setTabSlideData(res.data.data);
     });
   }, []);
-  console.log(tabSlideData);
 
   return (
     <StepThreeFrame>
