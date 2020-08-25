@@ -1,14 +1,30 @@
 {
-  "data": [
-    {
-      "category": "Identifying Information",
-      "variables_eng": ["corp_code", "corp_name"],
-      "variables_kor": ["회사코드", "회사이름"]
-    },
+  "categories": [
+    { "id": 1, "category": "Identifying Information" },
+    { "id": 2, "category": "Time Series Information" },
+    { "id": 3, "category": "Distribution Information" }
+  ],
 
+  "columns": [
+    "corp_code",
+    "corp_name",
+    "date",
+    "open",
+    "high",
+    "low",
+    "close",
+    "diff",
+    "volumn"
+  ],
+
+  "Identifying": [
+    { "variable_eng": ["corp_code", "corp_name"] },
+    { "variable_kor": ["회사코드", "회사이름"] }
+  ],
+
+  "Time": [
+    { "variable_eng": ["open", "high", "low", "close", "diff", "volumn"] },
     {
-      "category": "Time Series Information",
-      "variable_eng": ["open", "high", "low", "close", "diff", "volumn"],
       "variable_kor": [
         "시작가격",
         "고가",
@@ -17,11 +33,7 @@
         "전일 차이",
         "거래량"
       ]
-    },
-    {
-      "category": "Distribution Information",
-      "variable_eng": ["data"],
-      "variable_kor": ["날짜"]
     }
-  ]
+  ],
+  "Distribution": [{ "variable_eng": ["data"] }, { "variable_kor": ["날짜"] }]
 }
