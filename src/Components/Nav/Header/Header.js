@@ -20,7 +20,6 @@ const NavHeader = ({ loginStatus }) => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log(form);
     if (loginStatus) {
       setLogin(true);
     }

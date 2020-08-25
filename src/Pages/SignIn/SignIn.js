@@ -2,11 +2,15 @@ import React, { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { connect } from "react-redux";
+import { loginActions } from "../../redux/actions";
 import Nav from "../../Components/Nav/Nav";
 import Footer from "../../Components/Footer/Footer";
+import GoogleLogin from "./GoogleLogin";
+
+const { setLogin } = loginActions;
 const { Kakao } = window;
 
-const SignIn = () => {
+const SignIn = ({ loginStatus }) => {
   useEffect(() => {
     document.title = "Wharton WRDS Login";
   });
@@ -42,6 +46,12 @@ const SignIn = () => {
     });
   };
 
+  const handleLogin = () => {
+    if (loginStatus) {
+      setLogin(true);
+    }
+  };
+
   const goToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -57,27 +67,28 @@ const SignIn = () => {
             <i className="fas fa-sign-in-alt" />
             Sign In
           </button>
-          <button className="registerBtn">
-            <i className="fas fa-edit" />
-            Register
-          </button>
+          <Link to="/signup">
+            <button className="registerBtn">
+              <i className="fas fa-edit" />
+              Register
+            </button>
+          </Link>
           <SignInSection>
             <img
               onClick={handleKakaoLogin}
               alt="KakaoLogin"
               src="/Images/kakao_login.png"
             />
-            <figure>
-              <img alt="GoogleLogin" src="/Images/google_logo.png" />
-              <p>구글 로그인</p>
-            </figure>
+            <GoogleLogin />
             <p className="inputTitle">Username</p>
             <input type="text" placeholder="Username" maxLength="15" />
             <p className="inputTitle">Password</p>
             <input type="password" placeholder="Password" />
           </SignInSection>
           <SignInButton>
-            <button className="loginBtn">Login</button>
+            <button className="loginBtn" onClick={handleLogin}>
+              Login
+            </button>
           </SignInButton>
           <AccountButton>
             <Link to="" className="register">

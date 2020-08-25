@@ -5,7 +5,6 @@ import Footer from "../../Components/Footer/Footer";
 import { Univ_List } from "../../config";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { FaHome } from "react-icons/fa";
 import { Recapcha_Key } from "../../config";
 import { addMonths } from "date-fns";
 import DatePicker from "react-datepicker";
@@ -120,18 +119,6 @@ function Signup(props) {
   return (
     <>
       <Nav />
-      <HomeBar>
-        <HomeContainer>
-          <nav>
-            <OrderedList>
-              <List>
-                <FaHome className="houseImg" />
-                &nbsp;Home
-              </List>
-            </OrderedList>
-          </nav>
-        </HomeContainer>
-      </HomeBar>
       {/* 이제부터 바디내용 */}
       <div>
         <ContainerWrap>
@@ -349,42 +336,6 @@ function Signup(props) {
 }
 
 export default withRouter(Signup);
-
-// 회원가입창 홈바
-const HomeBar = styled.div`
-  background-color: #e9ecef;
-`;
-const HomeContainer = styled.div`
-  width: 100%;
-  max-width: 1170px;
-  padding: 0 15px;
-  margin: 0 auto;
-`;
-const OrderedList = styled.ol`
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  align-content: center;
-  padding: 0.5rem 1rem;
-  margin-bottom: 1rem;
-  border-radius: 0.25rem;
-  height: 40px;
-`;
-const List = styled.li`
-  display: flex;
-  align-items: center;
-  color: gray;
-  font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-size: 16px;
-  width: 70px;
-  height: 24px;
-
-  .houseImg {
-    width: 15px;
-    height: 16px;
-  }
-`;
 
 // 회원가입창 내용
 const ContainerWrap = styled.div`
