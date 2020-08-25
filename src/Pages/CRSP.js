@@ -5,6 +5,7 @@ import Nav from "../Components/Nav/Nav";
 import StepOne from "./Components/CRSP/StepOne";
 import StepThree from "../Pages/Components/CRSP/StepThree";
 import Footer from "../Components/Footer/Footer";
+import Search from "../Pages/Components/CRSP/Search";
 
 const CRSP = () => {
   return (
@@ -37,6 +38,7 @@ const CRSP = () => {
         </CRSPSideBar>
         <CRSPContent>
           <StepOne />
+          <Search />
           <StepThree />
         </CRSPContent>
       </CRSPFrame>
