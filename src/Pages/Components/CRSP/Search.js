@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolderOpen } from "@fortawesome/free-solid-svg-icons";
-import CodeLookup from "./CodeLookup";
+// import CodeLookup from "./CodeLookup";
 
 const Search = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -178,7 +178,7 @@ const Search = () => {
           </FormRadio>
         </FormGroup>
       </FormInline>
-      {modalOpen && <CodeLookup handleModalClose={handleModalClose} />}
+      {/* {modalOpen && <CodeLookup handleModalClose={handleModalClose} />} */}
     </>
   );
 };
