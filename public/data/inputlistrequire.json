@@ -1,0 +1,49 @@
+{  
+  "OutputFormat" : [
+    {
+      "id" : "txt",
+      "name" : "fixed-width text (*.txt)",
+      "value": "txt"
+    }
+    ,
+    { 
+      "id" : "csv",
+      "name" : "comma-delimited text (*.csv)",
+      "value": "csv"
+    },
+    {
+      "id" : "xlsx",
+      "name" : "Excel spreadsheet (*.xlsx)",
+      "value": "xlsx"
+    }
+  ],
+  "Complist" : [
+    {
+      "id": "TICKER",
+      "value":"TICKER"
+    },
+    {
+      "id": "PERMNO",
+      "value":"PERMNO"
+    },
+    {
+      "id": "PERMCO",
+      "value":"PERMCO"
+    },
+    {  "id": "CUSIP",
+      "value":"CUSIP"
+    },
+    {
+      "id": "NCUSIP",
+      "value":"NCUSIP"
+    },
+    {
+      "id": "HSICCD",
+      "value":"HSICCD"
+    },
+    {
+      "id": "SICCD",
+      "value":"SICCD"
+    }
+  ]
+}

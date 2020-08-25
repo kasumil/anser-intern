@@ -1,0 +1,139 @@
+{  
+  "OutputFormat" : [
+  {
+    "id" : "txt",
+    "name" : "fixed-width text (*.txt)",
+    "value" : "txt"
+  }
+  ,
+  { 
+    "id" : "csv",
+    "name" : "comma-delimited text (*.csv)",
+    "value" : "csv"
+  },
+  {
+    "id" : "xlsx",
+    "name" : "Excel spreadsheet (*.xlsx)",
+    "value": "xlsx"
+  },
+  {
+    "id" : "txt",
+    "name" : "tab-delimited text (*.txt)",
+    "value": "txt"
+  },
+  {
+    "id": "htm",
+    "name" : "HTML table (*.htm)",
+    "value": "htm"
+  },
+  {
+    "id": "sas32",
+    "name" : "SAS Windows_32 dataset (*.sas7bdat)",
+    "value": "sas32"
+  },
+  {
+    "id": "saswin64",
+    "name" : "SAS Windows_64 dataset (*.sas7bdat)",
+    "value": "saswin64"
+  },
+  {
+    "id": "sas64",
+    "name" : "SAS Solaris_64 dataset (*.sas7bdat)",
+    "value": "sas64"
+  },
+  {
+    "id": "dbf",
+    "name" : "dBase file (*.dbf)",
+    "value": "dbf"
+  },
+  {
+    "id": "dta",
+    "name" : "STATA v14+ file (*.dta)",
+    "value": "dta"
+  },
+  {
+    "id": "sav",
+    "name" : "SPSS file (*.sav)",
+    "value": "sav"
+  }
+  ],
+  "CompressionType" : [
+    {
+      "id": "None",
+      "name" : "None",
+      "value": "None"
+    },
+    {
+      "id": "zip",
+      "name" : "zip (*.zip)",
+      "value": "zip"
+    },
+    {
+      "id": "gz",
+      "name" : "gzip (*.gz)",
+      "value": "gz"
+    }
+  ],
+  "DateFormat" : [
+    {
+      "id": "YYMMDDn8",
+      "name" :  "YYMMDDn8. (e.g. 19840725)",
+      "value": "YYMMDDn8"
+    },
+    {
+      "id": "DATE9",
+      "name" : "DATE9. (e.g. 25JUL1984)",
+      "value": "DATE9"
+    },
+    {
+      "id": "DDMMYY6",
+      "name" : "DDMMYY6. (e.g. 250784)",
+      "value": "DDMMYY6"
+    },
+    {
+      "id": "MMDDYY10",
+      "name" : "MMDDYY10. (e.g. 07/25/1984)",
+      "value": "MMDDYY10"
+    },
+    {
+      "id": "DDMMYY10",
+      "name" : "DDMMYY10. (e.g. 25/07/1984)",
+      "value": "DDMMYY10"
+    },
+    {
+      "id": "YYMMDDs10",
+      "name" : "YYMMDDs10. (e.g. 1984/07/25)",
+      "value": "YYMMDDs10"
+    }
+  ],
+  "Complist" : [
+    {
+      "id": "TICKER",
+      "value":"TICKER"
+    },
+    {
+      "id": "PERMNO",
+      "value":"PERMNO"
+    },
+    {
+      "id": "PERMCO",
+      "value":"PERMCO"
+    },
+    {  "id": "CUSIP",
+      "value":"CUSIP"
+    },
+    {
+      "id": "NCUSIP",
+      "value":"NCUSIP"
+    },
+    {
+      "id": "HSICCD",
+      "value":"HSICCD"
+    },
+    {
+      "id": "SICCD",
+      "value":"SICCD"
+    }
+  ]
+}
+

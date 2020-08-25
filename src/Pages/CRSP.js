@@ -4,10 +4,17 @@ import styled from "styled-components";
 import Nav from "../Components/Nav/Nav";
 import StepOne from "./Components/CRSP/StepOne";
 import StepThree from "../Pages/Components/CRSP/StepThree";
+import StepFour from "./Components/CRSP/StepFour";
 import Footer from "../Components/Footer/Footer";
 import Search from "../Pages/Components/CRSP/Search";
 
 const CRSP = () => {
+  const onGetSubmit = (startDate, endDate, check) =>{
+    console.log(startDate, '부모1')
+    console.log(endDate, '부모2')
+    console.log(check, '부모3')
+  }
+
   return (
     <>
       <Nav />
@@ -36,12 +43,12 @@ const CRSP = () => {
             </li>
           </SideBarList>
         </CRSPSideBar>
-
         <CRSPContent>
           <CRSPTitle>CRSP Daily Stock</CRSPTitle>
-          <StepOne />
+          <StepOne  onSubmit={onGetSubmit}/>
           <Search />
           <StepThree />
+          <StepFour />
         </CRSPContent>
       </CRSPFrame>
 

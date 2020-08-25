@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Nav from "../../Components/Nav/Nav";
 import Footer from "../../Components/Footer/Footer";
-import { Univ_List } from "../../config";
+import { UNIV_LIST } from "../../config";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Recapcha_Key } from "../../config";
+import { RECAPCHA_KEY } from "../../config";
 import { addMonths } from "date-fns";
 import DatePicker from "react-datepicker";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -63,7 +63,7 @@ function Signup(props) {
 
   //대학교, 유저타입 백엔드통신용
   useEffect(() => {
-    fetch(`${Univ_List}`)
+    fetch(UNIV_LIST)
       .then((res) => res.json())
       .then((res) => {
         setData(res);
@@ -292,7 +292,7 @@ function Signup(props) {
                 {/* 리캡차 */}
                 <FormGroup>
                   <LabelName type="id_captcha">Captcha</LabelName>
-                  <ReCAPTCHA sitekey={`${Recapcha_Key}`} onChange={onChange} />
+                  <ReCAPTCHA sitekey={`${RECAPCHA_KEY}`} onChange={onChange} />
                 </FormGroup>
                 {/* 회원약관 */}
                 <FormGroup>
@@ -300,7 +300,7 @@ function Signup(props) {
                   <AcceptContract>
                     By submitting this form, you accept the
                     <Link className="TermsLink" to="">
-                      Terms of Use
+                    &nbsp;Terms of Use
                     </Link>
                   </AcceptContract>
                 </FormGroup>
@@ -308,7 +308,7 @@ function Signup(props) {
                 type="submit"
                 onClick={submitBtn}
                 >
-                  Register for WRDS
+                &nbsp;Register for WRDS
                 </SubmitBTN>
               </FormTag>
               <DatePicker
