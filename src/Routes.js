@@ -5,6 +5,7 @@ import SignIn from "./Pages/SignIn/SignIn";
 import Signup from "./Pages/SignUp/Signup";
 import AccountInfo from "./Pages/UserInfo/AccountInfo";
 import CRSP from "./Pages/CRSP";
+import SavedQueries from "./Pages/SavedQueries/SavedQueries";
 
 function Routes() {
   return (
@@ -15,6 +16,7 @@ function Routes() {
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/accountinfo" component={AccountInfo} />
         <Route exact path="/CRSP" component={CRSP} />
+        <Route exact path="/savedqueries" component={SavedQueries} />
       </Switch>
     </Router>
   );
