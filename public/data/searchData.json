@@ -1,0 +1,454 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "ENTITY_NAME": "AMAZON COM INC",
+      "TICKER": "AMZN",
+      "CUSIP_FULL": "02313510",
+      "PERMNO": "84788",
+      "PERMCO": "15473",
+      "FIRST_DATE": "19970515",
+      "LAST_DATE": "20191231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "AMLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 3,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    },
+    {
+      "id": 2,
+      "ENTITY_NAME": "APPLE COM INC",
+      "TICKER": "APLE",
+      "CUSIP_FULL": "01234567",
+      "PERMNO": "12345",
+      "PERMCO": "45678",
+      "FIRST_DATE": "19970112",
+      "LAST_DATE": "20201231"
+    }
+  ]
+}

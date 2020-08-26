@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolderOpen } from "@fortawesome/free-solid-svg-icons";
-// import CodeLookup from "./CodeLookup";
+import CodeLookup from "./CodeLookup";
 
 const Search = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [disabled, setDisabled] = useState(true);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modal, setModal] = useState(false);
   const [fileName, setFileName] = useState("");
 
   const handleRadioBtn = () => {
@@ -19,12 +18,8 @@ const Search = () => {
     setFileName(e.target.files[0].name);
   };
 
-  const handleModalOpen = () => {
-    setModalOpen(true);
-  };
-
-  const handleModalClose = () => {
-    setModalOpen(false);
+  const handleModal = () => {
+    setModal(!modal);
   };
 
   return (
@@ -80,7 +75,7 @@ const Search = () => {
                 <p>Please enter Company codes separated by a space.</p>
                 <p>
                   Example: ibm msft AAPL [{" "}
-                  <span onClick={handleModalOpen}>Code Lookup</span> ]
+                  <span onClick={handleModal}>Code Lookup</span> ]
                 </p>
               </small>
             </InputNote>
@@ -178,7 +173,7 @@ const Search = () => {
           </FormRadio>
         </FormGroup>
       </FormInline>
-      {/* {modalOpen && <CodeLookup handleModalClose={handleModalClose} />} */}
+      {modal && <CodeLookup handleModal={handleModal} />}
     </>
   );
 };
