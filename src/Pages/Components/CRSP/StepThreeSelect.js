@@ -1,36 +1,34 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const SelectColumn = ({ columns, setColumns, selected, setSelected }) => {
+const SelectColumn = ({ filtered, arr, setArr, selected, setSelected }) => {
   const [infoModal, setInfoModal] = useState(false);
-  const filterd = columns.filter((item) => !selected.includes(item));
-
   return (
     <SelectColumnFrame>
       <ColumnFrame>
         <h3>Select</h3>
         <button
           onClick={() => {
-            setColumns([]);
-            setSelected([...selected, ...columns]);
+            setArr([...arr.filter((e) => !filtered.includes(e))]);
+            setSelected([...new Set([...selected, ...filtered])]);
           }}
         >
           SELECT ALL
         </button>
       </ColumnFrame>
       <List>
-        {filterd.map((item, idx) => {
+        {filtered.map((item, idx) => {
           return (
             <EachVariable
               key={idx}
               onClick={() => {
-                columns.splice(columns.indexOf(item), 1);
-                setSelected([...new Set([...selected, item])]);
+                arr.splice(arr.indexOf(item), 1);
+                setSelected([...selected, item]);
               }}
             >
               <div>
                 <i className="far fa-check-circle" />
-                <p>{item}</p>
+                <p>{item.name}</p>
               </div>
               <i
                 key={idx}
@@ -56,8 +54,8 @@ const SelectColumn = ({ columns, setColumns, selected, setSelected }) => {
               />
             </div>
             <ColumnTable>
-              {columns.map((item) => {
-                return <li key={item}>{item} : </li>;
+              {arr.map((item) => {
+                return <li key={item.name}>{item.name} : </li>;
               })}
             </ColumnTable>
           </InfoModal>
@@ -87,15 +85,17 @@ const ColumnFrame = styled.div`
   }
 
   button {
+    opacity: 0.4;
     color: #333;
+    padding: 0 4px;
     background-color: transparent;
-    border-radius: 5px;
     border: 1px solid #ddd;
     outline: none;
     cursor: pointer;
 
     &:hover {
-      background-color: #e6e6e6;
+      opacity: 1;
+      border-radius: 5px;
     }
   }
 `;
@@ -192,7 +192,7 @@ const InfoModal = styled.div`
   }
 `;
 
-const ColumnTable = styled.section`
+const ColumnTable = styled.ul`
   display: flex;
   flex-direction: column;
   height: auto;

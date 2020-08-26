@@ -1,39 +1,13 @@
 {
-  "categories": [
-    { "id": 1, "category": "Identifying Information" },
-    { "id": 2, "category": "Time Series Information" },
-    { "id": 3, "category": "Distribution Information" }
-  ],
-
-  "columns": [
-    "corp_code",
-    "corp_name",
-    "date",
-    "open",
-    "high",
-    "low",
-    "close",
-    "diff",
-    "volumn"
-  ],
-
-  "Identifying": [
-    { "variable_eng": ["corp_code", "corp_name"] },
-    { "variable_kor": ["회사코드", "회사이름"] }
-  ],
-
-  "Time": [
-    { "variable_eng": ["open", "high", "low", "close", "diff", "volumn"] },
-    {
-      "variable_kor": [
-        "시작가격",
-        "고가",
-        "저가",
-        "종가",
-        "전일 차이",
-        "거래량"
-      ]
-    }
-  ],
-  "Distribution": [{ "variable_eng": ["data"] }, { "variable_kor": ["날짜"] }]
+  "data": [
+    { "id": 1, "category": "Identifying", "name": "corp_code" },
+    { "id": 2, "category": "Identifying", "name": "corp_name" },
+    { "id": 3, "category": "TimeSeries", "name": "open" },
+    { "id": 4, "category": "TimeSeries", "name": "high" },
+    { "id": 5, "category": "TimeSeries", "name": "low" },
+    { "id": 6, "category": "TimeSeries", "name": "close" },
+    { "id": 7, "category": "TimeSeries", "name": "diff" },
+    { "id": 8, "category": "TimeSeries", "name": "volumn" },
+    { "id": 9, "category": "Distribution", "name": "date" }
+  ]
 }

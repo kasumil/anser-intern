@@ -1,0 +1,8 @@
+{
+  "categories": [
+    { "id": 0, "category": "SelectAll" },
+    { "id": 1, "category": "Identifying" },
+    { "id": 2, "category": "TimeSeries" },
+    { "id": 3, "category": "Distribution" }
+  ]
+}
