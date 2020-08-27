@@ -15,3 +15,5 @@ export const TOP_PANEL_URL_LOGIN =
 
 export const GOOGLE_LOGIN_CLIENT_ID =
   "697632851984-qrhpho1imlk2elk9ndrvpcsfc2pgn7k7.apps.googleusercontent.com";
+
+export const SEARCH_DATA = "http://localhost:3000/data/searchData.json";
