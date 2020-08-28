@@ -1,24 +1,33 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { FirstBody, SecondBody, ThirdBody } from "./SecondModalBody";
+import ReactExport from "react-export-excel";
 import { SEARCH_DATA } from "../../../config";
+import TableData from "./TableData";
+import SecondModal from "./SecondModal";
+import { ModalStyle } from "../../../Styles/ModalStyle";
+import { FirstParagraph, SecondParagraph } from "./CodeLookupText";
+
+const ExcelFile = ReactExport.ExcelFile;
+const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
+const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
 
 const CodeLookup = ({ handleModal }) => {
   const [value, setValue] = useState("");
   const [resultValue, setResultValue] = useState("");
+  const [searchValue, setSearchValue] = useState("start with");
   const [data, setData] = useState([]);
   const [isSubmit, setIsSubmit] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [allCheck, setAllCheck] = useState(false);
-  const [eachCheck, setEachCheck] = useState(false);
   const [secondModal, setSecondModal] = useState(false);
   const [modalCount, setModalCount] = useState(1);
+  const [allCheck, setAllCheck] = useState(false);
   const focusTarget = useRef();
+  const focusResult = useRef();
 
   useEffect(() => {
     focusTarget.current.focus();
-  });
+  }, []);
 
   const handleSecondModal = () => {
     setSecondModal(!secondModal);
@@ -43,20 +52,14 @@ const CodeLookup = ({ handleModal }) => {
       setTimeout(() => {
         axios.get(SEARCH_DATA).then((res) => {
           const filteredData = res.data.data.filter((el) => {
-            return (
-              el.ENTITY_NAME +
-              el.TICKER +
-              el.CUSIP_FULL +
-              el.PERMNO +
-              el.PERMCO +
-              el.FIRST_DATE +
-              el.LAST_DATE
-            )
+            return Object.values(el)
+              .toString()
               .toLowerCase()
               .includes(value.toLowerCase());
           });
           setData(filteredData);
           setIsLoading(false);
+          focusResult.current.scrollIntoView({ behavior: "smooth" });
         });
       }, 1000);
     } else {
@@ -70,12 +73,9 @@ const CodeLookup = ({ handleModal }) => {
     setAllCheck(!allCheck);
   };
 
-  const handleEachCheck = () => {
-    data.map((el, i) => {
-      if (el.id === i + 1) {
-        setEachCheck(!eachCheck);
-      }
-    });
+  const handleSearchValue = (e) => {
+    const { value } = e.target;
+    setSearchValue(value);
   };
 
   return (
@@ -100,9 +100,15 @@ const CodeLookup = ({ handleModal }) => {
                     ref={focusTarget}
                   />
                   <InputGroupBtn>
-                    <button>Starts With</button>
-                    <button>Contains</button>
-                    <button>Is Exactly</button>
+                    <button onClick={handleSearchValue} value="start with">
+                      Starts With
+                    </button>
+                    <button onClick={handleSearchValue} value="contains">
+                      Contains
+                    </button>
+                    <button onClick={handleSearchValue} value="exactly match">
+                      Is Exactly
+                    </button>
                   </InputGroupBtn>
                 </CodeSearchForm>
               </FormGroup>
@@ -111,33 +117,8 @@ const CodeLookup = ({ handleModal }) => {
         </SearchFormBox>
         <br />
         <Row>
-          <Colsmall>
-            <p>
-              The Company Code Lookup Tool is designed to find all identifiers
-              associated with a specific company. This tool can retrieve
-              identifiers for multiple companies, then add the codes directly to
-              your query. You can also use this tool to save and download codes
-              for future queries. Downloaded codes are saved in the text (.txt)
-              file format.
-            </p>
-          </Colsmall>
-          <Colsmall>
-            <ol>
-              <li>
-                Start by entering a company name (or part of the name) into the
-                search box above.
-              </li>
-              <li>
-                After the results are displayed, make your selections and chose
-                an identifier.
-              </li>
-              <li>Next, refine your list of codes or add more.</li>
-              <li>
-                Last, choose whether to insert your selections into your web
-                query or to download them as a text file for later use.
-              </li>
-            </ol>
-          </Colsmall>
+          <Colsmall>{FirstParagraph}</Colsmall>
+          <Colsmall>{SecondParagraph}</Colsmall>
           <Colsmall>
             <Panel>
               <PanelHeader>
@@ -178,8 +159,8 @@ const CodeLookup = ({ handleModal }) => {
                     </div>
                   ) : (
                     <>
-                      <span>
-                        {data.length} results found that start with "
+                      <span ref={focusResult}>
+                        {data.length} results found that {searchValue} "
                         {resultValue}"
                       </span>
                       <ResultTable>
@@ -193,6 +174,7 @@ const CodeLookup = ({ handleModal }) => {
                                       <input
                                         type="checkbox"
                                         onChange={handleAllCheck}
+                                        checked={allCheck}
                                       />
                                     </th>
                                     <th className="companyName">ENTITY_NAME</th>
@@ -205,35 +187,13 @@ const CodeLookup = ({ handleModal }) => {
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  {data.map((el) => {
+                                  {data.map((el, i) => {
                                     return (
-                                      <tr key={el.id}>
-                                        <td className="thCheck">
-                                          <input
-                                            type="checkbox"
-                                            checked={
-                                              (allCheck || eachCheck) &&
-                                              "checked"
-                                            }
-                                            onChange={handleEachCheck}
-                                          />
-                                        </td>
-                                        <td className="companyName">
-                                          {el.ENTITY_NAME}
-                                        </td>
-                                        <td className="general">{el.TICKER}</td>
-                                        <td className="general">
-                                          {el.CUSIP_FULL}
-                                        </td>
-                                        <td className="general">{el.PERMNO}</td>
-                                        <td className="general">{el.PERMCO}</td>
-                                        <td className="general">
-                                          {el.FIRST_DATE}
-                                        </td>
-                                        <td className="general">
-                                          {el.LAST_DATE}
-                                        </td>
-                                      </tr>
+                                      <TableData
+                                        key={i}
+                                        data={el}
+                                        allCheck={allCheck}
+                                      />
                                     );
                                   })}
                                 </tbody>
@@ -249,45 +209,40 @@ const CodeLookup = ({ handleModal }) => {
             </ColResult>
           )}
         </Row>
+        {!isLoading && (
+          <>
+            <ExcelFile
+              element={
+                <div className="exportData">
+                  <span>Export all results as a spreadsheet</span>
+                </div>
+              }
+              filename={`CodeSearchResults ${new Date().toLocaleString()}`}
+            >
+              <ExcelSheet data={data} name="Codes">
+                <ExcelColumn label="entity_name" value="ENTITY_NAME" />
+                <ExcelColumn label="ticker" value="TICKER" />
+                <ExcelColumn label="cusip_full" value="CUSIP_FULL" />
+                <ExcelColumn label="permno" value="PERMNO" />
+                <ExcelColumn label="permco" value="PERMCO" />
+                <ExcelColumn label="first_date" value="FIRST_DATE" />
+                <ExcelColumn label="last_date" value="LAST_DATE" />
+              </ExcelSheet>
+            </ExcelFile>
+            <ColResult>
+              <p className="title">Select Your Identifier</p>
+            </ColResult>
+          </>
+        )}
         <hr />
       </Codelookup>
       {secondModal && (
-        <SecondModal className={secondModal && "open"}>
-          <SecondModalBox>
-            <SceondModalContainer>
-              <SModalHeader>
-                <h3>
-                  {modalCount === 1
-                    ? "Instructions"
-                    : modalCount === 2
-                    ? "Using Identifier Codes to Find Companies"
-                    : "Available Identifier Codes"}
-                </h3>
-                <i
-                  className="far fa-times-circle xBtn"
-                  onClick={handleSecondModal}
-                />
-              </SModalHeader>
-              <SModalBody>
-                {modalCount === 1
-                  ? FirstBody
-                  : modalCount === 2
-                  ? SecondBody
-                  : ThirdBody}
-              </SModalBody>
-              <SModalFooter>
-                <button onClick={handleSecondModal}>Close</button>
-                {modalCount === 3 ? (
-                  ""
-                ) : (
-                  <button className="next" onClick={handleModalCount}>
-                    Next: How to Use Identifier Codes
-                  </button>
-                )}
-              </SModalFooter>
-            </SceondModalContainer>
-          </SecondModalBox>
-        </SecondModal>
+        <SecondModal
+          secondModal={secondModal}
+          modalCount={modalCount}
+          handleSecondModal={handleSecondModal}
+          handleModalCount={handleModalCount}
+        />
       )}
     </Modal>
   );
@@ -296,24 +251,7 @@ const CodeLookup = ({ handleModal }) => {
 export default CodeLookup;
 
 const Modal = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-  z-index: 10001;
-  opacity: 1;
-  animation: opacity 0.15s linear;
-
-  @keyframes opacity {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
+  ${ModalStyle}
 `;
 
 const Codelookup = styled.div`
@@ -344,6 +282,19 @@ const Codelookup = styled.div`
     margin: 19px 0;
     border: 0;
     border-top: 1px solid #ddd;
+  }
+
+  .exportData {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+    color: #0e76bc;
+    transition: color 0.5s ease;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;
 
@@ -501,154 +452,6 @@ const PanelBody = styled.div`
   }
 `;
 
-const SecondModal = styled(Modal)`
-  opacity: 0;
-  animation: opacity 0.15s linear;
-
-  &.open {
-    opacity: 1;
-    overflow-x: hidden;
-    overflow-y: auto;
-
-    @keyframes opacity {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-  }
-`;
-
-const SecondModalBox = styled.div`
-  position: relative;
-  margin: 130px auto;
-  width: 600px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  background-clip: padding-box;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-  transform: translate(0, 0);
-  animation: trans 0.3s ease-out;
-  z-index: 9999;
-
-  @keyframes trans {
-    from {
-      transform: translate(0, -25%);
-    }
-    to {
-      transform: translate(0, 0);
-    }
-  }
-`;
-
-const SceondModalContainer = styled.div`
-  position: relative;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-  background-color: #fff;
-  background-clip: padding-box;
-
-  .xBtn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 20px;
-    height: 20px;
-    color: #ddd;
-    cursor: pointer;
-
-    &:hover {
-      color: #444;
-    }
-  }
-`;
-
-const SModalHeader = styled.div`
-  padding: 15px;
-  min-height: 16.4px;
-  border-bottom: 1px solid #e5e5e5;
-
-  h3 {
-    font-size: 22px;
-    line-height: 30px;
-    z-index: 10;
-  }
-`;
-
-const SModalBody = styled.div`
-  position: relative;
-  padding: 20px;
-
-  p {
-    margin: 0 0 11.5px;
-    font-size: 16.5px;
-    font-weight: 500;
-    letter-spacing: 0.25px;
-    line-height: 24px;
-  }
-
-  ol {
-    margin-left: 15px;
-    margin-bottom: 9.5px;
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: 0.25px;
-    line-height: 24px;
-    list-style-type: decimal;
-  }
-
-  code {
-    padding: 2px 4px;
-    font-size: 90%;
-    color: #c7254e;
-    background-color: #f9f2f4;
-    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-  }
-`;
-
-const SModalFooter = styled.div`
-  padding: 20px;
-  text-align: right;
-  border-top: 1px solid #e5e5e5;
-
-  button {
-    display: inline-block;
-    position: relative;
-    padding: 8px 12px;
-    font-size: 14px;
-    line-height: 1.4;
-    text-align: center;
-    color: #333;
-    vertical-align: middle;
-    border: 1px solid #ccc;
-    background-color: #e7e7e7;
-    user-select: none;
-    outline: 0;
-    cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.54, 0.06, 0.55, 0.97);
-
-    &:hover {
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-      background-color: #cecece;
-      border-color: #adadad;
-    }
-
-    &.next {
-      margin-left: 10px;
-      color: #fff;
-      border: 1px solid #11376b;
-      background-color: #154281;
-
-      &:hover {
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        background-color: #0e2c55;
-        border-color: #091c36;
-      }
-    }
-  }
-`;
-
 const ColResult = styled(Title)`
   width: 100%;
   overflow: auto;
@@ -659,6 +462,13 @@ const ColResult = styled(Title)`
     font-weight: bold;
     text-align: center;
     line-height: 24px;
+
+    &.title {
+      margin: 0;
+      font-size: 1.5em;
+      color: #002c77;
+      text-align: left;
+    }
   }
 
   &.c-align {

@@ -1,7 +1,6 @@
 {
   "data": [
     {
-      "id": 1,
       "ENTITY_NAME": "AMAZON COM INC",
       "TICKER": "AMZN",
       "CUSIP_FULL": "02313510",
@@ -11,7 +10,6 @@
       "LAST_DATE": "20191231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "AMLE",
       "CUSIP_FULL": "01234567",
@@ -21,7 +19,24 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 3,
+      "ENTITY_NAME": "SPENCER FOODS INC",
+      "TICKER": "",
+      "CUSIP_FULL": "84788910",
+      "PERMNO": "57672",
+      "PERMCO": "25580",
+      "FIRST_DATE": "19721214",
+      "LAST_DATE": "19740212"
+    },
+    {
+      "ENTITY_NAME": "SPENCER FOODS INC",
+      "TICKER": "SFD",
+      "CUSIP_FULL": "84788910",
+      "PERMNO": "57672",
+      "PERMCO": "25580",
+      "FIRST_DATE": "19740213",
+      "LAST_DATE": "19781027"
+    },
+    {
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -31,7 +46,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -41,7 +55,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -51,7 +64,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -61,7 +73,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -71,7 +82,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -81,7 +91,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -91,7 +100,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -101,7 +109,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -111,7 +118,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -121,7 +127,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -131,7 +136,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -141,7 +145,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -151,7 +154,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -161,7 +163,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -171,7 +172,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -181,7 +181,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -191,7 +190,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -201,7 +199,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -211,7 +208,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -221,7 +217,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -231,7 +226,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -241,7 +235,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -251,7 +244,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -261,7 +253,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -271,7 +262,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -281,7 +271,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -291,7 +280,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -301,7 +289,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -311,7 +298,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -321,7 +307,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -331,7 +316,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -341,7 +325,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -351,7 +334,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -361,7 +343,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -371,7 +352,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -381,7 +361,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -391,7 +370,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -401,7 +379,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -411,7 +388,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",
@@ -421,27 +397,6 @@
       "LAST_DATE": "20201231"
     },
     {
-      "id": 2,
-      "ENTITY_NAME": "APPLE COM INC",
-      "TICKER": "APLE",
-      "CUSIP_FULL": "01234567",
-      "PERMNO": "12345",
-      "PERMCO": "45678",
-      "FIRST_DATE": "19970112",
-      "LAST_DATE": "20201231"
-    },
-    {
-      "id": 2,
-      "ENTITY_NAME": "APPLE COM INC",
-      "TICKER": "APLE",
-      "CUSIP_FULL": "01234567",
-      "PERMNO": "12345",
-      "PERMCO": "45678",
-      "FIRST_DATE": "19970112",
-      "LAST_DATE": "20201231"
-    },
-    {
-      "id": 2,
       "ENTITY_NAME": "APPLE COM INC",
       "TICKER": "APLE",
       "CUSIP_FULL": "01234567",

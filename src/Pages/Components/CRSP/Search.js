@@ -5,13 +5,14 @@ import { faFolderOpen } from "@fortawesome/free-solid-svg-icons";
 import CodeLookup from "./CodeLookup";
 
 const Search = () => {
-  const [isChecked, setIsChecked] = useState(false);
-  const [disabled, setDisabled] = useState(true);
+  // const [isChecked, setIsChecked] = useState("");
+  // const [checkedValue, setCheckedValue] = useState("");
+  // const [disabled, setDisabled] = useState(true);
   const [modal, setModal] = useState(false);
   const [fileName, setFileName] = useState("");
 
-  const handleRadioBtn = () => {
-    setIsChecked(true);
+  const handleRadioBtn = (e) => {
+    console.log(e.target);
   };
 
   const handleFileUpload = (e) => {
@@ -35,16 +36,17 @@ const Search = () => {
                 <input
                   type="checkbox"
                   onChange={handleRadioBtn}
-                  onClick={() => setDisabled(!disabled)}
+                  // onClick={() => setDisabled(!disabled)}
                   name="options"
                   value="codelist"
+                  // checked={checkedValue === isChecked}
                 />
               </label>
             </RadioBtnBox>
             <InputBox
               type="text"
               placeholder="Code List Name"
-              disabled={disabled}
+              // disabled={disabled}
             />
             <InputNote>
               <small>
@@ -59,16 +61,17 @@ const Search = () => {
               <label>
                 <input
                   type="radio"
-                  // checked
-                  onChange={handleRadioBtn}
+                  // checked={checkedValue === isChecked}
+                  // onChange={handleRadioBtn}
                   name="options"
+                  value="company"
                 />
               </label>
             </RadioBtnBox>
             <InputBox
               type="text"
               placeholder="Company Codes"
-              disabled={disabled}
+              // disabled={disabled}
             />
             <InputNote>
               <small>
@@ -88,7 +91,8 @@ const Search = () => {
                 <input
                   type="radio"
                   name="options"
-                  // checked={isChecked}
+                  value="file"
+                  // checked={checkedValue === isChecked}
                   // onChange={handleRadioBtn}
                 />
               </label>
@@ -101,7 +105,7 @@ const Search = () => {
                     type="file"
                     name="options"
                     multiple
-                    disabled={disabled}
+                    // disabled={disabled}
                     className="fileUpload"
                     onChange={handleFileUpload}
                   />
@@ -110,7 +114,7 @@ const Search = () => {
               <InputBox
                 type="text"
                 placeholder={fileName ? `${fileName}` : "No file selected"}
-                disabled={disabled}
+                // disabled={disabled}
                 readOnly
                 name="options"
                 className="fileName"
@@ -131,13 +135,14 @@ const Search = () => {
               <label>
                 <input
                   type="radio"
-                  // checked={isChecked}
+                  // checked={checkedValue === isChecked}
                   // onChange={handleRadioBtn}
                   name="options"
+                  value="select"
                 />
               </label>
             </RadioBtnBox>
-            <InputBox as="select" disabled={!isChecked ? "disabled" : ""}>
+            <InputBox as="select">
               <option>---------Select Saved Codelists---------</option>
             </InputBox>
             <InputNote>
@@ -153,9 +158,10 @@ const Search = () => {
               <label>
                 <input
                   type="radio"
-                  // checked={isChecked}
+                  // checked={checkedValue === isChecked}
                   // onChange={handleRadioBtn}
                   name="options"
+                  value="entire"
                 />
               </label>
               <span>Search the entire database</span>
