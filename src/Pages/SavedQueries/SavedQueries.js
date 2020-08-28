@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
+// import { DELETE_QUERY_API } from "../../config";
 import Nav from "../../Components/Nav/Nav";
 import Footer from "../../Components/Footer/Footer";
 
@@ -41,6 +43,14 @@ const SavedQueries = () => {
 
   const ascending = order === "ascending";
   const descending = order === "descending";
+
+  // const deleteQuery = (id) => {
+  //   axios({
+  //     method: "post",
+  //     url: DELETE_QUERY_API,
+  //     data: JSON.stringify({ id: id }),
+  //   });
+  // };
 
   return (
     <>
@@ -124,7 +134,9 @@ const SavedQueries = () => {
                   <td>{item.DataSet}</td>
                   <td>{item.QueryRunDate}</td>
                   <td>
-                    <button onClick={() => {}}>Rerun</button>
+                    <Link to={"/CRSP"}>
+                      <button>Rerun</button>
+                    </Link>
                     <button onClick={() => {}}>Delete</button>
                   </td>
                 </tr>
