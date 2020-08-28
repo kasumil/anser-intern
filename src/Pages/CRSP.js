@@ -9,11 +9,11 @@ import Footer from "../Components/Footer/Footer";
 import Search from "../Pages/Components/CRSP/Search";
 
 const CRSP = () => {
-  const onGetSubmit = (startDate, endDate, check) =>{
-    console.log(startDate, '부모1')
-    console.log(endDate, '부모2')
-    console.log(check, '부모3')
-  }
+  const onGetSubmit = (startDate, endDate, check) => {
+    console.log(startDate, "부모1");
+    console.log(endDate, "부모2");
+    console.log(check, "부모3");
+  };
 
   return (
     <>
@@ -44,8 +44,27 @@ const CRSP = () => {
           </SideBarList>
         </CRSPSideBar>
         <CRSPContent>
+          <CRSPTabWrapper>
+            <ul>
+              <li>
+                <Link className="active">Query Form</Link>
+              </li>
+              <li>
+                <Link>Variable Descriptions</Link>
+              </li>
+              <li>
+                <Link>Manuals and Overviews</Link>
+              </li>
+              <li>
+                <Link>FAQs</Link>
+              </li>
+              <li>
+                <Link>Dataset List</Link>
+              </li>
+            </ul>
+          </CRSPTabWrapper>
           <CRSPTitle>CRSP Daily Stock</CRSPTitle>
-          <StepOne  onSubmit={onGetSubmit}/>
+          <StepOne onSubmit={onGetSubmit} />
           <Search />
           <StepThree />
           <StepFour />
@@ -84,10 +103,13 @@ const CRSPSideBar = styled.div`
   h1,
   h2 {
     padding: 20px 15px 20px;
+    border-bottom: 1px solid #ddd;
   }
 `;
 
 const SideBarList = styled.div`
+  margin-top: 10px;
+
   li {
     list-style: none;
     margin-bottom: 5px;
@@ -117,4 +139,50 @@ const CRSPTitle = styled.div`
 const CRSPContent = styled.section`
   width: 890px;
   padding: 20px;
+`;
+
+const CRSPTabWrapper = styled.div`
+  position: relative;
+
+  ul {
+    display: flex;
+    margin-bottom: 15px;
+    white-space: nowrap;
+    border-bottom: none;
+
+    li {
+      position: relative;
+      display: table-cell;
+      margin-bottom: -1px;
+      width: 100%;
+      text-align: center;
+
+      a {
+        position: relative;
+        display: block;
+        padding: 18px 15px;
+        margin-right: 2px;
+        line-height: 1.4;
+        color: #fff;
+        border: 1px solid #002c77;
+        border-bottom: none;
+        background-color: #002c77;
+
+        &:hover {
+          color: #002c77;
+          border: 1px solid #002c77;
+          border-bottom: none;
+          background-color: #fff;
+          transition: all 0.25s cubic-bezier(0.54, 0.06, 0.55, 0.97);
+        }
+
+        &.active {
+          color: #002c77;
+          border: 1px solid #002c77;
+          border-bottom: none;
+          background-color: #fff;
+        }
+      }
+    }
+  }
 `;
