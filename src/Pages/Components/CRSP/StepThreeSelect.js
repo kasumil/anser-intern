@@ -55,7 +55,11 @@ const SelectColumn = ({ filtered, arr, setArr, selected, setSelected }) => {
             </div>
             <ColumnTable>
               {arr.map((item) => {
-                return <li key={item.name}>{item.name} : </li>;
+                return (
+                  <li key={item.name}>
+                    {item.name} : {item.kor}
+                  </li>
+                );
               })}
             </ColumnTable>
           </InfoModal>
