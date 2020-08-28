@@ -6,6 +6,10 @@ export const TOP_PANEL_URL = "http://localhost:3000/data/topPanel.json";
 
 export const Univ_List = "http://localhost:3000/data/univ.json";
 
+export const STEPTHREE_CATEGORY = "/data/stepThreeCategory.json";
+
+export const STEPTHREE_LIST = "/data/crsptab.json";
+
 export const Recapcha_Key = "6LfOwcAZAAAAANC40MGASlYC8agRNhJz2POqyEIQ";
 
 export const googleMapsApiKey = "AIzaSyDQWRJqEwj0XtcTztQLadhs4GWXQpKlyuU";

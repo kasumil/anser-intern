@@ -1,14 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 
-const SelectedColumn = ({ selected, setSelected, columns, setColumns }) => {
+const SelectedColumn = ({
+  arr,
+  setArr,
+  selected,
+  setSelected,
+  clickCategory,
+}) => {
   return (
     <SelectedColumnFrame>
       <ColumnFrame>
         <h3>Selected</h3>
         <button
           onClick={() => {
-            setColumns([...new Set([...columns, ...selected])]);
+            setArr([...arr, ...selected]);
             setSelected([]);
           }}
         >
@@ -18,15 +24,15 @@ const SelectedColumn = ({ selected, setSelected, columns, setColumns }) => {
       <List>
         {selected.map((item) => {
           return (
-            <Variables key={item}>
+            <Variables key={item.name}>
               <EachVariable
                 onClick={() => {
+                  setArr([...arr, item]);
                   selected.splice(selected.indexOf(item), 1);
-                  setColumns([...new Set([...columns, item])]);
                 }}
               >
                 <i className="fas fa-check-circle" />
-                <span>{item}</span>
+                <span>{item.name}</span>
               </EachVariable>
             </Variables>
           );
@@ -57,15 +63,17 @@ const ColumnFrame = styled.div`
   }
 
   button {
+    opacity: 0.4;
     color: #333;
+    padding: 0 4px;
     background-color: transparent;
-    border-radius: 5px;
     border: 1px solid #ddd;
     outline: none;
     cursor: pointer;
 
     &:hover {
-      background-color: #e6e6e6;
+      opacity: 1;
+      border-radius: 5px;
     }
   }
 `;
@@ -106,5 +114,6 @@ const EachVariable = styled.li`
 
   i {
     margin: 0 10px;
+    color: green;
   }
 `;

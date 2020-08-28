@@ -1,42 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import axios from "axios";
-import SelectColumn from "./StepThreeSelect";
-import SelectedColumn from "./StepThreeSelected";
+
+import StepThreeContents from "./StepThreeContents";
 
 const StepThree = () => {
   const [showHowWorks, setShowHowWorks] = useState(false);
-  const [categories, setCategories] = useState([]);
-  const [clickCategory, setClickCetegory] = useState("selectAll");
-  const [selected, setSelected] = useState([]);
-  const [columns, setColumns] = useState([]);
 
   const handleHowItWorks = () => {
     setShowHowWorks(!showHowWorks);
   };
-
-  useEffect(() => {
-    axios.get("/data/crsptab.json").then((res) => {
-      setCategories(res.data.categories);
-      switch (clickCategory) {
-        case "Identifying Information":
-          setColumns(res.data.Identifying[0].variable_eng);
-          break;
-        case "Time Series Information":
-          setColumns(res.data.Time[0].variable_eng);
-          break;
-        case "Distribution Information":
-          setColumns(res.data.Distribution[0].variable_eng);
-          break;
-        default:
-          setColumns([
-            ...res.data.Identifying[0].variable_eng,
-            ...res.data.Time[0].variable_eng,
-            ...res.data.Distribution[0].variable_eng,
-          ]);
-      }
-    });
-  }, [clickCategory]);
 
   return (
     <StepThreeFrame>
@@ -73,45 +45,7 @@ const StepThree = () => {
           </p>
         </HowItWorksModal>
       )}
-      <TabSlider>
-        <TabCategory
-          onClick={() => {
-            setClickCetegory("");
-          }}
-        >
-          <i className="fas fa-search" />
-          <h4>Search All</h4>
-          <span>
-            {selected.length}/{columns.length}
-          </span>
-        </TabCategory>
-        {categories.map((item) => {
-          return (
-            <TabCategory
-              onClick={() => {
-                setClickCetegory(`${item.category}`);
-              }}
-              key={item.id}
-            >
-              <h4>{item.category}</h4>
-            </TabCategory>
-          );
-        })}
-      </TabSlider>
-      <TabContents>
-        <SelectColumn
-          selected={selected}
-          setSelected={setSelected}
-          columns={columns}
-          setColumns={setColumns}
-        />
-        <SelectedColumn
-          selected={selected}
-          setSelected={setSelected}
-          columns={columns}
-          setColumns={setColumns}
-        />
-      </TabContents>
+      <StepThreeContents />
     </StepThreeFrame>
   );
 };
@@ -163,64 +97,18 @@ const HowItWorksModal = styled.div`
       font-weight: 700;
     }
   }
-`;
 
-const TabSlider = styled.ul`
-  display: flex;
-  width: 100%;
-  color: white;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border: 1px solid #002c77;
-  border-bottom: none;
-  background: #002c77;
-  overflow-x: scroll;
+  animation: slidein 1s;
 
-  ::-webkit-scrollbar {
-    display: none;
-  }
-`;
+  @keyframes slidein {
+    from {
+      opacity: 0;
+      margin-left: 20px;
+    }
 
-const TabCategory = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 15px;
-  font-size: 15px;
-  background: #002c77;
-  border-right: 1px solid white;
-  cursor: pointer;
-
-  &:hover {
-    color: #002c77;
-    background-color: white;
-  }
-
-  h4 {
-    margin-left: 10px;
-  }
-
-  span {
-    margin-left: 10px;
-    padding: 2px 5px;
-    font-size: 12px;
-    color: #002c77;
-    background-color: white;
-    border-radius: 10px;
-  }
-`;
-
-const TabContents = styled.div`
-  display: flex;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  border: 1px solid #002c77;
-  border-top: none;
-  height: 520px;
-
-  section {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
+    to {
+      opacity: 1;
+      margin-left: 0px;
+    }
   }
 `;
