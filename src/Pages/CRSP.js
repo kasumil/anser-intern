@@ -36,12 +36,15 @@ const CRSP = () => {
             </li>
           </SideBarList>
         </CRSPSideBar>
+
         <CRSPContent>
+          <CRSPTitle>CRSP Daily Stock</CRSPTitle>
           <StepOne />
           <Search />
           <StepThree />
         </CRSPContent>
       </CRSPFrame>
+
       <Footer />
     </>
   );
@@ -59,6 +62,7 @@ const CRSPFrame = styled.div`
 const CRSPSideBar = styled.div`
   width: 250px;
   font-size: 18px;
+  padding-top: 5px;
 
   h1 {
     color: #0e76bc;
@@ -95,6 +99,12 @@ const SideBarList = styled.div`
       line-height: 1.2;
     }
   }
+`;
+const CRSPTitle = styled.div`
+  font-size: 32px;
+  font-weight: bolder;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
 `;
 
 const CRSPContent = styled.section`
