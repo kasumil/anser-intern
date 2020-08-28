@@ -65,9 +65,7 @@ const AccountInfo = () => {
               <tr>
                 <th>{userInfo.repName}</th>
                 <td>
-                  <Link onClick={mailTo} to="/">
-                    {userInfo.repEmail}
-                  </Link>
+                  <p onClick={mailTo}>{userInfo.repEmail}</p>
                 </td>
               </tr>
             </tbody>
@@ -127,11 +125,12 @@ const InfoTable = styled.table`
     border-bottom: 1px solid #ddd;
     white-space: pre-line;
 
-    a {
-      margin-left: 2px;
-      margin-right: 2px;
+    p {
+      margin: 0 2px;
       color: #004785;
       text-decoration: none;
+      cursor: pointer;
+
       &:hover {
         text-decoration: underline;
       }

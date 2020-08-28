@@ -37,14 +37,12 @@ const ContactUsFrame = styled.div`
 const ContactUsRow = styled.div`
   width: 1140px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin: 0 auto;
   padding: 100px 0;
 `;
 
 const ContactInfo = styled.section`
-  width: 40%;
+  margin-right: 40px;
   color: white;
   font-size: 20px;
   text-align: center;

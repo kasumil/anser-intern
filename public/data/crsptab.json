@@ -1,13 +1,23 @@
 {
   "data": [
-    { "id": 1, "category": "Identifying", "name": "corp_code" },
-    { "id": 2, "category": "Identifying", "name": "corp_name" },
-    { "id": 3, "category": "TimeSeries", "name": "open" },
-    { "id": 4, "category": "TimeSeries", "name": "high" },
-    { "id": 5, "category": "TimeSeries", "name": "low" },
-    { "id": 6, "category": "TimeSeries", "name": "close" },
-    { "id": 7, "category": "TimeSeries", "name": "diff" },
-    { "id": 8, "category": "TimeSeries", "name": "volumn" },
-    { "id": 9, "category": "Distribution", "name": "date" }
+    {
+      "id": 1,
+      "category": "Identifying",
+      "name": "corp_code",
+      "kor": "회사코드"
+    },
+    {
+      "id": 2,
+      "category": "Identifying",
+      "name": "corp_name",
+      "kor": "회사이름"
+    },
+    { "id": 3, "category": "TimeSeries", "name": "open", "kor": "시작가격" },
+    { "id": 4, "category": "TimeSeries", "name": "high", "kor": "고가" },
+    { "id": 5, "category": "TimeSeries", "name": "low", "kor": "저가" },
+    { "id": 6, "category": "TimeSeries", "name": "close", "kor": "종가" },
+    { "id": 7, "category": "TimeSeries", "name": "diff", "kor": "전일 차이" },
+    { "id": 8, "category": "TimeSeries", "name": "volumn", "kor": "거래량" },
+    { "id": 9, "category": "Distribution", "name": "date", "kor": "날짜" }
   ]
 }
