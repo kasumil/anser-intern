@@ -25,7 +25,7 @@ const TopPanelData = () => {
               {el.nonsub.map((el, i) => {
                 return (
                   <li className="nonSub" key={i}>
-                    <Link to="">{el}</Link>
+                    <Link to="/crsp">{el}</Link>
                   </li>
                 );
               })}
