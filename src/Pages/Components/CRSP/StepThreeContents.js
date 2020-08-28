@@ -33,6 +33,7 @@ const StepThreeContents = () => {
           .sort(function (a, b) {
             return a.id > b.id ? 1 : a.id < b.id ? -1 : 0;
           });
+
   const filteredEntire = entire.filter(
     (item) => item.category === clickCategory
   );
@@ -40,6 +41,7 @@ const StepThreeContents = () => {
   const goLeft = () => {
     document.getElementById("tabSlider").scrollTo(-200, 0);
   };
+
   const goRight = () => {
     document.getElementById("tabSlider").scrollTo(200, 0);
   };
@@ -134,6 +136,7 @@ const TabTitle = styled.div`
   .goLeft {
     left: 10px;
   }
+
   .goRight {
     right: 10px;
   }
