@@ -5,36 +5,19 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog, faHome } from "@fortawesome/free-solid-svg-icons";
-import { TAB_ITEM_URL, USER_DATA_URL } from "../../config";
+import { USER_DATA_URL } from "../../config";
 import Login from "./Login";
 import Logout from "./Logout";
 import TopPanel from "./TopPanel";
 
 const Nav = ({ loginStatus }) => {
   const [isFold, setIsFold] = useState(true);
-  const [tabItems, setTabItems] = useState([]);
   const [userData, setUserData] = useState([]);
 
-  const customAxiosFunctions = async () => {
-    const urls = [TAB_ITEM_URL, USER_DATA_URL];
-    const promises = urls.map((el) => {
-      return axios.get(el);
-    });
-
-    const resolvedResponses = await Promise.all(promises);
-
-    resolvedResponses.map((el) => {
-      const url = el.config.url;
-      if (url === TAB_ITEM_URL) {
-        setTabItems(el.data.data);
-      } else if (url === USER_DATA_URL) {
-        setUserData(el.data.data);
-      }
-    });
-  };
-
   useEffect(() => {
-    customAxiosFunctions();
+    axios.get(USER_DATA_URL).then((res) => {
+      setUserData(res.data.data);
+    });
   }, []);
 
   const handleFold = () => {
@@ -98,14 +81,12 @@ const Nav = ({ loginStatus }) => {
                         className={!isFold && "show"}
                         xPlacement="bottom-start"
                       >
-                        {tabItems &&
-                          tabItems.map((el, i) => {
-                            return (
-                              <li key={i}>
-                                <Link to="/accountinfo">{el}</Link>
-                              </li>
-                            );
-                          })}
+                        <li>
+                          <Link to="/accountinfo">your account info</Link>
+                        </li>
+                        <li>
+                          <Link to="/savedqueries">saved queries & codes</Link>
+                        </li>
                       </DropdownMenu>
                       <Logout />
                     </>
