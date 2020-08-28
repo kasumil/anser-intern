@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import DatePicker from "react-datepicker";
+import { INPUT_LIST } from "../../../config";
 
-function StepOne() {
+function StepOne(props) {
   const date = new Date();
   const lastYear = date.getFullYear() - 1;
   const defalutYear = date.getFullYear() - 13;
@@ -11,10 +12,29 @@ function StepOne() {
   const [ mini, setMini ] = useState(false);
   const [ maxi, setMaxi ] = useState(false);
   const [ check, setCheck ] = useState("");
+  const [ comp, setComp ] = useState();
+
+  useEffect(()=> {
+    fetch(INPUT_LIST)
+      .then(res => res.json())
+      .then(res=> {
+        setComp(res)
+      })
+  },[])
+
   const valuedetector = (e) => {
-    const { value } = e.target
-    setCheck(value)
+    const { name, value } = e.target;
+    setCheck({[name] : value})
   }
+
+  //자식에서 부모 컴포넌트로 값 보내기.
+  const onFormSubmit = (e, value) => {
+    props.onGetSubmit(
+      (startDate, endDate, check)
+    )
+  };
+  console.log(endDate)
+
 
   return(
     <>
@@ -41,6 +61,7 @@ function StepOne() {
                     endDate={endDate}
                     minDate={new Date("1925-12-31")}
                     maxDate={new Date(endDate)}
+                    onSelect={()=> onFormSubmit(startDate)}
                     dateFormat="yyyy-MM-dd"
                     dropdownMode="select"
                     peekNextMonth
@@ -68,6 +89,7 @@ function StepOne() {
                     changeYear="true"
                     minDate={new Date(startDate)}
                     maxDate={new Date(`${lastYear}-12-31`)}
+                    onSelect={()=>onFormSubmit(endDate)}
                     dateFormat="yyyy-MM-dd"
                     dropdownMode="select"
                     peekNextMonth
@@ -91,90 +113,24 @@ function StepOne() {
             </div>
             <div>
               <Unorderedlist>
-                <Inputlist>
-                  <InputBtn 
-                    id="TICKER"
-                    type="radio"
-                    value="TICKER"
-                    autocomplete="off"
-                    checked={ check === "TICKER"}
-                    onChange={valuedetector}
-                  />
-                  &nbsp;
-                  <LabelName id="TICKER">TICKER</LabelName>
-                </Inputlist>
-                <Inputlist>
-                  <InputBtn 
-                    id="PERMNO"
-                    type="radio"
-                    value="PERMNO"
-                    autocomplete="off"
-                    checked={ check === "PERMNO"}
-                    onChange={valuedetector}
-                  />
-                  &nbsp;
-                  <LabelName id="PERMNO">PERMNO</LabelName>
-                </Inputlist>
-                <Inputlist>
-                  <InputBtn 
-                    id="PERMCO"
-                    type="radio"
-                    value="PERMCO"
-                    autocomplete="off"
-                    checked={ check === "PERMCO"}
-                    onChange={valuedetector}
-                  />
-                  &nbsp;
-                  <LabelName id="PERMCO">PERMCO</LabelName>
-                </Inputlist>
-                <Inputlist>
-                  <InputBtn
-                    id="CUSIP"
-                    type="radio"
-                    value="CUSIP"
-                    autocomplete="off"
-                    checked={ check === "CUSIP"}
-                    onChange={valuedetector}
-                  />
-                  &nbsp;
-                  <LabelName id="CUSIP">CUSIP</LabelName>
-                </Inputlist>
-                <Inputlist>
-                  <InputBtn
-                    id="NCUSIP"
-                    type="radio"
-                    value="NCUSIP"
-                    autocomplete="off"
-                    checked={ check === "NCUSIP"}
-                    onChange={valuedetector}
-                  />
-                  &nbsp;
-                  <LabelName id="NCUSIP">NCUSIP</LabelName>
-                </Inputlist>
-                <Inputlist>
-                  <InputBtn
-                    id="HSICCD"
-                    type="radio"
-                    value="HSICCD"
-                    autocomplete="off"
-                    checked={ check === "HSICCD"}
-                    onChange={valuedetector}
-                  />
-                  &nbsp;
-                  <LabelName id="HSICCD">HSICCD</LabelName>
-                </Inputlist>
-                <Inputlist>
-                  <InputBtn
-                    id="SICCD"
-                    type="radio"
-                    value="SICCD"
-                    autocomplete="off"
-                    checked={ check === "SICCD"}
-                    onChange={valuedetector}  
-                  />
-                  &nbsp;
-                  <LabelName id="SICCD">SICCD</LabelName>
-                </Inputlist>
+                {comp && comp.Complist.map((el, index)=> {
+                  return(
+                    <Inputlist key={index}>
+                      <InputBtn 
+                        id={el.id}
+                        name="comp"
+                        type="radio"
+                        value={el.value}
+                        autocomplete="off"
+                        checked={ check && check.comp === el.value}
+                        onChange={valuedetector}
+                        onClick={()=>onFormSubmit(comp)}
+                      />
+                      &nbsp;
+                      <LabelName id="TICKER">{el.id}</LabelName>
+                    </Inputlist>
+                  )
+                })}
               </Unorderedlist>
             </div>
           </MarginTop>
