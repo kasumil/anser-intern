@@ -9,12 +9,6 @@ import Footer from "../Components/Footer/Footer";
 import Search from "../Pages/Components/CRSP/Search";
 
 const CRSP = () => {
-  // const onGetSubmit = (startDate, endDate, check) => {
-  //   console.log(startDate, "부모1");
-  //   console.log(endDate, "부모2");
-  //   console.log(check, "부모3");
-  // };
-
   return (
     <>
       <Nav />
@@ -72,7 +66,6 @@ const CRSP = () => {
           <StepFour />
         </CRSPContent>
       </CRSPFrame>
-
       <Footer />
     </>
   );

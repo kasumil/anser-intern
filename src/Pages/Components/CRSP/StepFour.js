@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
 import { INPUT_LIST } from "../../../config";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 function StepFour() {
-  const [ list, setList ] = useState();
-  const [ check, setCheck ] = useState();
-  const [ query, setQuery ] = useState(false)
+  const [ list, setList ] = useState(); // 배열자료
+  const [ check, setCheck ] = useState(); // format, 이메일, 쿼리내용 기입.
+  const [ query, setQuery ] = useState(false); // 쿼리 체크값 확인용
 
   // 백엔드 통신용
   useEffect(() => {
@@ -16,26 +17,29 @@ function StepFour() {
     });
   }, [])
 
-  //백엔드 버튼 눌렀을시에 보내주는 기능
-  // useEffect(() => {
-  //   const { address, query_name } = check
-  //   fetch('',{
-  //     method: "POST",
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       address,
-  //       query_name,
-  //       check
-  //     })
-  //   })
-  //   .then(res => res.json())
-  //   .then(res => {
-      
-  //   })
-    
-  // })
+  // 백엔드 버튼 눌렀을시에 보내주는 기능
+  const SubmitQuery= () =>{
+    useEffect(() => {
+      const comp = sessionStorage.getItem(check)
+      const endDate = sessionStorage.getItem(endDate)
+      const startDate = sessionStorage.getItem(startDate)
+      fetch('',{
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          comp, endDate, startDate, check
+        })
+      })
+      .then(res => res.json())
+      .then(res => {
+        // <Link href={getFile.url}
+        //   download={getFile.saveAsFileName}>
+        // </Link>
+      })
+    }, [])
+  }
 
   // 포맷형식 선택기
   const valuedetector = (e) => {
@@ -71,9 +75,9 @@ function StepFour() {
           <LeftBTN>
             <LeftWrap>
               <LeftTitle>Output Format</LeftTitle>
-              {list && list.OutputFormat.map((el,idx) =>{
+              {list && list.OutputFormat.map((el) =>{
                 return(
-                  <LeftInputs key={idx}>
+                  <LeftInputs key={el.id}>
                     <Btn
                       type="radio"
                       name="format"
@@ -151,14 +155,6 @@ function StepFour() {
                 placeholder="E-mail"
                 onChange={valuedetector}
               />
-              {/* <EmailSendBtnWrap>
-                <EmailSendBtn 
-                  type="button"
-                  value="Edit Preferences"
-                  name="editPrefs"
-                  onClick=""
-                />
-              </EmailSendBtnWrap> */}
             </EmailTypingBox>
           </EmailWrap>
           <SaveQueryWrap>
@@ -185,12 +181,15 @@ function StepFour() {
                   id="query_name"
                   type="text"
                   placeholder="Query Name"
-                  disabled="true"
-              />}
+                  disabled="readOnly"
+              />
+              }
           </SaveQueryWrap>
         </EmailRow>
         <SubmitBtnRow>
-          <BtnSubmin name="querysubmit">Submit Query</BtnSubmin>
+          <BtnSubmin name="querysubmit" onClick={SubmitQuery}>
+            Submit Query
+          </BtnSubmin>
         </SubmitBtnRow>
       </Body>
     </StepFourWrap>
@@ -320,35 +319,6 @@ const EmailTyping = styled.input`
   background-color: #fff;
   border: 1px solid #ccc;
 `;
-
-// const EmailSendBtnWrap = styled.span`
-//   width: 1%;
-//   position: relative;
-//   white-space: nowrap;
-// `;
-
-// const EmailSendBtn = styled.input`
-//   margin-left: -1px;
-//   position: absolute;
-//   padding: 8px 12px;
-//   color: #333333;
-//   background-color: #e7e7e7;
-//   border-color: #ccc;
-//   text-align: center;
-//   border: 1px solid transparent;
-//   white-space: nowrap;
-//   font-size: 14px;
-//   line-height: 1.4;
-
-//   &:hover{
-//     box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.3);
-//     z-index: 2;
-//     background-color: #cecece;
-//     border-color: #adadad;
-//     transition: all 0.25s cubic-bezier(0.54, 0.06, 0.55, 0.97);
-//   }
-// `;
-
 
 const SaveQueryWrap = styled(EmailWrap)``;
 const SaveQueryTitle = styled(EmailLabel)``;
