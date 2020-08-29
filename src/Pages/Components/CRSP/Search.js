@@ -5,9 +5,6 @@ import { faFolderOpen } from "@fortawesome/free-solid-svg-icons";
 import CodeLookup from "./CodeLookup";
 
 const Search = () => {
-  // const [isChecked, setIsChecked] = useState("");
-  // const [checkedValue, setCheckedValue] = useState("");
-  // const [disabled, setDisabled] = useState(true);
   const [modal, setModal] = useState(false);
   const [fileName, setFileName] = useState("");
 
@@ -36,18 +33,12 @@ const Search = () => {
                 <input
                   type="checkbox"
                   onChange={handleRadioBtn}
-                  // onClick={() => setDisabled(!disabled)}
                   name="options"
                   value="codelist"
-                  // checked={checkedValue === isChecked}
                 />
               </label>
             </RadioBtnBox>
-            <InputBox
-              type="text"
-              placeholder="Code List Name"
-              // disabled={disabled}
-            />
+            <InputBox type="text" placeholder="Code List Name" />
             <InputNote>
               <small>
                 <p>Save code list to Saved Codes</p>
@@ -59,20 +50,10 @@ const Search = () => {
           <FormRadio>
             <RadioBtnBox>
               <label>
-                <input
-                  type="radio"
-                  // checked={checkedValue === isChecked}
-                  // onChange={handleRadioBtn}
-                  name="options"
-                  value="company"
-                />
+                <input type="radio" name="options" value="company" />
               </label>
             </RadioBtnBox>
-            <InputBox
-              type="text"
-              placeholder="Company Codes"
-              // disabled={disabled}
-            />
+            <InputBox type="text" placeholder="Company Codes" />
             <InputNote>
               <small>
                 <p>Please enter Company codes separated by a space.</p>
@@ -88,13 +69,7 @@ const Search = () => {
           <FormRadio>
             <RadioBtnBox>
               <label>
-                <input
-                  type="radio"
-                  name="options"
-                  value="file"
-                  // checked={checkedValue === isChecked}
-                  // onChange={handleRadioBtn}
-                />
+                <input type="radio" name="options" value="file" />
               </label>
             </RadioBtnBox>
             <InputGroup>
@@ -105,7 +80,6 @@ const Search = () => {
                     type="file"
                     name="options"
                     multiple
-                    // disabled={disabled}
                     className="fileUpload"
                     onChange={handleFileUpload}
                   />
@@ -114,7 +88,6 @@ const Search = () => {
               <InputBox
                 type="text"
                 placeholder={fileName ? `${fileName}` : "No file selected"}
-                // disabled={disabled}
                 readOnly
                 name="options"
                 className="fileName"
@@ -133,13 +106,7 @@ const Search = () => {
           <FormRadio>
             <RadioBtnBox>
               <label>
-                <input
-                  type="radio"
-                  // checked={checkedValue === isChecked}
-                  // onChange={handleRadioBtn}
-                  name="options"
-                  value="select"
-                />
+                <input type="radio" name="options" value="select" />
               </label>
             </RadioBtnBox>
             <InputBox as="select">
@@ -156,13 +123,7 @@ const Search = () => {
           <FormRadio>
             <RadioBtnBox>
               <label>
-                <input
-                  type="radio"
-                  // checked={checkedValue === isChecked}
-                  // onChange={handleRadioBtn}
-                  name="options"
-                  value="entire"
-                />
+                <input type="radio" name="options" value="entire" />
               </label>
               <span>Search the entire database</span>
             </RadioBtnBox>
