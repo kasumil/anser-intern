@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { FirstBody, SecondBody, ThirdBody } from "./SecondModalBody";
-import { ModalStyle } from "../../../Styles/ModalStyle";
+import { ModalStyle } from "../../../Styles/style";
 
 const SecondModal = ({
   secondModal,

@@ -5,7 +5,7 @@ import ReactExport from "react-export-excel";
 import { SEARCH_DATA } from "../../../config";
 import TableData from "./TableData";
 import SecondModal from "./SecondModal";
-import { ModalStyle } from "../../../Styles/ModalStyle";
+import { ModalStyle, ButtonStyle } from "../../../Styles/style";
 import { FirstParagraph, SecondParagraph } from "./CodeLookupText";
 
 const ExcelFile = ReactExport.ExcelFile;
@@ -232,6 +232,24 @@ const CodeLookup = ({ handleModal }) => {
             <ColResult>
               <p className="title">Select Your Identifier</p>
             </ColResult>
+            <Colsmall className="idenBtn">
+              <label>
+                <input type="radio" name="identifier" value="PERMNO" />
+                PERMNO
+              </label>
+            </Colsmall>
+            <Colsmall className="idenBtn">
+              <label>
+                <input type="radio" name="identifier" value="PERMCO" />
+                PERMCO
+              </label>
+            </Colsmall>
+            <Row className="addBtn">
+              <ColResult>
+                <button className="addBtn">Add Codes to List</button>
+                <button className="addBtn">Find More Codes</button>
+              </ColResult>
+            </Row>
           </>
         )}
         <hr />
@@ -256,13 +274,14 @@ const Modal = styled.div`
 
 const Codelookup = styled.div`
   position: fixed;
-  top: 10%;
-  right: 25%;
-  bottom: 10%;
-  left: 25%;
+  top: 50%;
+  left: 50%;
+  width: 960px;
+  height: 640px;
   padding: 30px 45px;
   background-color: #fff;
   overflow-y: auto;
+  transform: translate(-50%, -50%);
 
   .xBtn {
     position: absolute;
@@ -275,6 +294,7 @@ const Codelookup = styled.div`
 
     &:hover {
       color: #444;
+      transition: color 0.5s ease;
     }
   }
 
@@ -325,6 +345,10 @@ const SearchFormBox = styled.div`
 const Row = styled.div`
   display: flex;
   margin: 0 -15px;
+
+  &.addBtn {
+    margin-top: 15px;
+  }
 `;
 
 const Col = styled(Title)``;
@@ -365,28 +389,7 @@ const InputGroupBtn = styled.span`
   width: 1%;
   vertical-align: middle;
 
-  button {
-    display: inline-block;
-    position: relative;
-    padding: 8px 12px;
-    font-size: 14px;
-    line-height: 1.4;
-    text-align: center;
-    color: #fff;
-    vertical-align: middle;
-    border: 1px solid #11376b;
-    background-color: #154281;
-    user-select: none;
-    outline: 0;
-    cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.54, 0.06, 0.55, 0.97);
-
-    &:hover {
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-      background-color: #0e2c55;
-      border-color: #091c36;
-    }
-  }
+  ${ButtonStyle}
 `;
 
 const Colsmall = styled(Title)`
@@ -409,6 +412,11 @@ const Colsmall = styled(Title)`
     letter-spacing: 0.25px;
     line-height: 24px;
     list-style-type: decimal;
+  }
+
+  &.idenBtn {
+    display: inline-block;
+    margin-left: -15px;
   }
 `;
 
@@ -454,7 +462,6 @@ const PanelBody = styled.div`
 
 const ColResult = styled(Title)`
   width: 100%;
-  overflow: auto;
 
   p {
     margin: 0 0 11.5px;
@@ -464,7 +471,7 @@ const ColResult = styled(Title)`
     line-height: 24px;
 
     &.title {
-      margin: 0;
+      margin-left: -15px;
       font-size: 1.5em;
       color: #002c77;
       text-align: left;
@@ -484,6 +491,11 @@ const ColResult = styled(Title)`
     font-size: 1.5em;
     font-weight: bold;
     color: #002c77;
+  }
+
+  ${ButtonStyle}
+  button {
+    margin: 3px;
   }
 `;
 
