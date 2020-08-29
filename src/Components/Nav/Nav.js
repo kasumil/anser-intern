@@ -20,7 +20,8 @@ const Nav = ({ loginStatus }) => {
     });
   }, []);
 
-  const handleFold = () => {
+  const handleFold = (e) => {
+    e.preventDefault();
     setIsFold(!isFold);
   };
 
