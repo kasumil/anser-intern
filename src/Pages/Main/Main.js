@@ -17,14 +17,10 @@ const Main = ({ loginStatus }) => {
   const [latestNews, setLatestNews] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("data/data.json")
-      .then(
-        (res) => (
-          setSlideData(res.data.slideData),
-          setLatestNews([...res.data.latestNews])
-        )
-      );
+    axios.get("data/data.json").then((res) => {
+      setSlideData(res.data.slideData);
+      setLatestNews([...res.data.latestNews]);
+    });
     document.title = "Wharton Research Data Services";
   }, []);
 
