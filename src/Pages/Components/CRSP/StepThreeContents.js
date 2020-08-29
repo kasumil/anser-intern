@@ -7,7 +7,7 @@ import SelectedColumn from "./StepThreeSelected";
 
 const StepThreeContents = () => {
   const [categories, setCategories] = useState([]);
-  const [clickCategory, setClickCetegory] = useState("SelectAll");
+  const [clickCategory, setClickCetegory] = useState("SearchAll");
   const [selected, setSelected] = useState([]);
   const [arr, setArr] = useState([]);
   const [entire, setEntire] = useState([]);
@@ -23,8 +23,15 @@ const StepThreeContents = () => {
     });
   }, []);
 
+  useEffect(() => {
+    const selectedEl = selected.map((item) => {
+      return item.name;
+    });
+    sessionStorage.setItem("selected", selectedEl);
+  }, [selected]);
+
   const filtered =
-    clickCategory === "SelectAll"
+    clickCategory === "SearchAll"
       ? arr.sort(function (a, b) {
           return a.id > b.id ? 1 : a.id < b.id ? -1 : 0;
         })
@@ -65,13 +72,13 @@ const StepThreeContents = () => {
                 key={item.id}
               >
                 <h4>{item.category}</h4>
-                {`${item.category}` === "SelectAll" && (
+                {`${item.category}` === "SearchAll" && (
                   <span className="selectAllCount">
                     {selected.length}/{entire.length}
                   </span>
                 )}
                 {`${item.category}` === clickCategory &&
-                  `${item.category}` !== "SelectAll" && (
+                  `${item.category}` !== "SearchAll" && (
                     <span className="tabCount">
                       {filteredEntire.length - filtered.length}/
                       {filteredEntire.length}
@@ -158,7 +165,7 @@ const TabSlider = styled.ul`
     display: none;
   }
 
-  .SelectAll,
+  .SearchAll,
   .Identifying,
   .TimeSeries,
   .Distribution {

@@ -1,8 +1,20 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import {
+  StepThreeColumnFrameStyle,
+  EachVariableStyle,
+} from "../../../Styles/style";
 
 const SelectColumn = ({ filtered, arr, setArr, selected, setSelected }) => {
   const [infoModal, setInfoModal] = useState(false);
+
+  const handleSelected = ({ item }) => {
+    const selectArr = [...arr];
+    selectArr.splice(arr.indexOf(item), 1);
+    setArr(selectArr);
+    setSelected([...selected, item]);
+  };
+
   return (
     <SelectColumnFrame>
       <ColumnFrame>
@@ -22,8 +34,7 @@ const SelectColumn = ({ filtered, arr, setArr, selected, setSelected }) => {
             <EachVariable
               key={idx}
               onClick={() => {
-                arr.splice(arr.indexOf(item), 1);
-                setSelected([...selected, item]);
+                handleSelected({ item });
               }}
             >
               <div>
@@ -77,31 +88,7 @@ const SelectColumnFrame = styled.section`
 `;
 
 const ColumnFrame = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 20px 30px;
-  border-bottom: 1px solid #ddd;
-
-  h3 {
-    font-weight: 600;
-  }
-
-  button {
-    opacity: 0.4;
-    color: #333;
-    padding: 0 4px;
-    background-color: transparent;
-    border: 1px solid #ddd;
-    outline: none;
-    cursor: pointer;
-
-    &:hover {
-      opacity: 1;
-      border-radius: 5px;
-    }
-  }
+  ${StepThreeColumnFrameStyle}
 `;
 
 const List = styled.ul`
@@ -110,24 +97,8 @@ const List = styled.ul`
 `;
 
 const EachVariable = styled.li`
-  display: flex;
   justify-content: space-between;
-  padding: 10px;
-  border-bottom: 1px dotted #ddd;
-  cursor: pointer;
-  animation: slidein 1s;
-
-  @keyframes slidein {
-    from {
-      opacity: 0;
-      margin-top: 20px;
-    }
-
-    to {
-      opacity: 1;
-      margin-top: 0px;
-    }
-  }
+  ${EachVariableStyle}
 
   div {
     display: flex;

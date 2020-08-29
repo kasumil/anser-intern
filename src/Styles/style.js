@@ -45,3 +45,52 @@ export const ButtonStyle = css`
     }
   }
 `;
+
+export const StepThreeColumnFrameStyle = css`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 20px 30px;
+  border-bottom: 1px solid #ddd;
+
+  h3 {
+    font-weight: 600;
+  }
+
+  button {
+    opacity: 0.4;
+    color: #333;
+    padding: 0 4px;
+    background-color: transparent;
+    border: 1px solid #ddd;
+    outline: none;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+      border-radius: 5px;
+    }
+  }
+`;
+
+export const EachVariableStyle = css`
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px dotted #ddd;
+  cursor: pointer;
+  animation: slidein 1s;
+
+  @keyframes slidein {
+    from {
+      opacity: 0;
+      margin-top: 20px;
+    }
+
+    to {
+      opacity: 1;
+      margin-top: 0px;
+    }
+  }
+`;

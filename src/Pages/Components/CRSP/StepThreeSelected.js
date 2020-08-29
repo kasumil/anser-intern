@@ -1,13 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import {
+  StepThreeColumnFrameStyle,
+  EachVariableStyle,
+} from "../../../Styles/style";
 
-const SelectedColumn = ({
-  arr,
-  setArr,
-  selected,
-  setSelected,
-  clickCategory,
-}) => {
+const SelectedColumn = ({ arr, setArr, selected, setSelected }) => {
+  const handleSelected = ({ item }) => {
+    setArr([...arr, item]);
+    const selectedArr = [...selected];
+    selectedArr.splice(selected.indexOf(item), 1);
+    setSelected(selectedArr);
+  };
+
   return (
     <SelectedColumnFrame>
       <ColumnFrame>
@@ -27,8 +32,7 @@ const SelectedColumn = ({
             <Variables key={item.name}>
               <EachVariable
                 onClick={() => {
-                  setArr([...arr, item]);
-                  selected.splice(selected.indexOf(item), 1);
+                  handleSelected({ item });
                 }}
               >
                 <i className="fas fa-check-circle" />
@@ -51,31 +55,7 @@ const SelectedColumnFrame = styled.section`
 `;
 
 const ColumnFrame = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 20px 30px;
-  border-bottom: 1px solid #ddd;
-
-  h3 {
-    font-weight: 600;
-  }
-
-  button {
-    opacity: 0.4;
-    color: #333;
-    padding: 0 4px;
-    background-color: transparent;
-    border: 1px solid #ddd;
-    outline: none;
-    cursor: pointer;
-
-    &:hover {
-      opacity: 1;
-      border-radius: 5px;
-    }
-  }
+  ${StepThreeColumnFrameStyle}
 `;
 
 const List = styled.ul`
@@ -93,24 +73,7 @@ const Variables = styled.ul`
 `;
 
 const EachVariable = styled.li`
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  border-bottom: 1px dotted #ddd;
-  cursor: pointer;
-  animation: slidein 1s;
-
-  @keyframes slidein {
-    from {
-      opacity: 0;
-      margin-top: 20px;
-    }
-
-    to {
-      opacity: 1;
-      margin-top: 0px;
-    }
-  }
+  ${EachVariableStyle}
 
   i {
     margin: 0 10px;
