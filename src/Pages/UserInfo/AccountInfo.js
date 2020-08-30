@@ -7,7 +7,11 @@ import styled from "styled-components";
 const AccountInfo = () => {
   const [userInfo, setUserInfo] = useState([]);
   useEffect(() => {
-    axios.get("/data/data.json").then((res) => setUserInfo(res.data.data));
+    axios({
+      method: "GET",
+      url: "/data/userData.json",
+      data: { access_token: "ACCESS_TOKEN" },
+    }).then((res) => setUserInfo(res.data.userlist));
   });
 
   const mailTo = () => {
