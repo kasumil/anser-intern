@@ -7,6 +7,7 @@ import CodeLookup from "./CodeLookup";
 const Search = () => {
   const [modal, setModal] = useState(false);
   const [fileName, setFileName] = useState("");
+  const [checkedData, setCheckedData] = useState([]);
 
   const handleRadioBtn = (e) => {
     console.log(e.target);
@@ -53,7 +54,11 @@ const Search = () => {
                 <input type="radio" name="options" value="company" />
               </label>
             </RadioBtnBox>
-            <InputBox type="text" placeholder="Company Codes" />
+            <InputBox
+              type="text"
+              placeholder="Company Codes"
+              value={checkedData}
+            />
             <InputNote>
               <small>
                 <p>Please enter Company codes separated by a space.</p>
@@ -140,7 +145,13 @@ const Search = () => {
           </FormRadio>
         </FormGroup>
       </FormInline>
-      {modal && <CodeLookup handleModal={handleModal} />}
+      {modal && (
+        <CodeLookup
+          handleModal={handleModal}
+          checkedData={checkedData}
+          setCheckedData={setCheckedData}
+        />
+      )}
     </>
   );
 };

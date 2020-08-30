@@ -7,36 +7,32 @@ function StepOne(props) {
   const date = new Date();
   const lastYear = date.getFullYear() - 1;
   const defalutYear = date.getFullYear() - 13;
-  const [ startDate, setStartDate] = useState(new Date(`${defalutYear}-01-01`));
-  const [ endDate, setEndDate] = useState(new Date(`${lastYear}-12-31`));
-  const [ mini, setMini ] = useState(false);
-  const [ maxi, setMaxi ] = useState(false);
-  const [ check, setCheck ] = useState("");
-  const [ comp, setComp ] = useState();
+  const [startDate, setStartDate] = useState(new Date(`${defalutYear}-01-01`));
+  const [endDate, setEndDate] = useState(new Date(`${lastYear}-12-31`));
+  const [mini, setMini] = useState(false);
+  const [maxi, setMaxi] = useState(false);
+  const [check, setCheck] = useState("");
+  const [comp, setComp] = useState();
 
-  useEffect(()=> {
+  useEffect(() => {
     fetch(INPUT_LIST)
-      .then(res => res.json())
-      .then(res=> {
-        setComp(res)
-      })
-  },[])
+      .then((res) => res.json())
+      .then((res) => {
+        setComp(res);
+      });
+  }, []);
 
   const valuedetector = (e) => {
     const { name, value } = e.target;
-    setCheck({[name] : value})
-  }
+    setCheck({ [name]: value });
+  };
 
   //자식에서 부모 컴포넌트로 값 보내기.
   const onFormSubmit = (e, value) => {
-    props.onGetSubmit(
-      (startDate, endDate, check)
-    )
+    props.onGetSubmit((startDate, endDate, check));
   };
-  console.log(endDate)
 
-
-  return(
+  return (
     <>
       <div>
         <StepOnePart>
@@ -48,20 +44,20 @@ function StepOne(props) {
             <DateRangeRow>
               <DateRangeTitle>Date range</DateRangeTitle>
               <DateWrap>
-                <div 
-                  onMouseEnter={()=>setMini(true)}
-                  onMouseLeave={()=>setMini(false)}
+                <div
+                  onMouseEnter={() => setMini(true)}
+                  onMouseLeave={() => setMini(false)}
                 >
                   <DatePicker
                     className="datepickersize"
                     selected={startDate}
-                    onChange={date => setStartDate(date)} 
+                    onChange={(date) => setStartDate(date)}
                     selectsStart
                     startDate={startDate}
                     endDate={endDate}
                     minDate={new Date("1925-12-31")}
                     maxDate={new Date(endDate)}
-                    onSelect={()=> onFormSubmit(startDate)}
+                    onSelect={() => onFormSubmit(startDate)}
                     dateFormat="yyyy-MM-dd"
                     dropdownMode="select"
                     peekNextMonth
@@ -75,13 +71,13 @@ function StepOne(props) {
                 </HiddenMiniDate>
                 <SpanBox>to</SpanBox>
                 <div
-                  onMouseEnter={()=>setMaxi(true)}
-                  onMouseLeave={()=>setMaxi(false)}
+                  onMouseEnter={() => setMaxi(true)}
+                  onMouseLeave={() => setMaxi(false)}
                 >
                   <DatePicker
                     className="datepickersize"
                     selected={endDate}
-                    onChange={date => setEndDate(date)}
+                    onChange={(date) => setEndDate(date)}
                     selectsEnd
                     startDate={startDate}
                     endDate={endDate}
@@ -89,7 +85,7 @@ function StepOne(props) {
                     changeYear="true"
                     minDate={new Date(startDate)}
                     maxDate={new Date(`${lastYear}-12-31`)}
-                    onSelect={()=>onFormSubmit(endDate)}
+                    onSelect={() => onFormSubmit(endDate)}
                     dateFormat="yyyy-MM-dd"
                     dropdownMode="select"
                     peekNextMonth
@@ -113,31 +109,32 @@ function StepOne(props) {
             </div>
             <div>
               <Unorderedlist>
-                {comp && comp.Complist.map((el, index)=> {
-                  return(
-                    <Inputlist key={index}>
-                      <InputBtn 
-                        id={el.id}
-                        name="comp"
-                        type="radio"
-                        value={el.value}
-                        autocomplete="off"
-                        checked={ check && check.comp === el.value}
-                        onChange={valuedetector}
-                        onClick={()=>onFormSubmit(comp)}
-                      />
-                      &nbsp;
-                      <LabelName id="TICKER">{el.id}</LabelName>
-                    </Inputlist>
-                  )
-                })}
+                {comp &&
+                  comp.Complist.map((el, index) => {
+                    return (
+                      <Inputlist key={index}>
+                        <InputBtn
+                          id={el.id}
+                          name="comp"
+                          type="radio"
+                          value={el.value}
+                          autocomplete="off"
+                          checked={check && check.comp === el.value}
+                          onChange={valuedetector}
+                          onClick={() => onFormSubmit(comp)}
+                        />
+                        &nbsp;
+                        <LabelName id="TICKER">{el.id}</LabelName>
+                      </Inputlist>
+                    );
+                  })}
               </Unorderedlist>
             </div>
           </MarginTop>
         </div>
       </div>
     </>
-  )
+  );
 }
 
 export default StepOne;
@@ -149,7 +146,7 @@ const StepOnePart = styled.div`
 
 const BoldWrite = styled.strong`
   font-size: 20px;
-  font-weight : bold;
+  font-weight: bold;
 `;
 
 const SpanTitle = styled.span`
@@ -171,7 +168,7 @@ const DateRangeRow = styled.div`
 const DateWrap = styled.div`
   display: flex;
 
-  .datepickersize{
+  .datepickersize {
     height: 36px;
     padding: 8px 12px;
     font-size: 12px;
@@ -193,7 +190,7 @@ const DateRangeTitle = styled.label`
 `;
 
 const HiddenMiniDate = styled.div`
-  display: ${(props) => (props.mini || props.maxi? "flex": "none")};
+  display: ${(props) => (props.mini || props.maxi ? "flex" : "none")};
   position: absolute;
   justify-content: center;
   align-items: center;
@@ -217,7 +214,7 @@ const HiddenMaxiDate = styled(HiddenMiniDate)`
 `;
 
 const SpanBox = styled.span`
-  color: #AAAAAA;
+  color: #aaaaaa;
   background-color: #eeeeee;
   border: 1px solid #ccc;
   font-size: 14px;
@@ -252,7 +249,7 @@ const Unorderedlist = styled.ul`
 
 const Inputlist = styled.li`
   margin-right: 10px;
-  padding:0 5px;
+  padding: 0 5px;
   height: 29px;
   display: flex;
   align-items: center;

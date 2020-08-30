@@ -12,7 +12,7 @@ const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
 const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
 
-const CodeLookup = ({ handleModal }) => {
+const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
   const [value, setValue] = useState("");
   const [resultValue, setResultValue] = useState("");
   const [searchValue, setSearchValue] = useState("start with");
@@ -22,6 +22,7 @@ const CodeLookup = ({ handleModal }) => {
   const [secondModal, setSecondModal] = useState(false);
   const [modalCount, setModalCount] = useState(1);
   const [allCheck, setAllCheck] = useState(false);
+  const [identifier, setIdentifier] = useState("");
   const focusTarget = useRef();
   const focusResult = useRef();
 
@@ -39,7 +40,8 @@ const CodeLookup = ({ handleModal }) => {
   };
 
   const handleInput = (e) => {
-    setValue(e.target.value);
+    const { value } = e.target;
+    setValue(value);
   };
 
   const handleSubmit = (e) => {
@@ -76,6 +78,27 @@ const CodeLookup = ({ handleModal }) => {
   const handleSearchValue = (e) => {
     const { value } = e.target;
     setSearchValue(value);
+  };
+
+  const handleIdentifier = (e) => {
+    const { value } = e.target;
+    setIdentifier(value);
+  };
+
+  const handleAddList = () => {
+    if (identifier) {
+      alert(`Add ${checkedData.length} codes to your list.`);
+      sessionStorage.setItem(identifier, checkedData);
+      handleModal();
+    } else {
+      alert(
+        "Whoops! Looks like you didn't select an identifier yet! Please select an identifier before you begin adding codes to your list."
+      );
+    }
+  };
+
+  const findMoreCodes = () => {
+    focusTarget.current.focus();
   };
 
   return (
@@ -193,6 +216,9 @@ const CodeLookup = ({ handleModal }) => {
                                         key={i}
                                         data={el}
                                         allCheck={allCheck}
+                                        checkedData={checkedData}
+                                        setCheckedData={setCheckedData}
+                                        identifier={identifier}
                                       />
                                     );
                                   })}
@@ -234,20 +260,34 @@ const CodeLookup = ({ handleModal }) => {
             </ColResult>
             <Colsmall className="idenBtn">
               <label>
-                <input type="radio" name="identifier" value="PERMNO" />
+                <input
+                  type="radio"
+                  name="identifier"
+                  value="PERMNO"
+                  onClick={handleIdentifier}
+                />
                 PERMNO
               </label>
             </Colsmall>
             <Colsmall className="idenBtn">
               <label>
-                <input type="radio" name="identifier" value="PERMCO" />
+                <input
+                  type="radio"
+                  name="identifier"
+                  value="PERMCO"
+                  onClick={handleIdentifier}
+                />
                 PERMCO
               </label>
             </Colsmall>
             <Row className="addBtn">
               <ColResult>
-                <button className="addBtn">Add Codes to List</button>
-                <button className="addBtn">Find More Codes</button>
+                <button className="addBtn" onClick={handleAddList}>
+                  Add Codes to List
+                </button>
+                <button className="addBtn" onClick={findMoreCodes}>
+                  Find More Codes
+                </button>
               </ColResult>
             </Row>
           </>

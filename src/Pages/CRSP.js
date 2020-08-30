@@ -9,11 +9,11 @@ import Footer from "../Components/Footer/Footer";
 import Search from "../Pages/Components/CRSP/Search";
 
 const CRSP = () => {
-  const onGetSubmit = (startDate, endDate, check) => {
-    console.log(startDate, "부모1");
-    console.log(endDate, "부모2");
-    console.log(check, "부모3");
-  };
+  // const onGetSubmit = (startDate, endDate, check) => {
+  //   console.log(startDate, "부모1");
+  //   console.log(endDate, "부모2");
+  //   console.log(check, "부모3");
+  // };
 
   return (
     <>
@@ -47,24 +47,26 @@ const CRSP = () => {
           <CRSPTabWrapper>
             <ul>
               <li>
-                <Link className="active">Query Form</Link>
+                <Link to="" className="active">
+                  Query Form
+                </Link>
               </li>
               <li>
-                <Link>Variable Descriptions</Link>
+                <Link to="">Variable Descriptions</Link>
               </li>
               <li>
-                <Link>Manuals and Overviews</Link>
+                <Link to="">Manuals and Overviews</Link>
               </li>
               <li>
-                <Link>FAQs</Link>
+                <Link to="">FAQs</Link>
               </li>
               <li>
-                <Link>Dataset List</Link>
+                <Link to="">Dataset List</Link>
               </li>
             </ul>
           </CRSPTabWrapper>
           <CRSPTitle>CRSP Daily Stock</CRSPTitle>
-          <StepOne onSubmit={onGetSubmit} />
+          <StepOne />
           <Search />
           <StepThree />
           <StepFour />
