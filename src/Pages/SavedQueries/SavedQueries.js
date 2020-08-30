@@ -91,9 +91,9 @@ const SavedQueries = () => {
                   <span>Data Set</span>
                   {sortingField === "DataSet" ? (
                     ascending ? (
-                      <i class="fas fa-sort-alpha-up"></i>
+                      <i className="fas fa-sort-alpha-up"></i>
                     ) : (
-                      <i class="fas fa-sort-alpha-down"></i>
+                      <i className="fas fa-sort-alpha-down"></i>
                     )
                   ) : (
                     <i className="fas fa-sort" />
