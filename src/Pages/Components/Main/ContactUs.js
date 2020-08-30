@@ -18,7 +18,9 @@ const ContactUs = () => {
           <p className="contactType">Fax</p>
           <p>215.573.6073</p>
         </ContactInfo>
-        <ContactMap />
+        <ContactMapFrame>
+          <ContactMap />
+        </ContactMapFrame>
       </ContactUsRow>
     </ContactUsFrame>
   );
@@ -37,12 +39,13 @@ const ContactUsFrame = styled.div`
 const ContactUsRow = styled.div`
   width: 1140px;
   display: flex;
+  justify-content: space-between;
   margin: 0 auto;
   padding: 100px 0;
 `;
 
 const ContactInfo = styled.section`
-  margin-right: 40px;
+  width: 342px;
   color: white;
   font-size: 20px;
   text-align: center;
@@ -60,4 +63,9 @@ const ContactInfo = styled.section`
   p {
     line-height: 1.2;
   }
+`;
+
+const ContactMapFrame = styled.section`
+  width: 798px !important;
+  height: 368px;
 `;

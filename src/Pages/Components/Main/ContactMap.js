@@ -3,8 +3,9 @@ import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 import { googleMapsApiKey } from "../../../config";
 
 const mapSt = {
-  width: "40%",
+  width: "798px",
   height: "368px",
+  right: 0,
 };
 
 const centerPosition = { lat: 39.955878, lng: -75.199414 };
@@ -12,9 +13,9 @@ const centerPosition = { lat: 39.955878, lng: -75.199414 };
 const ContactMap = () => {
   return (
     <Map
-      className="Map"
       google={window.google}
-      containerStyle={mapSt}
+      googleMapsApiKey={googleMapsApiKey}
+      style={mapSt}
       zoom={14}
       initialCenter={centerPosition}
     >

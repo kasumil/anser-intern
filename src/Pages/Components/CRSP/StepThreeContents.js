@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { STEPTHREE_CATEGORY, STEPTHREE_LIST } from "../../../config";
@@ -11,6 +11,7 @@ const StepThreeContents = () => {
   const [selected, setSelected] = useState([]);
   const [arr, setArr] = useState([]);
   const [entire, setEntire] = useState([]);
+  const tabRef = useRef(null);
 
   useEffect(() => {
     axios.get(STEPTHREE_CATEGORY).then((res) => {
@@ -46,17 +47,17 @@ const StepThreeContents = () => {
   );
 
   const goLeft = () => {
-    document.getElementById("tabSlider").scrollTo(-200, 0);
+    tabRef.current.scrollTo(-200, 0);
   };
 
   const goRight = () => {
-    document.getElementById("tabSlider").scrollTo(200, 0);
+    tabRef.current.scrollTo(200, 0);
   };
 
   return (
     <>
       <TabTitle>
-        <TabSlider id="tabSlider">
+        <TabSlider ref={tabRef}>
           <button className="goLeft" onClick={() => goLeft()}>
             <i className="fas fa-angle-double-left" />
           </button>
