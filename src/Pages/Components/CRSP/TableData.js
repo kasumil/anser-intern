@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 
-const TableData = ({ data, allCheck }) => {
+const TableData = ({
+  data,
+  allCheck,
+  checkedData,
+  setCheckedData,
+  identifier,
+}) => {
   const [eachCheck, setEachCheck] = useState(false);
 
-  const handleEachCheck = () => {
+  const handleEachCheck = (data) => {
     setEachCheck(!eachCheck);
+    setCheckedData([...new Set([...checkedData, data])]);
   };
 
   return (
@@ -13,7 +20,7 @@ const TableData = ({ data, allCheck }) => {
         <input
           type="checkbox"
           checked={allCheck || eachCheck}
-          onChange={handleEachCheck}
+          onChange={() => handleEachCheck(data[identifier])}
         />
       </td>
       <td className="companyName">{data.ENTITY_NAME}</td>
