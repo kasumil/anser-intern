@@ -2,17 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Nav from "../../Components/Nav/Nav";
+import { API } from "../../config";
 import styled from "styled-components";
 
 const AccountInfo = () => {
   const [userInfo, setUserInfo] = useState([]);
   useEffect(() => {
     axios({
-      method: "GET",
-      url: "/data/userData.json",
-      data: { access_token: "ACCESS_TOKEN" },
-    }).then((res) => setUserInfo(res.data.userlist));
-  });
+      method: "POST",
+      url: `${API}hrdsuser/user_info/`,
+      data: { access_token: sessionStorage.getItem("access_token") },
+    }).then((res) => setUserInfo(res.data.data));
+  }, []);
 
   const mailTo = () => {
     window.location.href = "mailto:bhua@merage.uci.edu";
@@ -23,12 +24,12 @@ const AccountInfo = () => {
       <AccountInfoFrame>
         <PageHeader>Your Account</PageHeader>
         <PageContent>
-          <h2>{userInfo.user}</h2>
+          <h2>{userInfo.username}</h2>
           <InfoTable>
             <tbody>
               <tr>
                 <th>Username</th>
-                <td>{userInfo.userName}</td>
+                <td>{userInfo.username}</td>
               </tr>
               <tr>
                 <th>School</th>
@@ -40,11 +41,11 @@ const AccountInfo = () => {
               </tr>
               <tr>
                 <th>Account Type</th>
-                <td>{userInfo.accountType}</td>
+                <td>{userInfo.usertype}</td>
               </tr>
               <tr>
-                <th>Last Password Change</th>
-                <td>{userInfo.passwordChange}</td>
+                <th>Registered Date</th>
+                <td>{userInfo.register_date}</td>
               </tr>
               <tr>
                 <th>Terms of Use Acceptance</th>

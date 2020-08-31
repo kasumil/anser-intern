@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
-// import { DELETE_QUERY_API } from "../../config";
+import { API } from "../../config";
 import Nav from "../../Components/Nav/Nav";
 import Footer from "../../Components/Footer/Footer";
 
@@ -11,10 +11,20 @@ const SavedQueries = () => {
   const [sortingField, setSortingField] = useState("QueryRunDate");
   const [order, setOrder] = useState("ascending");
 
-  useEffect(() => {
-    axios.get("/data/savedqueries.json").then((res) => {
+  const loadQueryList = () => {
+    axios({
+      method: "POST",
+      url: `${API}query/`,
+      data: {
+        access_token: sessionStorage.getItem("access_token"),
+      },
+    }).then((res) => {
       setSavedQueries(res.data.data);
     });
+  };
+
+  useEffect(() => {
+    loadQueryList();
   }, []);
 
   const sortingQueries = (field) => {
@@ -43,13 +53,16 @@ const SavedQueries = () => {
 
   const ascending = order === "ascending";
 
-  // const deleteQuery = (id) => {
-  //   axios({
-  //     method: "post",
-  //     url: DELETE_QUERY_API,
-  //     data: JSON.stringify({ id: id }),
-  //   });
-  // };
+  const deleteQuery = (item) => {
+    axios({
+      method: "DELETE",
+      url: `${API}query/`,
+      data: {
+        access_token: sessionStorage.getItem("access_token"),
+        query_name: item,
+      },
+    }).then(() => loadQueryList());
+  };
 
   return (
     <>
@@ -128,15 +141,21 @@ const SavedQueries = () => {
           <tbody>
             {SavedQueries.map((item) => {
               return (
-                <tr key={item.id}>
-                  <td>{item.QueryName}</td>
-                  <td>{item.DataSet}</td>
-                  <td>{item.QueryRunDate}</td>
+                <tr key={item.query_name}>
+                  <td>{item.query_name}</td>
+                  <td>{item.data_set}</td>
+                  <td>{item.created_at}</td>
                   <td>
                     <Link to={"/CRSP"}>
                       <button>Rerun</button>
                     </Link>
-                    <button onClick={() => {}}>Delete</button>
+                    <button
+                      onClick={() => {
+                        deleteQuery(item.query_name);
+                      }}
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               );
