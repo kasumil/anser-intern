@@ -1,38 +1,56 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
 import DatePicker from "react-datepicker";
+import moment from "moment";
 import { INPUT_LIST } from "../../../config";
+import styled from "styled-components";
+
 
 function StepOne(props) {
-  const date = new Date();
-  const lastYear = date.getFullYear() - 1;
-  const defalutYear = date.getFullYear() - 13;
-  const [startDate, setStartDate] = useState(new Date(`${defalutYear}-01-01`));
-  const [endDate, setEndDate] = useState(new Date(`${lastYear}-12-31`));
-  const [mini, setMini] = useState(false);
-  const [maxi, setMaxi] = useState(false);
-  const [check, setCheck] = useState("");
-  const [comp, setComp] = useState();
+  const date = new Date(); // 현재 날짜생성기
+  const lastYear = date.getFullYear() - 1; // 작년연도 표시
+  const defalutYear = date.getFullYear() - 13; // 시작일 기준년도
+  const [ startDate, setStartDate] = useState(new Date(`${defalutYear}-01-01`));
+  const [ endDate, setEndDate] = useState(new Date(`${lastYear}-12-31`));
+  const [ mini, setMini ] = useState(false); // 마우스 이벤트 감지
+  const [ maxi, setMaxi ] = useState(false);
+  const [ check, setCheck ] = useState({}); // format값
+  const [ comp, setComp ] = useState(); // 목업데이터 저장소
+  const [ startchange, setStartchange ] = useState(); // 시작날짜변환값 저장
+  const [ endchange, setEndchange ] = useState(); // 마감날짜 변환값 저장
 
-  useEffect(() => {
+  //백엔드 통신하여 배열 자료가져오기
+  useEffect(()=> {
     fetch(INPUT_LIST)
-      .then((res) => res.json())
-      .then((res) => {
-        setComp(res);
-      });
-  }, []);
+      .then(res => res.json())
+      .then(res=> {
+        setComp(res)
+      })
+  },[]);
+  
+  //날짜 형식변환기, 마우스 이벤트 감지
+  useEffect(() => {
+    setStartchange({"startDate" : moment(startDate).format('YYYY-MM-DD')});
+    setEndchange({"endDate" : moment(endDate).format('YYYY-MM-DD')});
+    if( mini === true )
+      setMini(false);
+    if( maxi === true )
+      setMaxi(false);
+  }, [startDate, endDate])
 
+  //세션스토리지 저장
+  useEffect(() => {
+    sessionStorage.setItem("startDate", JSON.stringify({startchange}));
+    sessionStorage.setItem("endDate", JSON.stringify({endchange}));
+    sessionStorage.setItem("check", JSON.stringify({check}));
+  }, [startchange, endchange, check])
+
+  // 포맷 저장기
   const valuedetector = (e) => {
     const { name, value } = e.target;
-    setCheck({ [name]: value });
+    setCheck({[name] : value})
   };
-
-  //자식에서 부모 컴포넌트로 값 보내기.
-  const onFormSubmit = (e, value) => {
-    props.onGetSubmit((startDate, endDate, check));
-  };
-
-  return (
+  
+  return(
     <>
       <div>
         <StepOnePart>
@@ -50,6 +68,7 @@ function StepOne(props) {
                 >
                   <DatePicker
                     className="datepickersize"
+                    dateFormat="yyyy-MM-dd"
                     selected={startDate}
                     onChange={(date) => setStartDate(date)}
                     selectsStart
@@ -57,8 +76,6 @@ function StepOne(props) {
                     endDate={endDate}
                     minDate={new Date("1925-12-31")}
                     maxDate={new Date(endDate)}
-                    onSelect={() => onFormSubmit(startDate)}
-                    dateFormat="yyyy-MM-dd"
                     dropdownMode="select"
                     peekNextMonth
                     showMonthDropdown
@@ -76,6 +93,7 @@ function StepOne(props) {
                 >
                   <DatePicker
                     className="datepickersize"
+                    dateFormat="yyyy-MM-dd"
                     selected={endDate}
                     onChange={(date) => setEndDate(date)}
                     selectsEnd
@@ -85,8 +103,6 @@ function StepOne(props) {
                     changeYear="true"
                     minDate={new Date(startDate)}
                     maxDate={new Date(`${lastYear}-12-31`)}
-                    onSelect={() => onFormSubmit(endDate)}
-                    dateFormat="yyyy-MM-dd"
                     dropdownMode="select"
                     peekNextMonth
                     showMonthDropdown
@@ -109,25 +125,23 @@ function StepOne(props) {
             </div>
             <div>
               <Unorderedlist>
-                {comp &&
-                  comp.Complist.map((el, index) => {
-                    return (
-                      <Inputlist key={index}>
-                        <InputBtn
-                          id={el.id}
-                          name="comp"
-                          type="radio"
-                          value={el.value}
-                          autocomplete="off"
-                          checked={check && check.comp === el.value}
-                          onChange={valuedetector}
-                          onClick={() => onFormSubmit(comp)}
-                        />
-                        &nbsp;
-                        <LabelName id="TICKER">{el.id}</LabelName>
-                      </Inputlist>
-                    );
-                  })}
+                {comp && comp.Complist.map((el)=> {
+                  return(
+                    <Inputlist key={el.id}>
+                      <InputBtn 
+                        id={el.id}
+                        name="comp"
+                        type="radio"
+                        value={el.value}
+                        autocomplete="off"
+                        checked={ check && check.comp === el.value}
+                        onChange={valuedetector}
+                      />
+                      &nbsp;
+                      <LabelName id="TICKER">{el.id}</LabelName>
+                    </Inputlist>
+                  )
+                })}
               </Unorderedlist>
             </div>
           </MarginTop>
@@ -167,7 +181,6 @@ const DateRangeRow = styled.div`
 
 const DateWrap = styled.div`
   display: flex;
-
   .datepickersize {
     height: 36px;
     padding: 8px 12px;

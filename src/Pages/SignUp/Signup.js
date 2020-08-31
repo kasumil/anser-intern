@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import { RECAPCHA_KEY } from "../../config";
+import { addMonths } from "date-fns";
+import DatePicker from "react-datepicker";
+import ReCAPTCHA from "react-google-recaptcha";
+import moment from "moment";
+import "react-datepicker/dist/react-datepicker.css";
 import Nav from "../../Components/Nav/Nav";
 import Footer from "../../Components/Footer/Footer";
 import { UNIV_LIST } from "../../config";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { RECAPCHA_KEY } from "../../config";
-import { addMonths } from "date-fns";
-import DatePicker from "react-datepicker";
-import ReCAPTCHA from "react-google-recaptcha";
-import "react-datepicker/dist/react-datepicker.css";
+import styled from "styled-components";
+
 
 function Signup(props) {
   const [data, setData] = useState();
@@ -317,7 +319,7 @@ function Signup(props) {
                 dateFormat="yyyy-MM-dd"
                 onChange={(date) => {
                   setStartDate(date);
-                  setUserinfo({ ...userInfo, expiration_date: date });
+                  setUserinfo({ ...userInfo, expiration_date: moment(date).format('YYYY-MM-DD') });
                 }}
                 minDate={addMonths(new Date(), 6)}
                 maxDate={addMonths(new Date(), 12)}
