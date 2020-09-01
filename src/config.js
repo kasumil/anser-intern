@@ -10,6 +10,8 @@ export const STEPTHREE_LIST = "/data/crsptab.json";
 
 export const INPUT_LIST = "http://localhost:3000/data/inputlistrequire.json";
 
+export const SUBMIT_POINT = "http://ec2-54-180-112-70.ap-northeast-2.compute.amazonaws.com:8000/hrdsuser/signup/";
+
 export const RECAPCHA_KEY = "6LfOwcAZAAAAANC40MGASlYC8agRNhJz2POqyEIQ";
 
 export const googleMapsApiKey = "AIzaSyDQWRJqEwj0XtcTztQLadhs4GWXQpKlyuU";

@@ -1,34 +1,36 @@
 import React, { useState, useEffect } from "react";
-import { RECAPCHA_KEY } from "../../config";
-import { addMonths } from "date-fns";
+import { Link, useHistory, withRouter } from "react-router-dom";
+import styled from "styled-components";
+import Nav from "../../Components/Nav/Nav";
+import Footer from "../../Components/Footer/Footer";
 import DatePicker from "react-datepicker";
 import ReCAPTCHA from "react-google-recaptcha";
 import moment from "moment";
-import "react-datepicker/dist/react-datepicker.css";
-import Nav from "../../Components/Nav/Nav";
-import Footer from "../../Components/Footer/Footer";
+import { RECAPCHA_KEY } from "../../config";
+import { addMonths } from "date-fns";
+import { SUBMIT_POINT } from "../../config";
 import { UNIV_LIST } from "../../config";
-import { withRouter } from "react-router-dom";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import "react-datepicker/dist/react-datepicker.css";
 
-
-function Signup(props) {
+function Signup() {
   const [data, setData] = useState();
   const [startDate, setStartDate] = useState(null);
   const [userInfo, setUserinfo] = useState({
     username: "",
-    first_name: "",
-    last_name: "",
+    firstname: "",
+    lastname: "",
+    password:"",
     email: "",
     subscriber: "",
-    user_type: "",
-    expiration_date: "",
+    usertype: "",
+    expirationdate: "",
     department: "",
   });
   const [valid, setValid] = useState("normal");
   const [honest, setHonest] = useState("third");
   const [calendar, setCalendar] = useState("jan");
+
+  const history = useHistory();
 
   //밸리데이션 확인용
   useEffect(() => {
@@ -83,36 +85,41 @@ function Signup(props) {
     console.log("Captcha value:", value);
   };
 
-  const submitBtn = () => {
+  const submitBtn = (e) => {
     const {
       username,
-      first_name,
-      last_name,
+      firstname,
+      lastname,
+      password,
       email,
       subscriber,
-      user_type,
-      expiration_date,
-      department,
+      usertype,
+      expirationdate,
+      department
     } = userInfo;
-    fetch(``, {
+    e.preventDefault()
+    fetch(SUBMIT_POINT, {
       method: "POST",
       body: JSON.stringify({
         username,
-        first_name,
-        last_name,
+        firstname,
+        lastname,
+        password,
         email,
         subscriber,
-        user_type,
+        usertype,
+        expirationdate,
         department,
-        expiration_date,
       }),
     })
-      .then((res) => res.json)
+      .then((res) => res.json())
       .then((res) => {
-        if (res) {
+        if (res.message === "회원가입이 완료되었습니다.") {
           alert("회원가입을 환영합니다");
-          props.history.push("/");
-        } else {
+          history.push("/signin");
+        } else if (res.message === "중복된 이메일입니다.") {
+          alert("중복된 이메일입니다.");
+        } else if (res.message === "중복된 이메일입니다.") {
           alert("이메일과 비밀번호를 확인해주십시오");
         }
       });
@@ -131,11 +138,7 @@ function Signup(props) {
               </FirstTitle>
             </TitleContainer>
             <BodyContainer>
-              <FormTag
-              action="."
-              method="post"
-              onsubmit="return check_form();"
-              >
+              <FormTag>
                 {/* 유저네임 */}
                 <FormGroup>
                   <LabelName>
@@ -175,7 +178,7 @@ function Signup(props) {
                   <InputValue
                     onChange={inputValuedetector}
                     type="text"
-                    name="first_name"
+                    name="firstname"
                     maxlength="254"
                     placeholder="First name"
                   />
@@ -186,9 +189,19 @@ function Signup(props) {
                   <InputValue
                     onChange={inputValuedetector}
                     type="text"
-                    name="last_name"
+                    name="lastname"
                     maxlength="254"
                     placeholder="Last name"
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <LabelName type="password">Password</LabelName>
+                  <InputValue
+                    onChange={inputValuedetector}
+                    type="password"
+                    name="password"
+                    maxlength="254"
+                    placeholder="password"
                   />
                 </FormGroup>
                 {/* 이메일 주소 */}
@@ -228,7 +241,7 @@ function Signup(props) {
                     id="id_subscriber"
                   >
                     {data &&
-                      data.univ.map((el, idx) => {
+                      data.univ.map((el) => {
                         return (
                           <option key={el.id} value={el.id}>
                             {el.name}
@@ -242,12 +255,13 @@ function Signup(props) {
                   <LabelName type="id_user_type">User type</LabelName>
                   <select
                     onChange={inputValuedetector}
-                    name="user_type"
+                    name="usertype"
                     className="form-control"
                     title="The account type of this user."
+                    id="user_type"
                   >
                     {data &&
-                      data.type.map((el, idx) => {
+                      data.type.map((el) => {
                         return (
                           <option key={el.id} value={el.id}>
                             {el.name}
@@ -319,7 +333,7 @@ function Signup(props) {
                 dateFormat="yyyy-MM-dd"
                 onChange={(date) => {
                   setStartDate(date);
-                  setUserinfo({ ...userInfo, expiration_date: moment(date).format('YYYY-MM-DD') });
+                  setUserinfo({ ...userInfo, expirationdate: moment(date).format('YYYY-MM-DD') });
                 }}
                 minDate={addMonths(new Date(), 6)}
                 maxDate={addMonths(new Date(), 12)}
@@ -433,6 +447,7 @@ const LabelName = styled.label`
   display: inline-block;
   margin-bottom: 0.5rem;
 `;
+
 const InputGroup = styled.div`
   position: relative;
   display: flex;

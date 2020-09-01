@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { INPUT_LIST } from "../../../config";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { INPUT_LIST } from "../../../config";
+import { SUBMIT_POINT } from "../../../config";
 
 function StepFour() {
   const [ list, setList ] = useState(); // 배열자료
@@ -19,26 +20,24 @@ function StepFour() {
 
   // 백엔드 버튼 눌렀을시에 보내주는 기능
   const SubmitQuery= () =>{
-    useEffect(() => {
-      const comp = sessionStorage.getItem(check)
-      const endDate = sessionStorage.getItem(endDate)
-      const startDate = sessionStorage.getItem(startDate)
-      fetch('',{
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          comp, endDate, startDate, check
-        })
+    const comp = JSON.parse(sessionStorage.getItem("check"))
+    const endDate = JSON.parse(sessionStorage.getItem("endDate"))
+    const startDate = JSON.parse(sessionStorage.getItem("startDate"))
+    fetch('',{
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        comp, endDate, startDate, check
       })
-      .then(res => res.json())
-      .then(res => {
-        // <Link href={getFile.url}
-        //   download={getFile.saveAsFileName}>
-        // </Link>
-      })
-    }, [])
+    })
+    .then(res => res.json())
+    .then(res => {
+      // <Link href={getFile.url}
+      //   download={getFile.saveAsFileName}>
+      // </Link>
+    })
   }
 
   // 포맷형식 선택기
