@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { INPUT_LIST } from "../../../config";
-import { SUBMIT_POINT } from "../../../config";
+import { INPUT_LIST, CRSP_SUBMIT } from "../../../config";
 
 function StepFour() {
   const [ list, setList ] = useState(); // 배열자료
@@ -23,7 +22,7 @@ function StepFour() {
     const comp = JSON.parse(sessionStorage.getItem("check"))
     const endDate = JSON.parse(sessionStorage.getItem("endDate"))
     const startDate = JSON.parse(sessionStorage.getItem("startDate"))
-    fetch('',{
+    fetch(CRSP_SUBMIT,{
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
