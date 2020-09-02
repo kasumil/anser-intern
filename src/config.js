@@ -28,8 +28,5 @@ export const SEARCH_DATA = "http://localhost:3000/data/searchData.json";
 export const CORPLIST =
   "http://ec2-54-180-112-70.ap-northeast-2.compute.amazonaws.com:8000/corplist/";
 
-export const SUBMIT_POINT =
-  "http://ec2-54-180-112-70.ap-northeast-2.compute.amazonaws.com:8000/hrdsuser/signup/";
-
 export const API =
   "http://ec2-54-180-112-70.ap-northeast-2.compute.amazonaws.com:8000/";
