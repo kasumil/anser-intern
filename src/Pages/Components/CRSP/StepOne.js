@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 import DatePicker from "react-datepicker";
 import moment from "moment";
 import { INPUT_LIST } from "../../../config";
-import styled from "styled-components";
-
 
 function StepOne(props) {
   const date = new Date(); // 현재 날짜생성기
