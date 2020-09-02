@@ -23,13 +23,10 @@ const TableData = ({
           onChange={() => handleEachCheck(data[identifier])}
         />
       </td>
-      <td className="companyName">{data.ENTITY_NAME}</td>
-      <td className="general">{data.TICKER}</td>
-      <td className="general">{data.CUSIP_FULL}</td>
-      <td className="general">{data.PERMNO}</td>
-      <td className="general">{data.PERMCO}</td>
-      <td className="general">{data.FIRST_DATE}</td>
-      <td className="general">{data.LAST_DATE}</td>
+      <td className="companyName">{data.corp_code}</td>
+      <td className="general">{data.corp_name}</td>
+      <td className="general">{data.stock_code}</td>
+      <td className="general">{data.firmcode}</td>
     </tr>
   );
 };
