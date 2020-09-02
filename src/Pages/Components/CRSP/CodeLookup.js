@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import ReactExport from "react-export-excel";
-import { SEARCH_DATA } from "../../../config";
+import { SEARCH_DATA, CORPLIST } from "../../../config";
 import TableData from "./TableData";
 import SecondModal from "./SecondModal";
 import { ModalStyle, ButtonStyle } from "../../../Styles/style";
@@ -51,19 +51,19 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
     if (value) {
       setIsSubmit(true);
       setResultValue(value);
-      setTimeout(() => {
-        axios.get(SEARCH_DATA).then((res) => {
-          const filteredData = res.data.data.filter((el) => {
-            return Object.values(el)
-              .toString()
-              .toLowerCase()
-              .includes(value.toLowerCase());
-          });
-          setData(filteredData);
+      axios
+        .post(CORPLIST, {
+          search_word: value,
+          search_type: searchValue,
+        })
+        .then((res) => {
+          setData(res.data.data);
           setIsLoading(false);
           focusResult.current.scrollIntoView({ behavior: "smooth" });
+        })
+        .catch((err) => {
+          console.error(err);
         });
-      }, 1000);
     } else {
       e.preventDefault();
       setIsSubmit(false);
@@ -129,7 +129,7 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
                     <button onClick={handleSearchValue} value="contains">
                       Contains
                     </button>
-                    <button onClick={handleSearchValue} value="exactly match">
+                    <button onClick={handleSearchValue} value="exact">
                       Is Exactly
                     </button>
                   </InputGroupBtn>
@@ -200,13 +200,10 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
                                         checked={allCheck}
                                       />
                                     </th>
-                                    <th className="companyName">ENTITY_NAME</th>
-                                    <th className="general">TICKER</th>
-                                    <th className="general">CUSIP_FULL</th>
-                                    <th className="general">PERMNO</th>
-                                    <th className="general">PERMCO</th>
-                                    <th className="general">FIRST_DATE</th>
-                                    <th className="general">LAST_DATE</th>
+                                    <th className="companyName">CORP_CODE</th>
+                                    <th className="general">CORP_NAME</th>
+                                    <th className="general">STOCK_CODE</th>
+                                    <th className="general">FIRMCODE</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -246,13 +243,10 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
               filename={`CodeSearchResults ${new Date().toLocaleString()}`}
             >
               <ExcelSheet data={data} name="Codes">
-                <ExcelColumn label="entity_name" value="ENTITY_NAME" />
-                <ExcelColumn label="ticker" value="TICKER" />
-                <ExcelColumn label="cusip_full" value="CUSIP_FULL" />
-                <ExcelColumn label="permno" value="PERMNO" />
-                <ExcelColumn label="permco" value="PERMCO" />
-                <ExcelColumn label="first_date" value="FIRST_DATE" />
-                <ExcelColumn label="last_date" value="LAST_DATE" />
+                <ExcelColumn label="CORP_CODE" value="corp_code" />
+                <ExcelColumn label="CORP_NAME" value="corp_name" />
+                <ExcelColumn label="STOCK_CODE" value="stock_code" />
+                <ExcelColumn label="FIRMCODE" value="firmcode" />
               </ExcelSheet>
             </ExcelFile>
             <ColResult>
@@ -584,11 +578,11 @@ const ResultDataInner = styled.div`
       }
 
       &.companyName {
-        width: 130px;
+        width: 33%;
       }
 
       &.general {
-        width: 116px;
+        width: 33%;
       }
 
       input {
