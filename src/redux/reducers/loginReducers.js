@@ -1,6 +1,6 @@
 import { SET_LOGIN, SET_LOGOUT } from "../actions/loginActions";
 
-const INITIAL_STATE = localStorage.getItem("access_token");
+const INITIAL_STATE = sessionStorage.getItem("access_token");
 
 const loginStatus = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;

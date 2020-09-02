@@ -19,7 +19,7 @@ function Signup() {
     username: "",
     firstname: "",
     lastname: "",
-    password:"",
+    password: "",
     email: "",
     subscriber: "",
     usertype: "",
@@ -95,9 +95,9 @@ function Signup() {
       subscriber,
       usertype,
       expirationdate,
-      department
+      department,
     } = userInfo;
-    e.preventDefault()
+    e.preventDefault();
     fetch(SUBMIT_POINT, {
       method: "POST",
       body: JSON.stringify({
@@ -133,17 +133,13 @@ function Signup() {
         <ContainerWrap>
           <InnerContent>
             <TitleContainer>
-              <FirstTitle>
-                Register for WRDS
-              </FirstTitle>
+              <FirstTitle>Register for WRDS</FirstTitle>
             </TitleContainer>
             <BodyContainer>
               <FormTag>
                 {/* 유저네임 */}
                 <FormGroup>
-                  <LabelName>
-                    Username
-                  </LabelName>
+                  <LabelName>Username</LabelName>
                   <InputGroup>
                     <InputValue
                       onChange={inputValuedetector}
@@ -216,9 +212,7 @@ function Signup() {
                       placeholder="Email addresssername"
                     />
                     <ValidationBox>
-                      <SpanName
-                      honest={honest === "third"}
-                      >
+                      <SpanName honest={honest === "third"}>
                         Please enter your institutional email address.
                       </SpanName>
                       <SpanName honest={honest === "second"}>
@@ -269,29 +263,20 @@ function Signup() {
                         );
                       })}
                   </select>
-                  <SmallText>
-                    The account type of this user.
-                  </SmallText>
+                  <SmallText>The account type of this user.</SmallText>
                 </FormGroup>
                 {/* 만료기간 */}
                 <FormGroup>
-                  <LabelName>
-                    Expiration date
-                  </LabelName>
+                  <LabelName>Expiration date</LabelName>
                   <InputGroup>
                     <ValidationBox>
-                      <SpanName
-                      calendar={calendar === "jan"}
-                      >
+                      <SpanName calendar={calendar === "jan"}>
                         Please enter a valid expiration date (YYYY-MM-DD).
                       </SpanName>
-                      <SpanName 
-                      color="#5CB85C" 
-                      calendar={calendar === "feb"}
-                      >
+                      <SpanName color="#5CB85C" calendar={calendar === "feb"}>
                         This is a valid expiration date.
                       </SpanName>
-                    </ValidationBox>  
+                    </ValidationBox>
                   </InputGroup>
                 </FormGroup>
                 {/* 부서 */}
@@ -316,15 +301,12 @@ function Signup() {
                   <AcceptContract>
                     By submitting this form, you accept the
                     <Link className="TermsLink" to="">
-                    &nbsp;Terms of Use
+                      &nbsp;Terms of Use
                     </Link>
                   </AcceptContract>
                 </FormGroup>
-                <SubmitBTN
-                type="submit"
-                onClick={submitBtn}
-                >
-                &nbsp;Register for WRDS
+                <SubmitBTN type="submit" onClick={submitBtn}>
+                  &nbsp;Register for WRDS
                 </SubmitBTN>
               </FormTag>
               <DatePicker
@@ -333,7 +315,10 @@ function Signup() {
                 dateFormat="yyyy-MM-dd"
                 onChange={(date) => {
                   setStartDate(date);
-                  setUserinfo({ ...userInfo, expirationdate: moment(date).format('YYYY-MM-DD') });
+                  setUserinfo({
+                    ...userInfo,
+                    expirationdate: moment(date).format("YYYY-MM-DD"),
+                  });
                 }}
                 minDate={addMonths(new Date(), 6)}
                 maxDate={addMonths(new Date(), 12)}
@@ -486,9 +471,10 @@ const ValidationBox = styled.div`
 // username 밸리데이션
 const SpanName = styled.span`
   color: #fff;
-  background-color: ${props => props.color || "#c5093b"};
-  border-color: ${props => props.color || "#c5093b"};
-  display: ${props => props.valid || props.honest || props.calendar? "block": "none"};
+  background-color: ${(props) => props.color || "#c5093b"};
+  border-color: ${(props) => props.color || "#c5093b"};
+  display: ${(props) =>
+    props.valid || props.honest || props.calendar ? "block" : "none"};
   align-items: center;
   text-align: center;
   white-space: nowrap;

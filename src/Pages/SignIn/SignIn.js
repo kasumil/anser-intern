@@ -1,8 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import axios from "axios";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { loginActions } from "../../redux/actions";
+import { API } from "../../config";
 import Nav from "../../Components/Nav/Nav";
 import Footer from "../../Components/Footer/Footer";
 import GoogleLogin from "./GoogleLogin";
@@ -11,6 +13,11 @@ const { setLogin } = loginActions;
 const { Kakao } = window;
 
 const SignIn = ({ loginStatus }) => {
+  const [inputValue, setValue] = useState({
+    email: "",
+    password: "",
+  });
+
   useEffect(() => {
     document.title = "Wharton WRDS Login";
   });
@@ -19,7 +26,7 @@ const SignIn = ({ loginStatus }) => {
   const handleKakaoLogin = () => {
     Kakao.Auth.login({
       success: function (authObj) {
-        fetch("API주소", {
+        fetch("카카오 API 주소", {
           method: "POST",
           body: JSON.stringify({
             access_token: authObj.access_token,
@@ -27,7 +34,7 @@ const SignIn = ({ loginStatus }) => {
         })
           .then((res) => res.json())
           .then((res) => {
-            sessionStorage.setItem("access_token", res.access_token);
+            sessionStorage.setItem("access_token", res.data.token);
             if (res.access_token) {
               history.push("/");
             }
@@ -47,9 +54,25 @@ const SignIn = ({ loginStatus }) => {
   };
 
   const handleLogin = () => {
-    if (loginStatus) {
-      setLogin(true);
-    }
+    axios({
+      method: "POST",
+      url: `${API}hrdsuser/login/`,
+      data: {
+        email: inputValue.email,
+        password: inputValue.password,
+      },
+    })
+      .then((res) => {
+        sessionStorage.setItem("access_token", res.data.data.token);
+        setLogin(true);
+      })
+      .then(() => {
+        history.push("/");
+      });
+  };
+
+  const handleInput = ({ target: { name, value } }) => {
+    setValue({ ...inputValue, [name]: value });
   };
 
   const goToTop = () => {
@@ -80,10 +103,20 @@ const SignIn = ({ loginStatus }) => {
               src="/Images/kakao_login.png"
             />
             <GoogleLogin />
-            <p className="inputTitle">Username</p>
-            <input type="text" placeholder="Username" maxLength="15" />
+            <p className="inputTitle">Email</p>
+            <input
+              type="text"
+              name="email"
+              placeholder="email"
+              onChange={handleInput}
+            />
             <p className="inputTitle">Password</p>
-            <input type="password" placeholder="Password" />
+            <input
+              type="password"
+              name="password"
+              placeholder="password"
+              onChange={handleInput}
+            />
           </SignInSection>
           <SignInButton>
             <button className="loginBtn" onClick={handleLogin}>
