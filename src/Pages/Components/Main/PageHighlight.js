@@ -27,7 +27,7 @@ const PageHighlight = () => {
           </p>
         </figure>
         <figure>
-          <i className="fas fa-5x fa-search" aria-hidden="true"></i>
+          <i className="fas fa-5x fa-search" aria-hidden="true" />
           <p>
             WRDS democratizes data access so that all disciplines can easily
             search for concepts across the data repository.

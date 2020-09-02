@@ -54,21 +54,25 @@ const SignIn = ({ loginStatus }) => {
   };
 
   const handleLogin = () => {
-    axios({
-      method: "POST",
-      url: `${API}hrdsuser/login/`,
-      data: {
-        email: inputValue.email,
-        password: inputValue.password,
-      },
-    })
-      .then((res) => {
-        sessionStorage.setItem("access_token", res.data.data.token);
-        setLogin(true);
-      })
-      .then(() => {
-        history.push("/");
-      });
+    const { email, password } = inputValue;
+    !email || !password
+      ? alert("아이디와 비밀번호를 입력해주세요.")
+      : axios({
+          method: "POST",
+          url: `${API}hrdsuser/login/`,
+          data: {
+            email: email,
+            password: password,
+          },
+        })
+          .then((res) => {
+            sessionStorage.setItem("access_token", res.data.data.token);
+            sessionStorage.setItem("username", res.data.data.username);
+            setLogin(true);
+          })
+          .then(() => {
+            history.push("/");
+          });
   };
 
   const handleInput = ({ target: { name, value } }) => {
@@ -109,6 +113,9 @@ const SignIn = ({ loginStatus }) => {
               name="email"
               placeholder="email"
               onChange={handleInput}
+              onKeyUp={(e) => {
+                e.keyCode === 13 && handleLogin();
+              }}
             />
             <p className="inputTitle">Password</p>
             <input
@@ -116,6 +123,9 @@ const SignIn = ({ loginStatus }) => {
               name="password"
               placeholder="password"
               onChange={handleInput}
+              onKeyUp={(e) => {
+                e.keyCode === 13 && handleLogin();
+              }}
             />
           </SignInSection>
           <SignInButton>

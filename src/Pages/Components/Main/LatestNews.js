@@ -9,7 +9,7 @@ const LatestNews = ({ latestNews }) => {
         <h2>Latest News & Updates</h2>
         <button>
           More Updates
-          <i className="fas fa-arrow-circle-right" aria-hidden="true"></i>
+          <i className="fas fa-arrow-circle-right" aria-hidden="true" />
         </button>
       </MainFrameRow>
       <NewsArticles>
