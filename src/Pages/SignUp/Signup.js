@@ -6,10 +6,8 @@ import Footer from "../../Components/Footer/Footer";
 import DatePicker from "react-datepicker";
 import ReCAPTCHA from "react-google-recaptcha";
 import moment from "moment";
-import { RECAPCHA_KEY } from "../../config";
+import { RECAPCHA_KEY, SUBMIT_POINT, UNIV_LIST } from "../../config";
 import { addMonths } from "date-fns";
-import { SUBMIT_POINT } from "../../config";
-import { UNIV_LIST } from "../../config";
 import "react-datepicker/dist/react-datepicker.css";
 
 function Signup() {
