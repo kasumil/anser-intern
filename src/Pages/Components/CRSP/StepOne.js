@@ -28,8 +28,8 @@ function StepOne(props) {
   
   //날짜 형식변환기, 마우스 이벤트 감지
   useEffect(() => {
-    setStartchange({"startDate" : moment(startDate).format('YYYY-MM-DD')});
-    setEndchange({"endDate" : moment(endDate).format('YYYY-MM-DD')});
+    setStartchange(moment(startDate).format('YYYY-MM-DD'));
+    setEndchange(moment(endDate).format('YYYY-MM-DD'));
     if( mini === true )
       setMini(false);
     if( maxi === true )
@@ -38,15 +38,15 @@ function StepOne(props) {
 
   //세션스토리지 저장
   useEffect(() => {
-    sessionStorage.setItem("startDate", JSON.stringify({startchange}));
-    sessionStorage.setItem("endDate", JSON.stringify({endchange}));
-    sessionStorage.setItem("check", JSON.stringify({check}));
+    sessionStorage.setItem("start_date", startchange);
+    sessionStorage.setItem("end_date", endchange);
+    sessionStorage.setItem("comp",check);
   }, [startchange, endchange, check])
 
   // 포맷 저장기
   const valuedetector = (e) => {
-    const { name, value } = e.target;
-    setCheck({[name] : value})
+    const { value } = e.target;
+    setCheck(value)
   };
   
   return(
@@ -133,7 +133,7 @@ function StepOne(props) {
                         type="radio"
                         value={el.value}
                         autocomplete="off"
-                        checked={ check && check.comp === el.value}
+                        checked={ check && check === el.value}
                         onChange={valuedetector}
                       />
                       &nbsp;

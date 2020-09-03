@@ -19,16 +19,23 @@ function StepFour() {
 
   // 백엔드 버튼 눌렀을시에 보내주는 기능
   const SubmitQuery= () =>{
-    const comp = JSON.parse(sessionStorage.getItem("check"))
-    const endDate = JSON.parse(sessionStorage.getItem("endDate"))
-    const startDate = JSON.parse(sessionStorage.getItem("startDate"))
+    const comp  = sessionStorage.getItem("comp");
+    const start_date = sessionStorage.getItem("start_date");
+    const end_date = sessionStorage.getItem("end_date");
+    const selected = sessionStorage.getItem("selected").split(",");
+    const access_token = sessionStorage.getItem("access_token");
+    const PERCO = sessionStorage.PERCO;
+    const PERNO = sessionStorage.PERNO;
+    const email = check.email;
+    const format = check.format;
+    const query_name = check.query_name;
     fetch(CRSP_SUBMIT,{
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        comp, endDate, startDate, check
+        comp, start_date, end_date, selected, PERCO, PERNO, email, format, query_name, access_token
       })
     })
     .then(res => res.json())
@@ -38,11 +45,11 @@ function StepFour() {
       // </Link>
     })
   }
-
+  
   // 포맷형식 선택기
   const valuedetector = (e) => {
     const { name, value } = e.target
-    setCheck({...check, [ name ] : value})
+    setCheck({...check, [name] : value})
   }
 
   // 쿼리네임 체크박스 부분
