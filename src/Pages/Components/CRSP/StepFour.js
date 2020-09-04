@@ -37,9 +37,12 @@ function StepFour() {
         comp, start_date, end_date, selected, stock_code, email, format, query_name, access_token
       })
     })
-    // .then(res => {
-    //   FileSaver.saveAs(res.url, "stock")
-    // })
+    .then(res => {
+      // FileSaver.saveAs(res.url, "stock")
+      sessionStorage.removeItem("stock_code", "comp", "start_date", "end_date")
+      alert("요청하신 메일로 정상 발송되었습니다")
+      window.location.reload()
+    })
   }
   
   // 포맷형식 선택기
