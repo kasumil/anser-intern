@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
 import { connect } from "react-redux";
 import { loginActions } from "../../../redux/actions";
+import { API } from "../../../config";
 
 const { setLogin } = loginActions;
 
@@ -20,9 +22,21 @@ const NavHeader = ({ loginStatus }) => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (loginStatus) {
-      setLogin(true);
-    }
+    axios({
+      method: "post",
+      url: `${API}hrdsuser/login/`,
+      data: {
+        email: form.username,
+        password: form.password,
+      },
+    }).then((res) => {
+      if (res) {
+        sessionStorage.setItem("access_token", res.data.data.token);
+        sessionStorage.setItem("username", res.data.data.username);
+        setLogin(true);
+        window.location.reload();
+      }
+    });
   };
 
   return (
@@ -58,7 +72,9 @@ const NavHeader = ({ loginStatus }) => {
                         />
                       </Forms>
                       <ButtonForms>
-                        <button type="submit">Login</button>
+                        <button type="submit" onClick={handleLogin}>
+                          Login
+                        </button>
                       </ButtonForms>
                     </FormRow>
                   </LoginForm>

@@ -13,6 +13,7 @@ const Logout = ({ setLogout }) => {
   const handleLogout = () => {
     setLogout(false);
     sessionStorage.removeItem("access_token");
+    sessionStorage.removeItem("username");
     history.push("/");
   };
 
