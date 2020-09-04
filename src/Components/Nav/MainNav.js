@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
-import { USER_DATA_URL } from "../../config";
 import Login from "./Login";
 import Logout from "./Logout";
 import TopPanel from "./TopPanel";
@@ -16,9 +14,7 @@ const Nav = ({ loginStatus }) => {
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
-    axios.get(USER_DATA_URL).then((res) => {
-      setUserData(res.data.data);
-    });
+    setUserData(sessionStorage.getItem("username"));
   }, []);
 
   const handleFold = (e) => {
@@ -76,8 +72,7 @@ const Nav = ({ loginStatus }) => {
                         Contact
                       </a>
                       <Link to="/" className="userMenu" onClick={handleFold}>
-                        {userData.userName}'s account{" "}
-                        <FontAwesomeIcon icon={faCog} />
+                        {userData}'s account <FontAwesomeIcon icon={faCog} />
                       </Link>
                       <DropdownMenu
                         className={!isFold && "show"}
