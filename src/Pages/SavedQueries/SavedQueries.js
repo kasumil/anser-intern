@@ -68,7 +68,6 @@ const SavedQueries = () => {
   return (
     <>
       <Nav />
-
       <SavedQueriesFrame>
         <h1>Saved Queries</h1>
         <h3>You have {SavedQueries.length} saved queries.</h3>
