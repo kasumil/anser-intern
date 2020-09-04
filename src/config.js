@@ -1,6 +1,3 @@
-export const USER_DATA_URL =
-  "http://ec2-54-180-112-70.ap-northeast-2.compute.amazonaws.com:8000/hrdsuser/user_info/";
-
 export const TOP_PANEL_URL = "http://localhost:3000/data/topPanel.json";
 
 export const UNIV_LIST = "http://localhost:3000/data/univ.json";
