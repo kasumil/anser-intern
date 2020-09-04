@@ -76,7 +76,7 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
     setCheckedData(
       ...new Set([
         data.map((el) => {
-          return el.corp_code;
+          return el.stock_code;
         }),
       ])
     );
@@ -264,21 +264,10 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
                 <input
                   type="radio"
                   name="identifier"
-                  value="corp_code"
+                  value="stock_code"
                   onClick={handleIdentifier}
                 />
-                CORP_CODE
-              </label>
-            </Colsmall>
-            <Colsmall className="idenBtn">
-              <label>
-                <input
-                  type="radio"
-                  name="identifier"
-                  value="corp_name"
-                  onClick={handleIdentifier}
-                />
-                CORP_NAME
+                STOCK_CODE
               </label>
             </Colsmall>
             <Row className="addBtn">
