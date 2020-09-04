@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
+import FileSaver from "file-saver";
 import { INPUT_LIST, CRSP_SUBMIT } from "../../../config";
 
 function StepFour() {
@@ -24,26 +24,22 @@ function StepFour() {
     const end_date = sessionStorage.getItem("end_date");
     const selected = sessionStorage.getItem("selected").split(",");
     const access_token = sessionStorage.getItem("access_token");
-    const PERCO = sessionStorage.PERCO;
-    const PERNO = sessionStorage.PERNO;
+    const stock_code = sessionStorage.getItem("stock_code").split(",");
     const email = check.email;
     const format = check.format;
     const query_name = check.query_name;
     fetch(CRSP_SUBMIT,{
       method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type' : 'application/json',
       },
       body: JSON.stringify({
-        comp, start_date, end_date, selected, PERCO, PERNO, email, format, query_name, access_token
+        comp, start_date, end_date, selected, stock_code, email, format, query_name, access_token
       })
     })
-    .then(res => res.json())
-    .then(res => {
-      // <Link href={getFile.url}
-      //   download={getFile.saveAsFileName}>
-      // </Link>
-    })
+    // .then(res => {
+    //   FileSaver.saveAs(res.url, "stock")
+    // })
   }
   
   // 포맷형식 선택기
