@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useHistory, withRouter } from "react-router-dom";
 import styled from "styled-components";
 import Nav from "../../Components/Nav/Nav";
+import Verification from "./Verification";
 import Footer from "../../Components/Footer/Footer";
 import DatePicker from "react-datepicker";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -207,7 +208,7 @@ function Signup() {
                       type="email"
                       name="email"
                       maxlength="15"
-                      placeholder="Email addresssername"
+                      placeholder="Email addresss"
                     />
                     <ValidationBox>
                       <SpanName honest={honest === "third"}>
@@ -288,11 +289,21 @@ function Signup() {
                     placeholder="Department"
                   />
                 </FormGroup>
-                {/* 리캡차 */}
-                <FormGroup>
-                  <LabelName type="id_captcha">Captcha</LabelName>
-                  <ReCAPTCHA sitekey={`${RECAPCHA_KEY}`} onChange={onChange} />
-                </FormGroup>
+                <VerificationFlex>
+                  {/* 휴대폰 인증 */}
+                  <FormGroup>
+                    <LabelName>Verification</LabelName>
+                    <Verification />
+                  </FormGroup>
+                  {/* 리캡차 */}
+                  <FormGroup>
+                    <LabelName type="id_captcha">Captcha</LabelName>
+                    <ReCAPTCHA
+                      sitekey={`${RECAPCHA_KEY}`}
+                      onChange={onChange}
+                    />
+                  </FormGroup>
+                </VerificationFlex>
                 {/* 회원약관 */}
                 <FormGroup>
                   <LabelName type="id_terms_of_use">Terms of Use</LabelName>
@@ -343,6 +354,7 @@ const ContainerWrap = styled.div`
   margin: 0 auto;
   padding: 0 auto;
 `;
+
 const InnerContent = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -355,6 +367,7 @@ const TitleContainer = styled.div`
   flex: 0 0 100%;
   max-width: 100%;
 `;
+
 const FirstTitle = styled.h1`
   border-bottom: 1px solid #dddddd;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -397,6 +410,7 @@ const BodyContainer = styled.div`
   .react-datepicker-popper {
     top: -349px !important;
   }
+
   .react-datepicker__triangle {
     display: none;
   }
@@ -406,6 +420,7 @@ const BodyContainer = styled.div`
 const FormTag = styled.form`
   margin-top: 0em;
 `;
+
 const FormGroup = styled.div`
   margin-bottom: 1rem;
 
@@ -426,6 +441,7 @@ const FormGroup = styled.div`
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
 `;
+
 const LabelName = styled.label`
   display: inline-block;
   margin-bottom: 0.5rem;
@@ -439,6 +455,7 @@ const InputGroup = styled.div`
   justify-content: flex-end;
   width: 100%;
 `;
+
 const InputValue = styled.input`
   position: relative;
   color: #495057;
@@ -461,6 +478,7 @@ const InputValue = styled.input`
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 `;
+
 const ValidationBox = styled.div`
   display: flex;
   margin-left: -1px;
@@ -492,6 +510,10 @@ const SmallText = styled.small`
   margin-top: 0.25rem;
   font-size: 80%;
   font-weight: 400;
+`;
+
+const VerificationFlex = styled.div`
+  display: flex;
 `;
 
 //계약서 동의문구

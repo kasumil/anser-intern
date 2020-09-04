@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import styled from "styled-components";
 import Nav from "../../Components/Nav/Nav";
 import { API } from "../../config";
-import styled from "styled-components";
 
 const AccountInfo = () => {
   const [userInfo, setUserInfo] = useState([]);
@@ -18,6 +18,7 @@ const AccountInfo = () => {
   const mailTo = () => {
     window.location.href = "mailto:bhua@merage.uci.edu";
   };
+
   return (
     <>
       <Nav />
@@ -135,6 +136,10 @@ const InfoTable = styled.table`
       color: #004785;
       text-decoration: none;
       cursor: pointer;
+
+      a {
+        margin: 0 5px;
+      }
 
       &:hover {
         text-decoration: underline;
