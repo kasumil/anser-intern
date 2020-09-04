@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import ReactExport from "react-export-excel";
-import { SEARCH_DATA, CORPLIST } from "../../../config";
+import { CORPLIST } from "../../../config";
 import TableData from "./TableData";
 import SecondModal from "./SecondModal";
 import { ModalStyle, ButtonStyle } from "../../../Styles/style";
@@ -71,8 +71,15 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
     }
   };
 
-  const handleAllCheck = () => {
+  const handleAllCheck = (data) => {
     setAllCheck(!allCheck);
+    setCheckedData(
+      ...new Set([
+        data.map((el) => {
+          return el.corp_code;
+        }),
+      ])
+    );
   };
 
   const handleSearchValue = (e) => {
@@ -86,7 +93,7 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
   };
 
   const handleAddList = () => {
-    if (identifier) {
+    if (identifier && checkedData) {
       alert(`Add ${checkedData.length} codes to your list.`);
       sessionStorage.setItem(identifier, checkedData);
       handleModal();
@@ -196,7 +203,7 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
                                     <th className="thCheck">
                                       <input
                                         type="checkbox"
-                                        onChange={handleAllCheck}
+                                        onChange={() => handleAllCheck(data)}
                                         checked={allCheck}
                                       />
                                     </th>
@@ -257,10 +264,10 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
                 <input
                   type="radio"
                   name="identifier"
-                  value="PERMNO"
+                  value="corp_code"
                   onClick={handleIdentifier}
                 />
-                PERMNO
+                CORP_CODE
               </label>
             </Colsmall>
             <Colsmall className="idenBtn">
@@ -268,10 +275,10 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
                 <input
                   type="radio"
                   name="identifier"
-                  value="PERMCO"
+                  value="corp_name"
                   onClick={handleIdentifier}
                 />
-                PERMCO
+                CORP_NAME
               </label>
             </Colsmall>
             <Row className="addBtn">
