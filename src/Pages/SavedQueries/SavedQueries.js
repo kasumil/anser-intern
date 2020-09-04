@@ -19,7 +19,8 @@ const SavedQueries = () => {
         access_token: sessionStorage.getItem("access_token"),
       },
     }).then((res) => {
-      setSavedQueries(res.data.data);
+      Object.keys(res.data.data).length !== 0 &&
+        setSavedQueries([...res.data.data]);
     });
   };
 
@@ -29,13 +30,13 @@ const SavedQueries = () => {
 
   const sortingQueries = (field) => {
     SavedQueries.sort(function (a, b) {
-      const splitA = Date.parse(a.QueryRunDate.split(" ").reverse().join(" "));
-      const splitB = Date.parse(b.QueryRunDate.split(" ").reverse().join(" "));
-      if (field === "QueryRunDate") {
+      const compareA = a.created_at;
+      const compareB = b.created_at;
+      if (field === "created_at") {
         if (order === "ascending") {
-          return splitA < splitB ? -1 : splitA > splitB ? 1 : 0;
+          return compareA < compareB ? -1 : compareA > compareB ? 1 : 0;
         } else if (order === "descending") {
-          return splitA < splitB ? 1 : splitA > splitB ? -1 : 0;
+          return compareA < compareB ? 1 : compareA > compareB ? -1 : 0;
         }
       } else {
         if (order === "ascending") {
@@ -67,102 +68,111 @@ const SavedQueries = () => {
   return (
     <>
       <Nav />
+
       <SavedQueriesFrame>
         <h1>Saved Queries</h1>
         <h3>You have {SavedQueries.length} saved queries.</h3>
-        <QueriesTable>
-          <thead>
-            <tr>
-              <th>
-                <ThFrame
-                  onClick={() => {
-                    sortingQueries("QueryName");
-                    setSortingField("QueryName");
-                    handleOrder();
-                  }}
-                >
-                  <span>Query Name</span>
-                  {sortingField === "QueryName" ? (
-                    ascending ? (
-                      <i className="fas fa-sort-alpha-up"></i>
+        {SavedQueries.length === 0 ? (
+          <NoQuery>
+            <i className="far fa-folder-open fa-2x" />
+            <h1>저장된 쿼리가 없습니다.</h1>
+          </NoQuery>
+        ) : (
+          <QueriesTable>
+            <thead>
+              <tr>
+                <th>
+                  <ThFrame
+                    onClick={() => {
+                      sortingQueries("query_name");
+                      setSortingField("query_name");
+                      handleOrder();
+                    }}
+                  >
+                    <span>Query Name</span>
+                    {sortingField === "query_name" ? (
+                      ascending ? (
+                        <i className="fas fa-sort-alpha-up" />
+                      ) : (
+                        <i className="fas fa-sort-alpha-down" />
+                      )
                     ) : (
-                      <i className="fas fa-sort-alpha-down"></i>
-                    )
-                  ) : (
-                    <i className="fas fa-sort" />
-                  )}
-                </ThFrame>
-              </th>
-              <th>
-                <ThFrame
-                  onClick={() => {
-                    sortingQueries("DataSet");
-                    setSortingField("DataSet");
-                    handleOrder();
-                  }}
-                >
-                  <span>Data Set</span>
-                  {sortingField === "DataSet" ? (
-                    ascending ? (
-                      <i className="fas fa-sort-alpha-up"></i>
+                      <i className="fas fa-sort" />
+                    )}
+                  </ThFrame>
+                </th>
+                <th>
+                  <ThFrame
+                    onClick={() => {
+                      sortingQueries("data_set");
+                      setSortingField("data_set");
+                      handleOrder();
+                    }}
+                  >
+                    <span>Data Set</span>
+                    {sortingField === "data_set" ? (
+                      ascending ? (
+                        <i className="fas fa-sort-alpha-up" />
+                      ) : (
+                        <i className="fas fa-sort-alpha-down" />
+                      )
                     ) : (
-                      <i className="fas fa-sort-alpha-down"></i>
-                    )
-                  ) : (
-                    <i className="fas fa-sort" />
-                  )}
-                </ThFrame>
-              </th>
-              <th>
-                <ThFrame
-                  onClick={() => {
-                    sortingQueries("QueryRunDate");
-                    setSortingField("QueryRunDate");
-                    handleOrder();
-                  }}
-                >
-                  <span>Query Run Date</span>
-                  {sortingField === "QueryRunDate" ? (
-                    ascending ? (
-                      <i className="fas fa-sort-alpha-up"></i>
+                      <i className="fas fa-sort" />
+                    )}
+                  </ThFrame>
+                </th>
+                <th>
+                  <ThFrame
+                    onClick={() => {
+                      sortingQueries("created_at");
+                      setSortingField("created_at");
+                      handleOrder();
+                    }}
+                  >
+                    <span>Query Run Date</span>
+                    {sortingField === "created_at" ? (
+                      ascending ? (
+                        <i className="fas fa-sort-alpha-up" />
+                      ) : (
+                        <i className="fas fa-sort-alpha-down" />
+                      )
                     ) : (
-                      <i className="fas fa-sort-alpha-down"></i>
-                    )
-                  ) : (
-                    <i className="fas fa-sort" />
-                  )}
-                </ThFrame>
-              </th>
-              <th>
-                <ThFrame>Functions</ThFrame>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {SavedQueries.map((item) => {
-              return (
-                <tr key={item.query_name}>
-                  <td>{item.query_name}</td>
-                  <td>{item.data_set}</td>
-                  <td>{item.created_at}</td>
-                  <td>
-                    <Link to={"/CRSP"}>
-                      <button>Rerun</button>
-                    </Link>
-                    <button
-                      onClick={() => {
-                        deleteQuery(item.query_name);
-                      }}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </QueriesTable>
+                      <i className="fas fa-sort" />
+                    )}
+                  </ThFrame>
+                </th>
+                <th>
+                  <ThFrame>Functions</ThFrame>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {SavedQueries.map((item) => {
+                return (
+                  <tr key={item.query_name}>
+                    <td>{item.query_name}</td>
+                    <td>{item.data_set}</td>
+                    <td>{item.created_at.substring(0, 10)}</td>
+                    <td>
+                      <Link to={"/CRSP"}>
+                        <button>Rerun</button>
+                      </Link>
+                      <button
+                        onClick={() => {
+                          deleteQuery(item.query_name);
+                        }}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </QueriesTable>
+        )}
       </SavedQueriesFrame>
+
       <Footer />
     </>
   );
@@ -183,6 +193,31 @@ const SavedQueriesFrame = styled.div`
 
   h3 {
     color: #888;
+  }
+`;
+
+const NoQuery = styled.section`
+  position: relative;
+  margin: 20px auto 40px;
+  padding: 80px;
+  width: 100%;
+  color: #888;
+  border: 1px solid #888;
+  border-radius: 10px;
+
+  i {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    margin-bottom: 30px;
+  }
+
+  h1 {
+    color: #888;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 2;
+    text-align: center;
   }
 `;
 
