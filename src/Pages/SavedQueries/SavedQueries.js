@@ -62,7 +62,10 @@ const SavedQueries = () => {
         access_token: sessionStorage.getItem("access_token"),
         query_name: item,
       },
-    }).then(() => loadQueryList());
+    }).then(() => {
+      window.location.reload();
+      alert(`정상적으로 삭제되었습니다 : ${item}`);
+    });
   };
 
   return (
