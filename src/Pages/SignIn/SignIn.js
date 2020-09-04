@@ -72,6 +72,7 @@ const SignIn = ({ loginStatus }) => {
           })
           .then(() => {
             history.push("/");
+            window.location.reload();
           });
   };
 
