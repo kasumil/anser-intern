@@ -1,49 +1,34 @@
-{  
-  "OutputFormat" : [
+{
+  "OutputFormat": [
     {
-      "id" : "txt",
-      "name" : "fixed-width text (*.txt)",
+      "id": "txt",
+      "name": "fixed-width text (*.txt)",
       "value": "txt"
-    }
-    ,
-    { 
-      "id" : "csv",
-      "name" : "comma-delimited text (*.csv)",
+    },
+    {
+      "id": "csv",
+      "name": "comma-delimited text (*.csv)",
       "value": "csv"
     },
     {
-      "id" : "xlsx",
-      "name" : "Excel spreadsheet (*.xlsx)",
+      "id": "xlsx",
+      "name": "Excel spreadsheet (*.xlsx)",
       "value": "xlsx"
     }
   ],
-  "Complist" : [
+  "Complist": [
     {
-      "id": "TICKER",
-      "value":"TICKER"
+      "id": "CORP_CODE",
+      "value": "CORP_CODE"
     },
     {
-      "id": "PERMNO",
-      "value":"PERMNO"
+      "id": "CORP_NAME",
+      "value": "CORP_NAME"
     },
     {
-      "id": "PERMCO",
-      "value":"PERMCO"
+      "id": "STOCK_CODE",
+      "value": "STOCK_CODE"
     },
-    {  "id": "CUSIP",
-      "value":"CUSIP"
-    },
-    {
-      "id": "NCUSIP",
-      "value":"NCUSIP"
-    },
-    {
-      "id": "HSICCD",
-      "value":"HSICCD"
-    },
-    {
-      "id": "SICCD",
-      "value":"SICCD"
-    }
+    { "id": "FIRMCODE", "value": "FIRMCODE" }
   ]
 }
