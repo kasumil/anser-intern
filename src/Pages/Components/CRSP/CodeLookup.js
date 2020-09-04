@@ -22,7 +22,6 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
   const [secondModal, setSecondModal] = useState(false);
   const [modalCount, setModalCount] = useState(1);
   const [allCheck, setAllCheck] = useState(false);
-  const [identifier, setIdentifier] = useState("");
   const focusTarget = useRef();
   const focusResult = useRef();
 
@@ -87,15 +86,10 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
     setSearchValue(value);
   };
 
-  const handleIdentifier = (e) => {
-    const { value } = e.target;
-    setIdentifier(value);
-  };
-
   const handleAddList = () => {
-    if (identifier && checkedData) {
+    if (checkedData) {
       alert(`Add ${checkedData.length} codes to your list.`);
-      sessionStorage.setItem(identifier, checkedData);
+      sessionStorage.setItem("stock_code", checkedData);
       handleModal();
     } else {
       alert(
@@ -222,7 +216,6 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
                                         allCheck={allCheck}
                                         checkedData={checkedData}
                                         setCheckedData={setCheckedData}
-                                        identifier={identifier}
                                       />
                                     );
                                   })}
@@ -256,20 +249,6 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
                 <ExcelColumn label="FIRMCODE" value="firmcode" />
               </ExcelSheet>
             </ExcelFile>
-            <ColResult>
-              <p className="title">Select Your Identifier</p>
-            </ColResult>
-            <Colsmall className="idenBtn">
-              <label>
-                <input
-                  type="radio"
-                  name="identifier"
-                  value="stock_code"
-                  onClick={handleIdentifier}
-                />
-                STOCK_CODE
-              </label>
-            </Colsmall>
             <Row className="addBtn">
               <ColResult>
                 <button className="addBtn" onClick={handleAddList}>
@@ -442,11 +421,6 @@ const Colsmall = styled(Title)`
     letter-spacing: 0.25px;
     line-height: 24px;
     list-style-type: decimal;
-  }
-
-  &.idenBtn {
-    display: inline-block;
-    margin-left: -15px;
   }
 `;
 
