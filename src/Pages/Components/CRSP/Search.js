@@ -9,10 +9,6 @@ const Search = () => {
   const [fileName, setFileName] = useState("");
   const [checkedData, setCheckedData] = useState([]);
 
-  const handleRadioBtn = (e) => {
-    console.log(e.target);
-  };
-
   const handleFileUpload = (e) => {
     setFileName(e.target.files[0].name);
   };
@@ -31,12 +27,7 @@ const Search = () => {
           <FormRadio>
             <RadioBtnBox>
               <label>
-                <input
-                  type="checkbox"
-                  onChange={handleRadioBtn}
-                  name="options"
-                  value="codelist"
-                />
+                <input type="checkbox" name="options" value="codelist" />
               </label>
             </RadioBtnBox>
             <InputBox type="text" placeholder="Code List Name" />
@@ -57,7 +48,7 @@ const Search = () => {
             <InputBox
               type="text"
               placeholder="Company Codes"
-              value={checkedData}
+              defaultValue={checkedData}
             />
             <InputNote>
               <small>
