@@ -41,8 +41,8 @@ const TopPanel = ({ loginStatus }) => {
               </Link>
             </TabItems>
             <TabItems>
-              <Link
-                to=""
+              <a
+                href="#"
                 className={`about ${isFold ? "open" : ""}`}
                 onClick={handleFold}
               >
@@ -52,7 +52,7 @@ const TopPanel = ({ loginStatus }) => {
                   <i className="fa fa-bar-chart bar" />
                 )}{" "}
                 {!loginStatus ? "About" : "Get Data"}
-              </Link>
+              </a>
             </TabItems>
             <TabItems>
               <Link to="">

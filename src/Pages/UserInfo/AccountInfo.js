@@ -7,6 +7,7 @@ import { API } from "../../config";
 
 const AccountInfo = () => {
   const [userInfo, setUserInfo] = useState([]);
+  const registeredDate = String(userInfo.register_date).split("T")[0];
   useEffect(() => {
     axios({
       method: "POST",
@@ -46,7 +47,7 @@ const AccountInfo = () => {
               </tr>
               <tr>
                 <th>Registered Date</th>
-                <td>{userInfo.register_date}</td>
+                <td>{registeredDate}</td>
               </tr>
               <tr>
                 <th>Terms of Use Acceptance</th>
@@ -139,10 +140,10 @@ const InfoTable = styled.table`
 
       a {
         margin: 0 5px;
-      }
 
-      &:hover {
-        text-decoration: underline;
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }
