@@ -9,9 +9,13 @@ function Footer() {
         <HighTitle>
           <LinkContainer>
             <Link className="imglink" to="">
-              <Imglogo
-                src="https://wrds-www.wharton.upenn.edu/static/img/logo/wharton_white.svg"
-                alt="The Wharton School Logo"
+            <Imglogo1
+                src="/Images/HYU_symbol_basic_png.png"
+                alt="The HanYang Univ Logo"
+              />
+              <Imglogo2
+                src="/Images/hyu_typo_logo.png"
+                alt="The HanYang Univ Logo"
               />
             </Link>
             <Link className="textdeco" to="">
@@ -26,7 +30,7 @@ function Footer() {
                     <Link className="LinkText" to="">
                       About WRDS
                     </Link>
-                    <Link className="LinkText" to="">
+                    {/* <Link className="LinkText" to="">
                       WRDS FAQs
                     </Link>
                     <Link className="LinkText" to="">
@@ -34,7 +38,7 @@ function Footer() {
                     </Link>
                     <Link className="LinkText" to="">
                       Our Team
-                    </Link>
+                    </Link> */}
                   </List>
                 </UnoderedList>
               </ListBundle>
@@ -42,14 +46,14 @@ function Footer() {
                 <UnoderedList>
                   <List>
                     <Link className="LinkText" to="">
-                      3 Ways to use WRDS
+                      WRDS FAQs
                     </Link>
-                    <Link className="LinkText" to="">
+                    {/* <Link className="LinkText" to="">
                       WRDS Account Types
                     </Link>
                     <Link className="LinkText" to="">
                       Terms of Use
-                    </Link>
+                    </Link> */}
                   </List>
                 </UnoderedList>
               </ListBundle>
@@ -57,14 +61,14 @@ function Footer() {
                 <UnoderedList>
                   <List>
                     <Link className="LinkText" to="">
-                      Account Preferences
+                      WRDS News
                     </Link>
-                    <Link className="LinkText" to="">
+                    {/* <Link className="LinkText" to="">
                       Info / Support Request
                     </Link>
                     <Link className="LinkText" to="">
                       Privacy Policy
-                    </Link>
+                    </Link> */}
                   </List>
                 </UnoderedList>
               </ListBundle>
@@ -72,14 +76,14 @@ function Footer() {
                 <UnoderedList>
                   <List>
                     <Link className="LinkText" to="">
-                      Sample Data
+                      Our Team
                     </Link>
-                    <Link className="LinkText" to="">
+                    {/* <Link className="LinkText" to="">
                       Conference Calendar
                     </Link>
                     <Link className="LinkText" to="">
                       Impactful Research
-                    </Link>
+                    </Link> */}
                   </List>
                 </UnoderedList>
               </ListBundle>
@@ -133,6 +137,8 @@ const LinkContainer = styled.div`
   .imglink {
     color: white;
     width: 360px;
+    display: flex;
+    align-items: center;
   }
 
   .textdeco {
@@ -144,8 +150,14 @@ const LinkContainer = styled.div`
   }
 `;
 
-const Imglogo = styled.img`
-  width: 245px;
+const Imglogo1 = styled.img`
+  width: 85px;
+  margin-left: -5px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+`;
+const Imglogo2 = styled.img`
+  width: 200px;
   margin-left: -5px;
   margin-bottom: 10px;
 `;
