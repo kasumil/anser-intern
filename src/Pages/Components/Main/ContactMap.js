@@ -7,7 +7,7 @@ const mapSt = {
   height: "368px",
 };
 
-const centerPosition = { lat: 39.955878, lng: -75.199414 };
+const centerPosition = { lat: 37.558319, lng: 127.048233 };
 
 const ContactMap = () => {
   return (
@@ -16,7 +16,7 @@ const ContactMap = () => {
       googleMapsApiKey={googleMapsApiKey}
       containerStyle={mapSt}
       style={mapSt}
-      zoom={14}
+      zoom={15}
       initialCenter={centerPosition}
     >
       <Marker position={centerPosition} />

@@ -1,29 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import React from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import MainNav from "../../Components/Nav/MainNav";
 import Nav from "../../Components/Nav/Nav";
-import PageHighlight from "../Components/Main/PageHighlight";
-import Testinominals from "../Components/Main/Testinominals";
-import DataVenders from "../Components/Main/DataVenders";
-import LatestNews from "../Components/Main/LatestNews";
+import CardPage from "../CardPage/CardPage";
 import ContactUs from "../Components/Main/ContactUs";
 import Footer from "../../Components/Footer/Footer";
 
 const Main = ({ loginStatus }) => {
-  const [slideData, setSlideData] = useState([]);
-  const [latestNews, setLatestNews] = useState([]);
-
-  useEffect(() => {
-    axios.get("data/data.json").then((res) => {
-      setSlideData(res.data.slideData);
-      setLatestNews([...res.data.latestNews]);
-    });
-    document.title = "Wharton Research Data Services";
-  }, []);
-
+  const history = useHistory();
   return (
     <>
       {!loginStatus ? <MainNav /> : <Nav />}
@@ -31,45 +17,14 @@ const Main = ({ loginStatus }) => {
         <HeaderImage>
           <img alt="headerImage" src="/Images/main.jpeg" />
         </HeaderImage>
-        <MainLinks>
-          <figure>
-            <Link to="">Researchers</Link>
-            <img alt="researcher" src="/Images/researcher.jpeg" />
-          </figure>
-          <figure>
-            <Link to="">Instructors</Link>
-            <img alt="instructor" src="/Images/instructor.jpeg" />
-          </figure>
-          <figure>
-            <Link to="">Information Professionals</Link>
-            <img alt="information" src="/Images/information.jpeg" />
-          </figure>
-        </MainLinks>
-        <MainFigures>
-          <figure>
-            35
-            <p>Countries</p>
-          </figure>
-          <figure>
-            500
-            <p>Subscribing Institutions</p>
-          </figure>
-          <figure>
-            50,000
-            <p>WRDS Users</p>
-          </figure>
-        </MainFigures>
-        <MainParagraph>
-          From the classroom to the boardroom, WRDS is more than just a data
-          platform — data validation, flexible delivery options, simultaneous
-          access to multiple data sources, research-based analytics, and
-          dedicated client support provided by doctoral-level professionals.
-        </MainParagraph>
       </MainFrame>
-      <PageHighlight />
-      <DataVenders />
-      <Testinominals slideData={slideData} />
-      <LatestNews latestNews={latestNews} />
+      <CardPageMain>
+        <CardPage />
+        <SeeMore onClick={() => history.push("/cardpage")}>
+          더보기
+          <i className="fas fa-angle-double-right" />
+        </SeeMore>
+      </CardPageMain>
       <ContactUs />
       <Footer />
     </>
@@ -128,54 +83,26 @@ const HeaderImage = styled.div`
   }
 `;
 
-const MainLinks = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  justify-content: space-between;
+const CardPageMain = styled.div`
+  position: relative;
   margin: 0 auto;
-  font-size: 1.75rem;
-  border-bottom: 1px solid #ddd;
-
-  figure {
-    text-align: center;
-    line-height: 1.2;
-
-    a {
-      display: block;
-      color: #004785;
-      font-weight: 600;
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
+  width: 1140px;
+  height: 540px;
+  overflow: hidden;
 `;
-
-const MainFigures = styled.div`
+const SeeMore = styled.div`
+  position: absolute;
+  top: 20px;
+  right: 20px;
   display: flex;
-  justify-content: space-around;
-  padding: 60px 0;
-  font-size: 1.75rem;
-  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  color: #888;
 
-  figure {
-    width: 33%;
-    font-size: 64px;
-    color: #06aafc;
-    text-align: center;
-
-    p {
-      font-size: 20px;
-      font-weight: 200;
-      color: #000;
-    }
+  &:hover {
+    color: black;
   }
-`;
 
-const MainParagraph = styled.p`
-  margin: 40px 0;
-  text-align: center;
-  font-size: 22px;
-  font-weight: 200;
-  line-height: 35px;
+  i {
+    margin-left: 10px;
+  }
 `;

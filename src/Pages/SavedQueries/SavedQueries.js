@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+
 import styled from "styled-components";
 import axios from "axios";
 import { API } from "../../config";
 import Nav from "../../Components/Nav/Nav";
 import Footer from "../../Components/Footer/Footer";
+import EachQueries from "./EachQueries";
 
 const SavedQueries = () => {
   const [SavedQueries, setSavedQueries] = useState([]);
   const [sortingField, setSortingField] = useState("QueryRunDate");
   const [order, setOrder] = useState("ascending");
+  const [deleteItem, setDeleteItem] = useState([]);
+  const [allChecked, setAllChecked] = useState(false);
 
   const loadQueryList = () => {
     axios({
@@ -64,10 +67,21 @@ const SavedQueries = () => {
       },
     }).then(() => {
       window.location.reload();
-      alert(`정상적으로 삭제되었습니다 : ${item}`);
+      alert(`정상적으로 삭제되었습니다`);
     });
   };
 
+  const checkAllItem = () => {
+    !allChecked
+      ? setDeleteItem(
+          SavedQueries.map((item) => {
+            return item.query_name;
+          })
+        )
+      : setDeleteItem([]);
+  };
+
+  sessionStorage.setItem("deleteItem", deleteItem);
   return (
     <>
       <Nav />
@@ -83,6 +97,16 @@ const SavedQueries = () => {
           <QueriesTable>
             <thead>
               <tr>
+                <th>
+                  <input
+                    type="checkbox"
+                    onChange={() => {
+                      setAllChecked(!allChecked);
+                      checkAllItem();
+                    }}
+                    checked={allChecked}
+                  />
+                </th>
                 <th>
                   <ThFrame
                     onClick={() => {
@@ -151,23 +175,15 @@ const SavedQueries = () => {
             <tbody>
               {SavedQueries.map((item) => {
                 return (
-                  <tr key={item.query_name}>
-                    <td>{item.query_name}</td>
-                    <td>{item.data_set}</td>
-                    <td>{item.created_at.substring(0, 10)}</td>
-                    <td>
-                      <Link to={"/CRSP"}>
-                        <button>Rerun</button>
-                      </Link>
-                      <button
-                        onClick={() => {
-                          deleteQuery(item.query_name);
-                        }}
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
+                  <EachQueries
+                    key={item.id}
+                    item={item}
+                    SavedQueries={SavedQueries}
+                    deleteItem={deleteItem}
+                    setDeleteItem={setDeleteItem}
+                    allChecked={allChecked}
+                    deleteQuery={deleteQuery}
+                  />
                 );
               })}
             </tbody>
@@ -249,6 +265,11 @@ const QueriesTable = styled.table`
         background-color: #f7f7f7;
       }
 
+      .checkboxColumn {
+        padding: 5px 0px;
+        text-align: center;
+      }
+
       td {
         padding: 5px 20px;
         border-bottom: 1px solid #cdced1;
@@ -284,5 +305,13 @@ const ThFrame = styled.div`
   i {
     opacity: 0.7;
     width: 5px;
+  }
+
+  button {
+    color: white;
+    background-color: transparent;
+    border: 1px solid white;
+    outline: none;
+    cursor: pointer;
   }
 `;

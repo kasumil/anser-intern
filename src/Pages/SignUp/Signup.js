@@ -398,7 +398,7 @@ const BodyContainer = styled.div`
     width: 17em;
     padding: 0.2em 0.2em 0;
     min-height: 0;
-    bottom: 339px;
+    bottom: 399px;
     width: 1138px;
     height: 36px;
     border-radius: 0.25rem;

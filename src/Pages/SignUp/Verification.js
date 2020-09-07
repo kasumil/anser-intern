@@ -69,7 +69,7 @@ const Verification = () => {
             checkNumberButton();
           }}
         >
-          인증 요청
+          인증 확인
         </button>
       </CheckNumber>
     </VerificationFrame>
@@ -82,10 +82,13 @@ const VerificationFrame = styled.div`
 `;
 
 const RequestVNumber = styled.div`
+  margin-bottom: 7px;
   width: 302px;
   border: 1px solid #ddd;
+  border-radius: 0.25rem;
 
   input {
+    background-color: transparent;
     padding-left: 8px;
     width: 200px;
     height: 32px;
@@ -107,10 +110,11 @@ const RequestVNumber = styled.div`
 `;
 
 const CheckNumber = styled.div`
-  width: 302px;
+  width: 306px;
   border: 1px solid #ddd;
 
   input {
+    background-color: transparent;
     padding-left: 8px;
     width: 200px;
     height: 32px;
