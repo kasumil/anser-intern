@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import FileSaver from "file-saver";
 import { INPUT_LIST, CRSP_SUBMIT } from "../../../config";
+import axios from "axios";
+import FileSaver from "file-saver";
 
 function StepFour() {
   const [ list, setList ] = useState(); // 배열자료
@@ -28,20 +29,36 @@ function StepFour() {
     const email = check.email;
     const format = check.format;
     const query_name = check.query_name;
-    fetch(CRSP_SUBMIT,{
+    axios({
       method: "POST",
+      url: CRSP_SUBMIT,
       headers: {
-        'Content-Type' : 'application/json',
+        'Content-Type' : 'application/json'
       },
-      body: JSON.stringify({
+      data: {
         comp, start_date, end_date, selected, stock_code, email, format, query_name, access_token
-      })
+      }
     })
     .then(res => {
+      const file = new URL(`http://ec2-54-180-112-70.ap-northeast-2.compute.amazonaws.com:8000/stock/`);
+      console.log(file)
+      file.searchParams.get('file')
+      console.log(file.searchParams.get)
       // FileSaver.saveAs(res.url, "stock")
+      // let a = document.createElement('a')
+      // a.href = down;
+      // a.download = down.split('/').pop()
+      // document.body.appendChild(a)
+      // a.click()
+      // document.body.removeChild(a)
+    })
+    .then(res => {
       sessionStorage.removeItem("stock_code", "comp", "start_date", "end_date")
       alert("요청하신 메일로 정상 발송되었습니다")
       window.location.reload()
+    })
+    .catch(e =>{
+      console.log(e);
     })
   }
   

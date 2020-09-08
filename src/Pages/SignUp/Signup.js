@@ -5,10 +5,10 @@ import Nav from "../../Components/Nav/Nav";
 import Verification from "./Verification";
 import Footer from "../../Components/Footer/Footer";
 import DatePicker from "react-datepicker";
-import ReCAPTCHA from "react-google-recaptcha";
 import moment from "moment";
-import { RECAPCHA_KEY, SUBMIT_POINT, UNIV_LIST } from "../../config";
+import { SUBMIT_POINT, UNIV_LIST } from "../../config";
 import { addMonths } from "date-fns";
+import validator from "email-validator";
 import "react-datepicker/dist/react-datepicker.css";
 
 function Signup() {
@@ -19,6 +19,7 @@ function Signup() {
     firstname: "",
     lastname: "",
     password: "",
+    password_check: "",
     email: "",
     subscriber: "",
     usertype: "",
@@ -28,17 +29,22 @@ function Signup() {
   const [valid, setValid] = useState("normal");
   const [honest, setHonest] = useState("third");
   const [calendar, setCalendar] = useState("jan");
-
+  const [define, setDefine ] = useState("one");
   const history = useHistory();
 
+  console.log(calendar, startDate)
   //밸리데이션 확인용
   useEffect(() => {
+    const emailValid = validator;
     const isDetector = userInfo.username.length > 4;
     const isNomal = userInfo.username.length === 0;
-    const isEmailDetector =
-      userInfo.email.length > 4 && userInfo.email.includes("@");
+    const isEmailDetector = 
+      emailValid.validate(userInfo.email);
     const isEmail = userInfo.email.length === 0;
     const isCalendarDetector = startDate === null;
+    const isPassword = userInfo.password.length === 0;
+    const isPasswordValid =
+      userInfo.password === userInfo.password_check;
     if (isEmailDetector) {
       setHonest("first");
     } else if (!isEmailDetector) {
@@ -62,6 +68,13 @@ function Signup() {
     } else {
       setCalendar("feb");
     }
+    if (isPassword) {
+      setDefine("one");
+      } else if(isPasswordValid) {
+      setDefine("two");
+    } else {
+      setDefine("three");
+    }
   }, [userInfo, startDate, calendar]);
 
   //대학교, 유저타입 백엔드통신용
@@ -79,10 +92,10 @@ function Signup() {
     setUserinfo({ ...userInfo, [name]: value });
   };
 
-  //리캡챠용
-  const onChange = (value) => {
-    console.log("Captcha value:", value);
-  };
+  // //리캡차용
+  // const onChange = (value) => {
+  //   console.log("Captcha value:", value);
+  // };
 
   const submitBtn = (e) => {
     const {
@@ -189,6 +202,7 @@ function Signup() {
                     placeholder="Last name"
                   />
                 </FormGroup>
+                {/* 비밀번호 */}
                 <FormGroup>
                   <LabelName type="password">Password</LabelName>
                   <InputValue
@@ -196,8 +210,32 @@ function Signup() {
                     type="password"
                     name="password"
                     maxlength="254"
-                    placeholder="password"
+                    placeholder="Password"
                   />
+                </FormGroup>
+                {/* 비밀번호 확인용 */}
+                <FormGroup>
+                  <LabelName type="password">Password Check</LabelName>
+                  <InputGroup>
+                    <InputValue
+                      onChange={inputValuedetector}
+                      type="password"
+                      name="password_check"
+                      maxlength="254"
+                      placeholder="Password Check"
+                    />
+                    <ValidationBox>
+                        <SpanName define={define === "one"}>
+                          비밀번호를 입력해주세요
+                        </SpanName>
+                        <SpanName define={define === "three"}>
+                          비밀번호가 다릅니다.
+                        </SpanName>
+                        <SpanName color="#5CB85C" define={define === "two"}>
+                          비밀번호가 일치합니다
+                        </SpanName>
+                      </ValidationBox>
+                    </InputGroup>
                 </FormGroup>
                 {/* 이메일 주소 */}
                 <FormGroup>
@@ -215,7 +253,7 @@ function Signup() {
                         Please enter your institutional email address.
                       </SpanName>
                       <SpanName honest={honest === "second"}>
-                        This is a valid email address. Please select your
+                        This is not a valid email address. Please select your
                         institution below.
                       </SpanName>
                       <SpanName color="#5CB85C" honest={honest === "first"}>
@@ -294,14 +332,6 @@ function Signup() {
                   <FormGroup>
                     <LabelName>Verification</LabelName>
                     <Verification />
-                  </FormGroup>
-                  {/* 리캡차 */}
-                  <FormGroup>
-                    <LabelName type="id_captcha">Captcha</LabelName>
-                    <ReCAPTCHA
-                      sitekey={`${RECAPCHA_KEY}`}
-                      onChange={onChange}
-                    />
                   </FormGroup>
                 </VerificationFlex>
                 {/* 회원약관 */}
@@ -398,7 +428,7 @@ const BodyContainer = styled.div`
     width: 17em;
     padding: 0.2em 0.2em 0;
     min-height: 0;
-    bottom: 399px;
+    bottom: 331px;
     width: 1138px;
     height: 36px;
     border-radius: 0.25rem;
@@ -490,7 +520,7 @@ const SpanName = styled.span`
   background-color: ${(props) => props.color || "#c5093b"};
   border-color: ${(props) => props.color || "#c5093b"};
   display: ${(props) =>
-    props.valid || props.honest || props.calendar ? "block" : "none"};
+    props.valid || props.honest || props.calendar || props.define? "block" : "none"};
   align-items: center;
   text-align: center;
   white-space: nowrap;
