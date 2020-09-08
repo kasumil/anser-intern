@@ -6,6 +6,7 @@ import Signup from "./Pages/SignUp/Signup";
 import AccountInfo from "./Pages/UserInfo/AccountInfo";
 import CRSP from "./Pages/CRSP";
 import SavedQueries from "./Pages/SavedQueries/SavedQueries";
+import CardPage from "./Pages/CardPage/CardPageRoute";
 
 function Routes() {
   return (
@@ -17,6 +18,7 @@ function Routes() {
         <Route exact path="/accountinfo" component={AccountInfo} />
         <Route exact path="/CRSP" component={CRSP} />
         <Route exact path="/savedqueries" component={SavedQueries} />
+        <Route exact path="/cardpage" component={CardPage} />
       </Switch>
     </Router>
   );

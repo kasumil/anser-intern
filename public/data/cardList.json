@@ -1,0 +1,52 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "category": "firstCategory",
+      "image": "https://wrds-www.wharton.upenn.edu/media/original_images/world_intraday_small.jpg",
+      "title": "first title",
+      "content": "Hello World",
+      "link": "link주소"
+    },
+    {
+      "id": 2,
+      "category": "secondCategory",
+      "image": "https://wrds-www.wharton.upenn.edu/media/original_images/world_intraday_small.jpg",
+      "title": "second title",
+      "content": "Hello World",
+      "link": "link주소"
+    },
+    {
+      "id": 3,
+      "category": "thirdCategory",
+      "image": "https://wrds-www.wharton.upenn.edu/media/original_images/world_intraday_small.jpg",
+      "title": "third title",
+      "content": "Hello World",
+      "link": "link주소"
+    },
+    {
+      "id": 4,
+      "category": "fourthCategory",
+      "image": "https://wrds-www.wharton.upenn.edu/media/original_images/world_intraday_small.jpg",
+      "title": "fourth title",
+      "content": "Hello World",
+      "link": "link주소"
+    },
+    {
+      "id": 5,
+      "category": "fifthCategory",
+      "image": "https://wrds-www.wharton.upenn.edu/media/original_images/world_intraday_small.jpg",
+      "title": "fifth title",
+      "content": "Hello World",
+      "link": "link주소"
+    },
+    {
+      "id": 6,
+      "category": "sixthCategory",
+      "image": "https://wrds-www.wharton.upenn.edu/media/original_images/world_intraday_small.jpg",
+      "title": "sixth title",
+      "content": "Hello World",
+      "link": "link주소"
+    }
+  ]
+}

@@ -29,7 +29,6 @@ const StepThreeContents = () => {
       return item.name;
     });
     sessionStorage.setItem("selected", [...selectedEl]);
-    // console.log(sessionStorage.getItem("selected").split(",")) : BE 보낼 때 양식
   }, [selected]);
 
   const filtered =
