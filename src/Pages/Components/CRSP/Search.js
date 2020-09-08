@@ -15,6 +15,9 @@ const Search = () => {
 
   const handleModal = () => {
     setModal(!modal);
+    if (!modal) {
+      setCheckedData([]);
+    }
   };
 
   return (

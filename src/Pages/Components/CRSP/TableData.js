@@ -1,20 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 
-const TableData = ({ data, allCheck, checkedData, setCheckedData }) => {
-  const [eachCheck, setEachCheck] = useState(false);
-
-  const handleEachCheck = (data) => {
-    setEachCheck(!eachCheck);
-    setCheckedData([...new Set([...checkedData, data.stock_code])]);
-  };
-
+const TableData = ({ idx, data, checked, handleEachCheck }) => {
   return (
     <tr>
       <td className="thCheck">
         <input
           type="checkbox"
-          checked={allCheck || eachCheck}
-          onChange={() => handleEachCheck(data)}
+          checked={checked}
+          onChange={() => handleEachCheck(idx)}
         />
       </td>
       <td className="companyName">{data.corp_code}</td>

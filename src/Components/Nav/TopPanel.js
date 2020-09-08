@@ -65,7 +65,7 @@ const TopPanel = ({ loginStatus }) => {
           <NavContent>
             <NavContentItems>
               <Row>
-                {!loginStatus ? <TopPanelData /> : <TopPanelLoginData />})
+                {!loginStatus ? <TopPanelData /> : <TopPanelLoginData />}
               </Row>
               <NavButtonBox>
                 <NavButton

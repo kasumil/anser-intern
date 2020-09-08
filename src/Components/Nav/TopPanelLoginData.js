@@ -1,39 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import axios from "axios";
-import { TOP_PANEL_URL_LOGIN } from "../../config";
 
 const TopPanelData = () => {
-  const [topPanelLoginData, setTopPanelLoginData] = useState([]);
-
-  useEffect(() => {
-    axios.get(TOP_PANEL_URL_LOGIN).then((res) => {
-      setTopPanelLoginData(res.data.data);
-    });
-  }, []);
-
   return (
-    <>
-      {topPanelLoginData.map((el, i) => {
-        return (
-          <Col key={i}>
-            <ul>
-              <li className="subTitle">
-                <Link to="">{el.subtitle}</Link>
-              </li>
-              {el.nonsub.map((el, i) => {
-                return (
-                  <li className="nonSub" key={i}>
-                    <Link to="/crsp">{el}</Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </Col>
-        );
-      })}
-    </>
+    <Col>
+      <ul>
+        <li className="subTitle">
+          <Link to="">VENDORS</Link>
+        </li>
+        <li className="nonSub">
+          <Link to="/crsp">CRSP</Link>
+        </li>
+      </ul>
+    </Col>
   );
 };
 
