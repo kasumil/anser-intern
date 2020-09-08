@@ -183,11 +183,10 @@ const SavedQueries = () => {
               {SavedQueries.map((item) => {
                 return (
                   <EachQueries
-                    key={item.id}
+                    key={item.query_name}
                     item={item}
                     deleteItem={deleteItem}
                     setDeleteItem={setDeleteItem}
-                    deleteQuery={deleteQuery}
                   />
                 );
               })}

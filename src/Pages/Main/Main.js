@@ -7,6 +7,7 @@ import Nav from "../../Components/Nav/Nav";
 import CardPage from "../CardPage/CardPage";
 import ContactUs from "../Components/Main/ContactUs";
 import Footer from "../../Components/Footer/Footer";
+import SmallCRSP from "../Components/Main/SmallCRSP";
 
 const Main = ({ loginStatus }) => {
   const history = useHistory();
@@ -14,6 +15,7 @@ const Main = ({ loginStatus }) => {
     <>
       {!loginStatus ? <MainNav /> : <Nav />}
       <MainFrame>
+        <SmallCRSP />
         <HeaderImage>
           <img alt="headerImage" src="/Images/main.jpeg" />
         </HeaderImage>
@@ -48,26 +50,6 @@ const MainFrame = styled.div`
     margin: 40px 0 20px;
     text-align: center;
   }
-
-  button {
-    display: block;
-    margin: 20px auto;
-    padding: 0.7rem 3rem;
-    font-size: 1.25rem;
-    color: #fff;
-    border-radius: 0;
-    outline: none;
-    background-color: #004785;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #00335f;
-    }
-
-    i {
-      margin-left: 6px;
-    }
-  }
 `;
 
 const HeaderImage = styled.div`
@@ -90,9 +72,10 @@ const CardPageMain = styled.div`
   height: 540px;
   overflow: hidden;
 `;
+
 const SeeMore = styled.div`
   position: absolute;
-  top: 20px;
+  top: 60px;
   right: 20px;
   display: flex;
   cursor: pointer;

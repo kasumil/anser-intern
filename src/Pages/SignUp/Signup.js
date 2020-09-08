@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory, withRouter } from "react-router-dom";
+import { addMonths } from "date-fns";
+import validator from "email-validator";
 import styled from "styled-components";
 import Nav from "../../Components/Nav/Nav";
 import Verification from "./Verification";
-import Footer from "../../Components/Footer/Footer";
 import DatePicker from "react-datepicker";
+import Footer from "../../Components/Footer/Footer";
 import moment from "moment";
 import { SUBMIT_POINT, UNIV_LIST } from "../../config";
-import { addMonths } from "date-fns";
-import validator from "email-validator";
+
 import "react-datepicker/dist/react-datepicker.css";
 
 function Signup() {
@@ -86,10 +87,8 @@ function Signup() {
       expirationdate,
       department,
     } = userInfo;
-    const auth_number =
-      sessionStorage.getItem("auth_number");
-    const phone_number =
-      sessionStorage.getItem("phone_number");
+    const auth_number = sessionStorage.getItem("auth_number");
+    const phone_number = sessionStorage.getItem("phone_number");
     e.preventDefault();
     fetch(SUBMIT_POINT, {
       method: "POST",
@@ -102,7 +101,7 @@ function Signup() {
         expirationdate,
         department,
         auth_number,
-        phone_number
+        phone_number,
       }),
     })
       .then((res) => res.json())
@@ -115,7 +114,7 @@ function Signup() {
         } else if (res.message === "중복된 이메일입니다.") {
           alert("이메일과 비밀번호를 확인해주십시오");
         }
-        sessionStorage.removeItem("phone_number", "auth_number")
+        sessionStorage.removeItem("phone_number", "auth_number");
       });
   };
 
@@ -240,7 +239,9 @@ function Signup() {
                         );
                       })}
                   </select>
-                  <SmallText>가입하시는 분의 현재 신분을 선택해 주세요.</SmallText>
+                  <SmallText>
+                    가입하시는 분의 현재 신분을 선택해 주세요.
+                  </SmallText>
                 </FormGroup>
                 {/* 만료기간 */}
                 <FormGroup>
@@ -289,7 +290,7 @@ function Signup() {
                 </SubmitBTN>
               </FormTag>
               <DatePicker
-                className="calenderposition"
+                className="calendarposition"
                 selected={startDate}
                 dateFormat="yyyy-MM-dd"
                 onChange={(date) => {
@@ -319,10 +320,10 @@ export default withRouter(Signup);
 
 // 회원가입창 내용
 const ContainerWrap = styled.div`
-  width: 100%;
-  max-width: 1170px;
   margin: 0 auto;
   padding: 0 auto;
+  width: 100%;
+  max-width: 1170px;
 `;
 
 const InnerContent = styled.div`
@@ -339,42 +340,41 @@ const TitleContainer = styled.div`
 `;
 
 const FirstTitle = styled.h1`
-  border-bottom: 1px solid #dddddd;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  padding-bottom: 11.5px;
   margin: 15px 0px 15px 0px;
+  padding-bottom: 11.5px;
+  line-height: 1.2;
   font-size: 2.5rem;
   font-weight: 500;
-  line-height: 1.2;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  border-bottom: 1px solid #ddd;
 `;
 
 // 아이디 비밀번호 입력하는 내용 부분.
 const BodyContainer = styled.div`
   position: relative;
   flex: 0 0 100%;
-  max-width: 100%;
-  width: 100%;
   padding-right: 15px;
   padding-left: 15px;
+  width: 100%;
+  max-width: 100%;
 
-  .calenderposition {
-    background: #fff
-      url(https://code.jquery.com/ui/1.10.3/themes/smoothness/images/ui-bg_flat_75_ffffff_40x100.png)
-      50% 50% repeat-x;
-    color: #222222;
+  .calendarposition {
     position: absolute;
     display: block;
-    border: 1px solid #ced4da;
-    width: 17em;
+    bottom: 335px;
     padding: 0.2em 0.2em 0;
-    min-height: 0;
-    bottom: 337px;
-    width: 1138px;
+    width: 851px;
     height: 36px;
+    min-height: 0;
+    border: 1px solid #ced4da;
     border-radius: 0.25rem;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
+    color: #222;
+    background: #fff
+      url(https://code.jquery.com/ui/1.10.3/themes/smoothness/images/ui-bg_flat_75_ffffff_40x100.png)
+      50% 50% repeat-x;
   }
 
   .react-datepicker-popper {
@@ -396,17 +396,17 @@ const FormGroup = styled.div`
 
   .form-control {
     display: block;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
+    padding: 0.375rem 0.75rem;
     width: 100%;
     height: calc(1.5em + 0.75rem + 2px);
-    padding: 0.375rem 0.75rem;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
+    color: #495057;
+    border: 1px solid #ced4da;
     border-radius: 0.25rem;
+    background-color: #fff;
+    background-clip: padding-box;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
@@ -428,23 +428,23 @@ const InputGroup = styled.div`
 
 const InputValue = styled.input`
   position: relative;
-  color: #495057;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid #ced4da;
   display: block;
   flex: 1 1 0%;
-  min-width: 0;
   margin-bottom: 0;
-  width: 100%;
-  height: calc(1.5em + 0.75rem + 2px);
   padding: 0.375rem 0.75rem;
+  width: 100%;
+  min-width: 0;
+  height: calc(1.5em + 0.75rem + 2px);
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
+  color: #495057;
+  border: 1px solid #ced4da;
   border-radius: 0.25rem;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+  background-color: #fff;
+  background-clip: padding-box;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 `;
@@ -456,30 +456,30 @@ const ValidationBox = styled.div`
 
 // username 밸리데이션
 const SpanName = styled.span`
-  color: #fff;
-  background-color: ${(props) => props.color || "#c5093b"};
-  border-color: ${(props) => props.color || "#c5093b"};
   display: ${(props) =>
     props.valid || props.honest || props.calendar || props.define
       ? "block"
       : "none"};
   align-items: center;
-  text-align: center;
-  white-space: nowrap;
-  border: 1px solid #ced4da;
-  padding: 0.375rem 0.75rem;
   margin-bottom: 0;
+  padding: 0.375rem 0.75rem;
+  color: #fff;
   font-size: 1rem;
   font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
   line-height: 1.5;
+  background-color: ${(props) => props.color || "#c5093b"};
+  border: 1px solid #ced4da;
   border-radius: 0.25rem;
+  border-color: ${(props) => props.color || "#c5093b"};
   z-index: 5;
 `;
 
 // 인풋창 아래에 있는 작은 글씨들
 const SmallText = styled.small`
-  color: #6c757d;
   margin-top: 0.25rem;
+  color: #6c757d;
   font-size: 80%;
   font-weight: 400;
 `;
@@ -490,12 +490,12 @@ const VerificationFlex = styled.div`
 
 //계약서 동의문구
 const AcceptContract = styled.h5`
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  line-height: 1.2;
-  font-size: 1.25rem;
   margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.2;
 
   .TermsLink {
     color: #004785;
@@ -510,18 +510,18 @@ const AcceptContract = styled.h5`
 
 // 제출 버튼
 const SubmitBTN = styled.button`
-  cursor: pointer;
+  padding: 0.5rem 1rem;
   color: #fff;
-  background-color: #004785;
+  font-size: 1.25rem;
+  font-weight: 400;
+  text-align: center;
+  line-height: 1.5;
+  vertical-align: middle;
+  transition: color 0.15s ease-in-out;
+  border: 1px solid transparent;
   border-color: #004785;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),
     0 1px 1px rgba(0, 0, 0, 0);
-  font-weight: 400;
-  text-align: center;
-  vertical-align: middle;
-  border: 1px solid transparent;
-  transition: color 0.15s ease-in-out;
-  padding: 0.5rem 1rem;
-  font-size: 1.25rem;
-  line-height: 1.5;
+  background-color: #004785;
+  cursor: pointer;
 `;

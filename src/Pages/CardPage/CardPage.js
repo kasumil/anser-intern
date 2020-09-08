@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import styled from "styled-components";
+import { API } from "../../config";
 import Card from "./Card";
 
 const CardPage = () => {
@@ -7,9 +9,10 @@ const CardPage = () => {
   const [cardCategory, setCardCategory] = useState("AllCategory");
 
   useEffect(() => {
-    fetch("./data/cardList.json")
-      .then((res) => res.json())
-      .then((res) => setCardList(res.data));
+    axios({
+      method: "POST",
+      url: `${API}content/`,
+    }).then((res) => setCardList(res.data.data));
   }, []);
 
   const filtered =
@@ -49,6 +52,7 @@ const CardPage = () => {
           return (
             <Card
               key={item.id}
+              id={item.id}
               category={item.category}
               image={item.image}
               title={item.title}
