@@ -29,22 +29,20 @@ function Signup() {
   const [valid, setValid] = useState("normal");
   const [honest, setHonest] = useState("third");
   const [calendar, setCalendar] = useState("jan");
-  const [define, setDefine ] = useState("one");
+  const [define, setDefine] = useState("one");
   const history = useHistory();
 
-  console.log(calendar, startDate)
+  console.log(calendar, startDate);
   //밸리데이션 확인용
   useEffect(() => {
     const emailValid = validator;
     const isDetector = userInfo.username.length > 4;
     const isNomal = userInfo.username.length === 0;
-    const isEmailDetector = 
-      emailValid.validate(userInfo.email);
+    const isEmailDetector = emailValid.validate(userInfo.email);
     const isEmail = userInfo.email.length === 0;
     const isCalendarDetector = startDate === null;
     const isPassword = userInfo.password.length === 0;
-    const isPasswordValid =
-      userInfo.password === userInfo.password_check;
+    const isPasswordValid = userInfo.password === userInfo.password_check;
     if (isEmailDetector) {
       setHonest("first");
     } else if (!isEmailDetector) {
@@ -70,7 +68,7 @@ function Signup() {
     }
     if (isPassword) {
       setDefine("one");
-      } else if(isPasswordValid) {
+    } else if (isPasswordValid) {
       setDefine("two");
     } else {
       setDefine("three");
@@ -225,17 +223,17 @@ function Signup() {
                       placeholder="Password Check"
                     />
                     <ValidationBox>
-                        <SpanName define={define === "one"}>
-                          비밀번호를 입력해주세요
-                        </SpanName>
-                        <SpanName define={define === "three"}>
-                          비밀번호가 다릅니다.
-                        </SpanName>
-                        <SpanName color="#5CB85C" define={define === "two"}>
-                          비밀번호가 일치합니다
-                        </SpanName>
-                      </ValidationBox>
-                    </InputGroup>
+                      <SpanName define={define === "one"}>
+                        비밀번호를 입력해주세요
+                      </SpanName>
+                      <SpanName define={define === "three"}>
+                        비밀번호가 다릅니다.
+                      </SpanName>
+                      <SpanName color="#5CB85C" define={define === "two"}>
+                        비밀번호가 일치합니다
+                      </SpanName>
+                    </ValidationBox>
+                  </InputGroup>
                 </FormGroup>
                 {/* 이메일 주소 */}
                 <FormGroup>
@@ -428,7 +426,7 @@ const BodyContainer = styled.div`
     width: 17em;
     padding: 0.2em 0.2em 0;
     min-height: 0;
-    bottom: 331px;
+    bottom: 337px;
     width: 1138px;
     height: 36px;
     border-radius: 0.25rem;
@@ -520,7 +518,9 @@ const SpanName = styled.span`
   background-color: ${(props) => props.color || "#c5093b"};
   border-color: ${(props) => props.color || "#c5093b"};
   display: ${(props) =>
-    props.valid || props.honest || props.calendar || props.define? "block" : "none"};
+    props.valid || props.honest || props.calendar || props.define
+      ? "block"
+      : "none"};
   align-items: center;
   text-align: center;
   white-space: nowrap;

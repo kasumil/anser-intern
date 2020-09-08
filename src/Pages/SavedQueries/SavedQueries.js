@@ -57,13 +57,13 @@ const SavedQueries = () => {
 
   const ascending = order === "ascending";
 
-  const deleteQuery = (item) => {
+  const deleteQuery = () => {
     axios({
       method: "DELETE",
       url: `${API}query/`,
       data: {
         access_token: sessionStorage.getItem("access_token"),
-        query_name: item,
+        query_name: deleteItem,
       },
     }).then(() => {
       window.location.reload();
@@ -86,8 +86,15 @@ const SavedQueries = () => {
     <>
       <Nav />
       <SavedQueriesFrame>
-        <h1>Saved Queries</h1>
-        <h3>You have {SavedQueries.length} saved queries.</h3>
+        <SavedQueriesTitle>
+          <TitlePart>
+            <h1>저장된 쿼리 목록</h1>
+            <h3>{SavedQueries.length} 개의 저장된 쿼리가 있습니다.</h3>
+          </TitlePart>
+          {SavedQueries.length !== 0 && (
+            <button onClick={() => deleteQuery()}>선택 삭제</button>
+          )}
+        </SavedQueriesTitle>
         {SavedQueries.length === 0 ? (
           <NoQuery>
             <i className="far fa-folder-open fa-2x" />
@@ -104,7 +111,7 @@ const SavedQueries = () => {
                       setAllChecked(!allChecked);
                       checkAllItem();
                     }}
-                    checked={allChecked}
+                    checked={deleteItem.length === SavedQueries.length}
                   />
                 </th>
                 <th>
@@ -178,10 +185,8 @@ const SavedQueries = () => {
                   <EachQueries
                     key={item.id}
                     item={item}
-                    SavedQueries={SavedQueries}
                     deleteItem={deleteItem}
                     setDeleteItem={setDeleteItem}
-                    allChecked={allChecked}
                     deleteQuery={deleteQuery}
                   />
                 );
@@ -213,6 +218,19 @@ const SavedQueriesFrame = styled.div`
     color: #888;
   }
 `;
+
+const SavedQueriesTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+
+  button {
+    height: 28px;
+    cursor: pointer;
+  }
+`;
+
+const TitlePart = styled.div``;
 
 const NoQuery = styled.section`
   position: relative;
