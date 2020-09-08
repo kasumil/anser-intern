@@ -82,26 +82,30 @@ const VerificationFrame = styled.div`
 `;
 
 const RequestVNumber = styled.div`
+  height: 32px;
   margin-bottom: 7px;
-  width: 302px;
-  border: 1px solid #ddd;
-  border-radius: 0.25rem;
+  align-items: center;
 
   input {
     background-color: transparent;
-    padding-left: 8px;
+    padding: 0 0 0 8px;
     width: 200px;
     height: 32px;
-    border-style: none;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
   }
 
   button {
     width: 100px;
     height: 32px;
+    margin: 0 0 0 5px;
+    padding: 0;
     color: #888;
     border-style: none;
     outline: none;
     cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
 
     &:hover {
       color: black;
@@ -110,24 +114,30 @@ const RequestVNumber = styled.div`
 `;
 
 const CheckNumber = styled.div`
-  width: 306px;
-  border: 1px solid #ddd;
+  height: 32px;
+  margin-bottom: 7px;
+  align-items: center;
 
   input {
     background-color: transparent;
-    padding-left: 8px;
+    padding: 0 0 0 8px;
     width: 200px;
     height: 32px;
-    border-style: none;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
   }
 
   button {
     width: 100px;
     height: 32px;
+    margin: 0 0 0 5px;
+    padding: 0;
     color: #888;
     border-style: none;
     outline: none;
     cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
 
     &:hover {
       color: black;

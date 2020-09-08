@@ -1,16 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const EachQueries = ({
-  item,
-  deleteItem,
-  setDeleteItem,
-  allChecked,
-  deleteQuery,
-}) => {
-  const [eachCheck, setEachCheck] = useState(false);
+const EachQueries = ({ item, deleteItem, setDeleteItem }) => {
   const checkItem = (item) => {
-    setEachCheck(!eachCheck);
     deleteItem.includes(item)
       ? setDeleteItem(deleteItem.filter((el) => el !== item))
       : setDeleteItem([...deleteItem, item]);
@@ -21,7 +13,7 @@ const EachQueries = ({
       <td className="checkboxColumn">
         <input
           type="checkbox"
-          checked={allChecked || eachCheck}
+          checked={deleteItem.includes(item.query_name)}
           onChange={() => {
             checkItem(item.query_name);
           }}
@@ -34,13 +26,6 @@ const EachQueries = ({
         <Link to={"/CRSP"}>
           <button>Rerun</button>
         </Link>
-        <button
-          onClick={() => {
-            deleteQuery(item.query_name);
-          }}
-        >
-          Delete
-        </button>
       </td>
     </tr>
   );
