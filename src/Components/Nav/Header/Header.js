@@ -46,7 +46,7 @@ const NavHeader = ({ loginStatus }) => {
           <Row>
             <LoginBox>
               <Logo>
-                <img alt="logo" src="/images/WRDS_Logo.original.png" />
+                <img alt="logo" src="/images/hyu_typo_logo.png" />
               </Logo>
               <h3>The Global Standard for Business Research</h3>
               {!loginStatus && (
@@ -84,14 +84,13 @@ const NavHeader = ({ loginStatus }) => {
             <VideoBox>
               <VimeoBox>
                 <iframe
-                  src="https://player.vimeo.com/video/296642746"
                   width="640"
                   height="360"
+                  src="https://www.youtube.com/embed/PzUZ1zP940U"
                   frameBorder="0"
-                  allow="autoplay; fullscreen"
-                  allowFullScreen
-                  title="Intro"
-                ></iframe>
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                  title="2019 한양대학교 홍보영상"
+                />
               </VimeoBox>
             </VideoBox>
           </Row>
@@ -172,7 +171,7 @@ const Logo = styled.div`
   text-align: center;
 
   img {
-    width: 200px;
+    width: 100%;
     max-width: 50%;
     height: auto;
     margin-bottom: 1em;

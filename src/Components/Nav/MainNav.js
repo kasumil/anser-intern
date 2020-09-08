@@ -52,7 +52,6 @@ const Nav = ({ loginStatus }) => {
                   {!loginStatus ? (
                     <>
                       <Login />
-                      <Link to="/users/password-reset">Password Reset</Link>
                       <Link to="/signup">Register</Link>
                       <a
                         href="https://wrds-support.wharton.upenn.edu/hc/en-us/requests/new?ticket_form_id=114093978532"

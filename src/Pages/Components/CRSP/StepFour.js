@@ -5,22 +5,22 @@ import axios from "axios";
 import FileSaver from "file-saver";
 
 function StepFour() {
-  const [ list, setList ] = useState(); // 배열자료
-  const [ check, setCheck ] = useState(); // format, 이메일, 쿼리내용 기입.
-  const [ query, setQuery ] = useState(false); // 쿼리 체크값 확인용
+  const [list, setList] = useState(); // 배열자료
+  const [check, setCheck] = useState(); // format, 이메일, 쿼리내용 기입.
+  const [query, setQuery] = useState(false); // 쿼리 체크값 확인용
 
   // 백엔드 통신용
   useEffect(() => {
     fetch(INPUT_LIST)
-    .then(res => res.json())
-    .then(res => {
-      setList(res);
-    });
-  }, [])
+      .then((res) => res.json())
+      .then((res) => {
+        setList(res);
+      });
+  }, []);
 
   // 백엔드 버튼 눌렀을시에 보내주는 기능
-  const SubmitQuery= () =>{
-    const comp  = sessionStorage.getItem("comp");
+  const SubmitQuery = () => {
+    const comp = sessionStorage.getItem("comp");
     const start_date = sessionStorage.getItem("start_date");
     const end_date = sessionStorage.getItem("end_date");
     const selected = sessionStorage.getItem("selected").split(",");
@@ -33,47 +33,62 @@ function StepFour() {
       method: "POST",
       url: CRSP_SUBMIT,
       headers: {
-        'Content-Type' : 'application/json'
+        "Content-Type": "application/json",
       },
       data: {
-        comp, start_date, end_date, selected, stock_code, email, format, query_name, access_token
-      }
+        comp,
+        start_date,
+        end_date,
+        selected,
+        stock_code,
+        email,
+        format,
+        query_name,
+        access_token,
+      },
     })
-    .then(res => {
-      const file = new URL(`http://ec2-54-180-112-70.ap-northeast-2.compute.amazonaws.com:8000/stock/`);
-      console.log(file)
-      file.searchParams.get('file')
-      console.log(file.searchParams.get)
-      // FileSaver.saveAs(res.url, "stock")
-      // let a = document.createElement('a')
-      // a.href = down;
-      // a.download = down.split('/').pop()
-      // document.body.appendChild(a)
-      // a.click()
-      // document.body.removeChild(a)
-    })
-    .then(res => {
-      sessionStorage.removeItem("stock_code", "comp", "start_date", "end_date")
-      alert("요청하신 메일로 정상 발송되었습니다")
-      window.location.reload()
-    })
-    .catch(e =>{
-      console.log(e);
-    })
-  }
-  
+      .then((res) => {
+        const file = new URL(
+          `http://ec2-54-180-112-70.ap-northeast-2.compute.amazonaws.com:8000/stock/`
+        );
+        console.log(file);
+        file.searchParams.get("file");
+        console.log(file.searchParams.get);
+        // FileSaver.saveAs(res.url, "stock")
+        // let a = document.createElement('a')
+        // a.href = down;
+        // a.download = down.split('/').pop()
+        // document.body.appendChild(a)
+        // a.click()
+        // document.body.removeChild(a)
+      })
+      .then((res) => {
+        sessionStorage.removeItem(
+          "stock_code",
+          "comp",
+          "start_date",
+          "end_date"
+        );
+        alert("요청하신 메일로 정상 발송되었습니다");
+        window.location.reload();
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   // 포맷형식 선택기
   const valuedetector = (e) => {
-    const { name, value } = e.target
-    setCheck({...check, [name] : value})
-  }
+    const { name, value } = e.target;
+    setCheck({ ...check, [name]: value });
+  };
 
   // 쿼리네임 체크박스 부분
   const InputManage = (e) => {
-    !query? setQuery(true) : setQuery(false)
-  }
+    !query ? setQuery(true) : setQuery(false);
+  };
 
-  return(
+  return (
     <StepFourWrap>
       <div>
         <StepFourTitle>Step4 :</StepFourTitle>
@@ -83,37 +98,36 @@ function StepFour() {
         <Typing>
           <Content>
             Select the desired&nbsp;
-            <a href="/">
-              format
-            </a>
-              &nbsp;of the output file. 
-              For large data requests, select a compression type to expedite downloads.
-              If you enter your email address, you will receive an email that contains 
-              a URL to the output file when the data request is finished processing.
+            <a href="/">format</a>
+            &nbsp;of the output file. For large data requests, select a
+            compression type to expedite downloads. If you enter your email
+            address, you will receive an email that contains a URL to the output
+            file when the data request is finished processing.
           </Content>
         </Typing>
         <BtnWrap>
           <LeftBTN>
             <LeftWrap>
               <LeftTitle>Output Format</LeftTitle>
-              {list && list.OutputFormat.map((el) =>{
-                return(
-                  <LeftInputs key={el.id}>
-                    <Btn
-                      type="radio"
-                      name="format"
-                      id={el.title}
-                      value={el.value}
-                      checked={el.value === (check && check.format)}
-                      autocomplete="off"
-                      onChange={valuedetector}
-                    />
-                    &nbsp;
-                    <LableName>{el.name}</LableName>
-                  </LeftInputs>
-                )
-              })}
-              </LeftWrap>
+              {list &&
+                list.OutputFormat.map((el) => {
+                  return (
+                    <LeftInputs key={el.id}>
+                      <Btn
+                        type="radio"
+                        name="format"
+                        id={el.title}
+                        value={el.value}
+                        checked={el.value === (check && check.format)}
+                        autocomplete="off"
+                        onChange={valuedetector}
+                      />
+                      &nbsp;
+                      <LableName>{el.name}</LableName>
+                    </LeftInputs>
+                  );
+                })}
+            </LeftWrap>
           </LeftBTN>
           {/* 민치호님의 요청으로 주석처리 함. */}
           {/* <MiddleBTN>
@@ -164,7 +178,7 @@ function StepFour() {
         <EmailRow>
           <EmailWrap>
             <EmailLabel>
-              E-Mail Address 
+              E-Mail Address
               <Smalltitle>(Optional)</Smalltitle>
             </EmailLabel>
             <EmailTypingBox>
@@ -184,27 +198,28 @@ function StepFour() {
                 type="checkbox"
                 id="savequery"
                 name="savequery"
-                checked={ true === query}
+                checked={true === query}
                 onChange={InputManage}
               />
-                &nbsp;Save this query to myWRDS
+              &nbsp;Save this query to myWRDS
             </SaveQueryTitle>
-            {query
-              ? <QueryName2
-                  name="query_name"
-                  id="query_name"
-                  type="text"
-                  placeholder="Query Name"
-                  onChange={valuedetector}
-                />
-              : <QueryName
-                  name="query_name"
-                  id="query_name"
-                  type="text"
-                  placeholder="Query Name"
-                  disabled="readOnly"
+            {query ? (
+              <QueryName2
+                name="query_name"
+                id="query_name"
+                type="text"
+                placeholder="Query Name"
+                onChange={valuedetector}
               />
-              }
+            ) : (
+              <QueryName
+                name="query_name"
+                id="query_name"
+                type="text"
+                placeholder="Query Name"
+                disabled="readOnly"
+              />
+            )}
           </SaveQueryWrap>
         </EmailRow>
         <SubmitBtnRow>
@@ -214,14 +229,14 @@ function StepFour() {
         </SubmitBtnRow>
       </Body>
     </StepFourWrap>
-  )
+  );
 }
 
 export default StepFour;
 
 const StepFourWrap = styled.div`
   margin-top: 30px;
-  `;
+`;
 
 // 제목태그
 const StepFourTitle = styled.strong`
@@ -239,14 +254,14 @@ const Body = styled.div`
 const Typing = styled.div`
   position: relative;
   min-height: 1px;
-  padding:0 15px;
+  padding: 0 15px;
 `;
 
 const Content = styled.p`
   font-size: 18px;
   line-height: 26px;
   margin: 0 0 11.5px;
-  font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 `;
 
 //버튼들
@@ -259,11 +274,9 @@ const LeftBTN = styled(Typing)`
   height: 100%;
 `;
 
-
 const LeftWrap = styled.dl`
   margin-bottom: 19px;
 `;
-
 
 const LeftTitle = styled.dt`
   font-weight: bold;
@@ -278,25 +291,25 @@ const LeftInputs = styled.dd`
 
 const Btn = styled.input`
   margin-top: 1px;
-  `;
+`;
 
 const LableName = styled.label`
   font-size: 14px;
-  font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   display: inline-block;
   max-width: 100%;
   margin-bottom: 5px;
 `;
 
 const EmailRow = styled.div`
-  display:flex;
+  display: flex;
 `;
 
 const EmailWrap = styled.div`
   width: 50%;
   position: relative;
   min-height: 1px;
-  padding:0 15px;
+  padding: 0 15px;
 `;
 
 const EmailLabel = styled.label`
@@ -305,7 +318,7 @@ const EmailLabel = styled.label`
   padding-top: 9px;
   max-width: 100%;
   font-size: 14px;
-  font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   display: inline-block;
 `;
 const Smalltitle = styled.small`
@@ -350,7 +363,7 @@ const InputBox = styled.input`
 
 const QueryName = styled.input`
   cursor: not-allowed;
-  background-color:"gray";
+  background-color: "gray";
   display: block;
   width: 100%;
   height: 37px;
@@ -362,7 +375,7 @@ const QueryName = styled.input`
   opacity: 1;
 `;
 
-const QueryName2 =styled(QueryName)`
+const QueryName2 = styled(QueryName)`
   cursor: text;
   color: #000;
   background-color: #fff;

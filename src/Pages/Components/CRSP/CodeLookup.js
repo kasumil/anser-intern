@@ -22,6 +22,7 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
   const [secondModal, setSecondModal] = useState(false);
   const [modalCount, setModalCount] = useState(1);
   const [allCheck, setAllCheck] = useState(false);
+  const [checkStatus, setCheckStatus] = useState([]);
   const focusTarget = useRef();
   const focusResult = useRef();
 
@@ -57,6 +58,7 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
         })
         .then((res) => {
           setData(res.data.data);
+          setCheckStatus(Array(res.data.data.length).fill(false));
           setIsLoading(false);
           focusResult.current.scrollIntoView({ behavior: "smooth" });
         })
@@ -70,14 +72,19 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
     }
   };
 
-  const handleAllCheck = (data) => {
+  const handleAllCheck = () => {
     setAllCheck(!allCheck);
-    setCheckedData(
-      ...new Set([
-        data.map((el) => {
-          return el.stock_code;
-        }),
-      ])
+  };
+
+  useEffect(() => {
+    setCheckStatus(checkStatus.map(() => allCheck));
+  }, [allCheck]);
+
+  const handleEachCheck = (checkedIndex) => {
+    setCheckStatus(
+      checkStatus.map((status, index) =>
+        index === checkedIndex ? !status : status
+      )
     );
   };
 
@@ -87,11 +94,21 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
   };
 
   const handleAddList = () => {
-    if (checkedData) {
-      alert(`Add ${checkedData.length} codes to your list.`);
+    const filteredData = data.filter((_, i) => {
+      return checkStatus[i];
+    });
+
+    setCheckedData(
+      filteredData.map((el) => {
+        return el.corp_code;
+      })
+    );
+
+    if (checkStatus.some((status) => status)) {
       sessionStorage.setItem("stock_code", checkedData);
+      alert(`Add ${filteredData.length} codes to your list.`);
       handleModal();
-    } else {
+    } else if (!checkStatus.every((status) => status)) {
       alert(
         "Whoops! Looks like you didn't select an identifier yet! Please select an identifier before you begin adding codes to your list."
       );
@@ -197,8 +214,11 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
                                     <th className="thCheck">
                                       <input
                                         type="checkbox"
-                                        onChange={() => handleAllCheck(data)}
-                                        checked={allCheck}
+                                        onChange={handleAllCheck}
+                                        checked={checkStatus.every(
+                                          (status) => status
+                                        )}
+                                        value="head"
                                       />
                                     </th>
                                     <th className="companyName">CORP_CODE</th>
@@ -212,10 +232,10 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
                                     return (
                                       <TableData
                                         key={i}
+                                        idx={i}
                                         data={el}
-                                        allCheck={allCheck}
-                                        checkedData={checkedData}
-                                        setCheckedData={setCheckedData}
+                                        checked={checkStatus[i]}
+                                        handleEachCheck={handleEachCheck}
                                       />
                                     );
                                   })}
