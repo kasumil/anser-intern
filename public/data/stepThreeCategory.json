@@ -1,8 +1,8 @@
 {
   "categories": [
-    { "id": 0, "category": "SearchAll" },
-    { "id": 1, "category": "Identifying" },
-    { "id": 2, "category": "TimeSeries" },
-    { "id": 3, "category": "Distribution" }
+    { "id": 0, "category": "모두 선택하기" },
+    { "id": 1, "category": "기업 식별정보" },
+    { "id": 2, "category": "시계열 정보" },
+    { "id": 3, "category": "분포" }
   ]
 }

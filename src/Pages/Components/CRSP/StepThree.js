@@ -24,9 +24,7 @@ const StepThree = () => {
       {showHowWorks && (
         <HowItWorksModal>
           <p>
-            The purpose of the variable selector is to make it easier to manage
-            the many variables that you frequently need to navigate in order to
-            make a WRDS Query.
+            자주 찾는 변수를 체계적으로 정리하여, 더 쉽고 더 편하게 검색하실 수 있도록 만들었습니다.
           </p>
           <p>
             <strong>변수 추가</strong>

@@ -89,7 +89,7 @@ const SignIn = ({ loginStatus }) => {
       <Nav />
       <Page>
         <SignInFrame>
-          <PageHeader>Sign In</PageHeader>
+          <PageHeader>로그인</PageHeader>
           <button>
             <i className="fas fa-sign-in-alt" />
             로그인

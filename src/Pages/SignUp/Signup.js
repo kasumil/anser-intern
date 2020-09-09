@@ -15,9 +15,7 @@ function Signup() {
   const [data, setData] = useState();
   const [startDate, setStartDate] = useState(null);
   const [userInfo, setUserinfo] = useState({
-    username: "",
     firstname: "",
-    lastname: "",
     password: "",
     password_check: "",
     email: "",
@@ -26,22 +24,18 @@ function Signup() {
     expirationdate: "",
     department: "",
   });
-  const [valid, setValid] = useState("normal");
   const [honest, setHonest] = useState("third");
   const [calendar, setCalendar] = useState("jan");
   const [define, setDefine] = useState("one");
   const history = useHistory();
 
-  console.log(calendar, startDate);
   //밸리데이션 확인용
   useEffect(() => {
     const emailValid = validator;
-    const isDetector = userInfo.username.length > 4;
-    const isNomal = userInfo.username.length === 0;
     const isEmailDetector = emailValid.validate(userInfo.email);
     const isEmail = userInfo.email.length === 0;
     const isCalendarDetector = startDate === null;
-    const isPassword = userInfo.password.length === 0;
+    const isPassword = userInfo.password.length < 5;
     const isPasswordValid = userInfo.password === userInfo.password_check;
     if (isEmailDetector) {
       setHonest("first");
@@ -50,15 +44,6 @@ function Signup() {
         setHonest("third");
       } else {
         setHonest("second");
-      }
-    }
-    if (isDetector) {
-      setValid("correct");
-    } else if (!isDetector) {
-      if (isNomal) {
-        setValid("normal");
-      } else {
-        setValid("valid");
       }
     }
     if (isCalendarDetector) {
@@ -90,16 +75,10 @@ function Signup() {
     setUserinfo({ ...userInfo, [name]: value });
   };
 
-  // //리캡차용
-  // const onChange = (value) => {
-  //   console.log("Captcha value:", value);
-  // };
-
+  // 회원 가입 버튼
   const submitBtn = (e) => {
     const {
-      username,
       firstname,
-      lastname,
       password,
       email,
       subscriber,
@@ -107,19 +86,23 @@ function Signup() {
       expirationdate,
       department,
     } = userInfo;
+    const auth_number =
+      sessionStorage.getItem("auth_number");
+    const phone_number =
+      sessionStorage.getItem("phone_number");
     e.preventDefault();
     fetch(SUBMIT_POINT, {
       method: "POST",
       body: JSON.stringify({
-        username,
         firstname,
-        lastname,
         password,
         email,
         subscriber,
         usertype,
         expirationdate,
         department,
+        auth_number,
+        phone_number
       }),
     })
       .then((res) => res.json())
@@ -132,6 +115,7 @@ function Signup() {
         } else if (res.message === "중복된 이메일입니다.") {
           alert("이메일과 비밀번호를 확인해주십시오");
         }
+        sessionStorage.removeItem("phone_number", "auth_number")
       });
   };
 
@@ -147,57 +131,15 @@ function Signup() {
             </TitleContainer>
             <BodyContainer>
               <FormTag>
-                {/* 유저네임 */}
-                <FormGroup>
-                  <LabelName>Username</LabelName>
-                  <InputGroup>
-                    <InputValue
-                      onChange={inputValuedetector}
-                      type="text"
-                      name="username"
-                      maxlength="15"
-                      placeholder="Username"
-                      title="Required. 4 to 15 characters long. 
-                    Lowercase letters and digits only. 
-                    Must start with a letter."
-                    />
-                    <ValidationBox>
-                      <SpanName valid={valid === "normal"}>
-                        Please choose a username.
-                      </SpanName>
-                      <SpanName valid={valid === "valid"}>
-                        The username you have entered is too short.
-                      </SpanName>
-                      <SpanName color="#5CB85C" valid={valid === "correct"}>
-                        The username you have selected is available.
-                      </SpanName>
-                    </ValidationBox>
-                  </InputGroup>
-                  <SmallText>
-                    Required. 4 to 15 characters long. Lowercase letters and
-                    digits only. Must start with a letter.
-                  </SmallText>
-                </FormGroup>
                 {/* 성 */}
                 <FormGroup>
-                  <LabelName type="id_first_name">성함</LabelName>
+                  <LabelName type="id_first_name">이름</LabelName>
                   <InputValue
                     onChange={inputValuedetector}
                     type="text"
                     name="firstname"
                     maxlength="254"
-                    placeholder="성함"
-                  />
-                </FormGroup>
-                {/* 이름 */}
-                <FormGroup>
-                  <LabelName type="id_last_name">Last name</LabelName>
-                  <InputValue
-                    onChange={inputValuedetector}
-                    type="text"
-                    name="lastname"
-                    maxlength="254"
-                    placeholder="Last name"
+                    placeholder="이름"
                   />
                 </FormGroup>
                 {/* 비밀번호 */}
@@ -362,7 +304,7 @@ function Signup() {
                 onKeyDown={(e) => e.preventDefault()}
                 type="text"
                 name="expiration_date"
-                placeholderText=" Expiration date"
+                placeholderText="&nbsp;만료일"
               />
             </BodyContainer>
           </InnerContent>

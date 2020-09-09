@@ -7,7 +7,7 @@ import SelectedColumn from "./StepThreeSelected";
 
 const StepThreeContents = () => {
   const [categories, setCategories] = useState([]);
-  const [clickCategory, setClickCetegory] = useState("SearchAll");
+  const [clickCategory, setClickCetegory] = useState("모두 선택하기");
   const [selected, setSelected] = useState([]);
   const [arr, setArr] = useState([]);
   const [entire, setEntire] = useState([]);
@@ -32,7 +32,7 @@ const StepThreeContents = () => {
   }, [selected]);
 
   const filtered =
-    clickCategory === "SearchAll"
+    clickCategory === "모두 선택하기"
       ? arr.sort(function (a, b) {
           return a.id > b.id ? 1 : a.id < b.id ? -1 : 0;
         })
@@ -73,13 +73,13 @@ const StepThreeContents = () => {
                 key={item.id}
               >
                 <h4>{item.category}</h4>
-                {`${item.category}` === "SearchAll" && (
+                {`${item.category}` === "모두 선택하기" && (
                   <span className="selectAllCount">
                     {selected.length}/{entire.length}
                   </span>
                 )}
                 {`${item.category}` === clickCategory &&
-                  `${item.category}` !== "SearchAll" && (
+                  `${item.category}` !== "모두 선택하기" && (
                     <span className="tabCount">
                       {filteredEntire.length - filtered.length}/
                       {filteredEntire.length}

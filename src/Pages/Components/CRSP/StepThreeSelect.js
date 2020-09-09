@@ -4,17 +4,14 @@ import {
   StepThreeColumnFrameStyle,
   EachVariableStyle,
 } from "../../../Styles/style";
-
 const SelectColumn = ({ filtered, arr, setArr, selected, setSelected }) => {
   const [infoModal, setInfoModal] = useState(false);
-
   const handleSelected = ({ item }) => {
     const selectArr = [...arr];
     selectArr.splice(arr.indexOf(item), 1);
     setArr(selectArr);
     setSelected([...selected, item]);
   };
-
   return (
     <SelectColumnFrame>
       <ColumnFrame>
@@ -80,42 +77,34 @@ const SelectColumn = ({ filtered, arr, setArr, selected, setSelected }) => {
   );
 };
 export default SelectColumn;
-
 const SelectColumnFrame = styled.section`
   margin: 10px;
   border-radius: 10px;
   border: 2px solid #ddd;
 `;
-
 const ColumnFrame = styled.div`
   ${StepThreeColumnFrameStyle}
 `;
-
 const List = styled.ul`
   padding: 15px;
   overflow-y: scroll;
 `;
-
 const EachVariable = styled.li`
   justify-content: space-between;
   ${EachVariableStyle}
-
   div {
     display: flex;
   }
-
   i {
     margin: 0 10px;
     color: #888;
     cursor: pointer;
     z-index: 2;
-
     &:hover {
       color: #444;
     }
   }
 `;
-
 const InfoModalFrame = styled.div`
   position: fixed;
   top: 0;
@@ -125,7 +114,6 @@ const InfoModalFrame = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 3;
 `;
-
 const InfoModal = styled.div`
   position: fixed;
   top: 50%;
@@ -138,35 +126,29 @@ const InfoModal = styled.div`
   background-color: white;
   border: 1px solid #ddd;
   z-index: 3;
-
   div {
     display: flex;
     justify-content: space-between;
     align-items: start;
     margin-bottom: 10px;
     z-index: 3;
-
     h5 {
       font-size: 20px;
       font-weight: 700;
       z-index: 3;
     }
-
     i {
       color: #ddd;
       cursor: pointer;
-
       &:hover {
         color: #444;
       }
     }
   }
-
   p {
     line-height: 1.3;
   }
 `;
-
 const ColumnTable = styled.ul`
   display: flex;
   flex-direction: column;
