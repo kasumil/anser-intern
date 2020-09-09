@@ -13,7 +13,7 @@ const CRSP = () => {
     <>
       <Nav />
       <CRSPContent>
-        <CRSPTitle>CRSP Daily Stock</CRSPTitle>
+        <CRSPTitle>CRSP 주가 데이터</CRSPTitle>
         <StepOne />
         <Search />
         <StepThree />

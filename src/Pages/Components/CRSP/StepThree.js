@@ -14,7 +14,7 @@ const StepThree = () => {
     <StepThreeFrame>
       <TitleFrame>
         <h3>
-          <strong>Step 3</strong>: Query Variables.
+          <strong>Step 3</strong>: 변수 선택.
         </h3>
         <h4 className="howItWorks" onClick={handleHowItWorks}>
           <i className="far fa-question-circle" />
@@ -29,18 +29,16 @@ const StepThree = () => {
             make a WRDS Query.
           </p>
           <p>
-            <strong>To add items</strong>
-            <li>Check the item in the list on the left.</li>
+            <strong>변수 추가</strong>
+            <li>왼쪽의 변수를 클릭해주세요.</li>
             <li>
-              Alternately, you can just check all of the items with the "Check
-              All" option.
+              '모두 추가'를 클릭하시면 모든 변수를 추가할 수 있습니다.
             </li>
-            <strong>To remove items</strong>
-            <li>Uncheck the item in the list on the left. </li>
-            <li>Or uncheck the item in the list on the right.</li>
+            <strong>변수 제거</strong>
+            <li>왼쪽의 변수 중 추가된 변수를 다시 클릭해 주세요.</li>
+            <li>오른쪽에서 클릭해도 제거됩니다.</li>
             <li>
-              Alternately, you can just uncheck all of the items with the
-              "Uncheck All" option.
+              '모두 제거'를 클릭하시면 추가된 변수가 모두 제거됩니다.
             </li>
           </p>
         </HowItWorksModal>

@@ -180,13 +180,13 @@ function Signup() {
                 </FormGroup>
                 {/* 성 */}
                 <FormGroup>
-                  <LabelName type="id_first_name">First name</LabelName>
+                  <LabelName type="id_first_name">성함</LabelName>
                   <InputValue
                     onChange={inputValuedetector}
                     type="text"
                     name="firstname"
                     maxlength="254"
-                    placeholder="First name"
+                    placeholder="성함"
                   />
                 </FormGroup>
                 {/* 이름 */}
@@ -202,25 +202,26 @@ function Signup() {
                 </FormGroup>
                 {/* 비밀번호 */}
                 <FormGroup>
-                  <LabelName type="password">Password</LabelName>
+                  <LabelName type="password">비밀번호</LabelName>
                   <InputValue
                     onChange={inputValuedetector}
                     type="password"
                     name="password"
                     maxlength="254"
-                    placeholder="Password"
+                    placeholder="비밀번호"
                   />
+                  <SmallText>비밀번호를 5자 이상으로 적어주세요</SmallText>
                 </FormGroup>
                 {/* 비밀번호 확인용 */}
                 <FormGroup>
-                  <LabelName type="password">Password Check</LabelName>
+                  <LabelName type="password">비밀번호 확인</LabelName>
                   <InputGroup>
                     <InputValue
                       onChange={inputValuedetector}
                       type="password"
                       name="password_check"
                       maxlength="254"
-                      placeholder="Password Check"
+                      placeholder="비밀번호 확인"
                     />
                     <ValidationBox>
                       <SpanName define={define === "one"}>
@@ -237,32 +238,31 @@ function Signup() {
                 </FormGroup>
                 {/* 이메일 주소 */}
                 <FormGroup>
-                  <LabelName type="id_email">Email address</LabelName>
+                  <LabelName type="id_email">이메일 주소</LabelName>
                   <InputGroup>
                     <InputValue
                       onChange={inputValuedetector}
                       type="email"
                       name="email"
                       maxlength="15"
-                      placeholder="Email addresss"
+                      placeholder="이메일 주소"
                     />
                     <ValidationBox>
                       <SpanName honest={honest === "third"}>
-                        Please enter your institutional email address.
+                        기관 이메일 주소를 입력해주세요
                       </SpanName>
                       <SpanName honest={honest === "second"}>
-                        This is not a valid email address. Please select your
-                        institution below.
+                        유효한 이메일주소가 아닙니다.
                       </SpanName>
                       <SpanName color="#5CB85C" honest={honest === "first"}>
-                        This is a valid email address for the chosen subscriber.
+                        유효한 이메일주소입니다.
                       </SpanName>
                     </ValidationBox>
                   </InputGroup>
                 </FormGroup>
                 {/* 대학교리스트 */}
                 <FormGroup>
-                  <LabelName>Subscriber</LabelName>
+                  <LabelName>기관명</LabelName>
                   <select
                     onChange={inputValuedetector}
                     name="subscriber"
@@ -281,12 +281,12 @@ function Signup() {
                 </FormGroup>
                 {/* 유저타입 */}
                 <FormGroup>
-                  <LabelName type="id_user_type">User type</LabelName>
+                  <LabelName type="id_user_type">신분</LabelName>
                   <select
                     onChange={inputValuedetector}
                     name="usertype"
                     className="form-control"
-                    title="The account type of this user."
+                    title="신분"
                     id="user_type"
                   >
                     {data &&
@@ -298,31 +298,31 @@ function Signup() {
                         );
                       })}
                   </select>
-                  <SmallText>The account type of this user.</SmallText>
+                  <SmallText>가입하시는 분의 현재 신분을 선택해 주세요.</SmallText>
                 </FormGroup>
                 {/* 만료기간 */}
                 <FormGroup>
-                  <LabelName>Expiration date</LabelName>
+                  <LabelName>만료일</LabelName>
                   <InputGroup>
                     <ValidationBox>
                       <SpanName calendar={calendar === "jan"}>
-                        Please enter a valid expiration date (YYYY-MM-DD).
+                        만료일을 선택해 주세요(YYYY-MM-DD).
                       </SpanName>
                       <SpanName color="#5CB85C" calendar={calendar === "feb"}>
-                        This is a valid expiration date.
+                        유효한 만료일입니다.
                       </SpanName>
                     </ValidationBox>
                   </InputGroup>
                 </FormGroup>
                 {/* 부서 */}
                 <FormGroup>
-                  <LabelName type="id_department">Department</LabelName>
+                  <LabelName type="id_department">부서</LabelName>
                   <InputValue
                     onChange={inputValuedetector}
                     type="text"
                     name="department"
                     maxlength="254"
-                    placeholder="Department"
+                    placeholder="부서"
                   />
                 </FormGroup>
                 <VerificationFlex>
@@ -334,7 +334,7 @@ function Signup() {
                 </VerificationFlex>
                 {/* 회원약관 */}
                 <FormGroup>
-                  <LabelName type="id_terms_of_use">Terms of Use</LabelName>
+                  <LabelName type="id_terms_of_use">이용약관</LabelName>
                   <AcceptContract>
                     By submitting this form, you accept the
                     <Link className="TermsLink" to="">
@@ -343,7 +343,7 @@ function Signup() {
                   </AcceptContract>
                 </FormGroup>
                 <SubmitBTN type="submit" onClick={submitBtn}>
-                  &nbsp;Register for WRDS
+                  가입하기
                 </SubmitBTN>
               </FormTag>
               <DatePicker

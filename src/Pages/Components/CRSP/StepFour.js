@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { INPUT_LIST, CRSP_SUBMIT } from "../../../config";
 import axios from "axios";
-import FileSaver from "file-saver";
 
 function StepFour() {
   const [list, setList] = useState(); // 배열자료
@@ -47,30 +46,25 @@ function StepFour() {
         access_token,
       },
     })
+      // .then((res) => JSON.stringify())
       .then((res) => {
-        const file = new URL(
-          `http://ec2-54-180-112-70.ap-northeast-2.compute.amazonaws.com:8000/stock/`
-        );
-        console.log(file);
-        file.searchParams.get("file");
-        console.log(file.searchParams.get);
-        // FileSaver.saveAs(res.url, "stock")
-        // let a = document.createElement('a')
-        // a.href = down;
-        // a.download = down.split('/').pop()
-        // document.body.appendChild(a)
-        // a.click()
-        // document.body.removeChild(a)
+        const down = res.data.data.download;
+        let a = document.createElement('a')
+        a.href = down;
+        a.download = down;
+        document.body.appendChild(a)
+        a.click()
+        document.body.removeChild(a)
       })
       .then((res) => {
-        sessionStorage.removeItem(
-          "stock_code",
-          "comp",
-          "start_date",
-          "end_date"
-        );
+        // sessionStorage.removeItem(
+        //   "stock_code",
+        //   "comp",
+        //   "start_date",
+        //   "end_date"
+        // );
         alert("요청하신 메일로 정상 발송되었습니다");
-        window.location.reload();
+        // window.location.reload();
       })
       .catch((e) => {
         console.log(e);
@@ -92,23 +86,23 @@ function StepFour() {
     <StepFourWrap>
       <div>
         <StepFourTitle>Step4 :</StepFourTitle>
-        <StepFourSub> Select query output.</StepFourSub>
+        <StepFourSub> 출력형식.</StepFourSub>
       </div>
       <Body>
         <Typing>
           <Content>
-            Select the desired&nbsp;
-            <a href="/">format</a>
-            &nbsp;of the output file. For large data requests, select a
-            compression type to expedite downloads. If you enter your email
-            address, you will receive an email that contains a URL to the output
-            file when the data request is finished processing.
+            원하는 파일의 형식을 선택하세요.<br/>
+            다운받으실 데이터의 양이 많다면,
+            더 빠른 다운로드를 위해 압축 형식을 선택해 주세요.<br/>
+            (옵션) 이메일 주소를 입력하시면, 
+            요청하신 데이터 처리가 끝난 이후 결과창으로<br/>
+            연결되는 링크를 보내드립니다.
           </Content>
         </Typing>
         <BtnWrap>
           <LeftBTN>
             <LeftWrap>
-              <LeftTitle>Output Format</LeftTitle>
+              <LeftTitle>출력형식</LeftTitle>
               {list &&
                 list.OutputFormat.map((el) => {
                   return (
@@ -224,7 +218,7 @@ function StepFour() {
         </EmailRow>
         <SubmitBtnRow>
           <BtnSubmin name="querysubmit" onClick={SubmitQuery}>
-            Submit Query
+            질의 제출
           </BtnSubmin>
         </SubmitBtnRow>
       </Body>
