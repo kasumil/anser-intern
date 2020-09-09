@@ -2,17 +2,17 @@
   "OutputFormat": [
     {
       "id": "txt",
-      "name": "fixed-width text (*.txt)",
+      "name": "텍스트파일(*.txt)",
       "value": "txt"
     },
     {
       "id": "csv",
-      "name": "comma-delimited text (*.csv)",
+      "name": "쉼표로 구분된 값(*.csv)",
       "value": "csv"
     },
     {
       "id": "xlsx",
-      "name": "Excel spreadsheet (*.xlsx)",
+      "name": "엑셀 스프레드시트(*.xlsx)",
       "value": "xlsx"
     }
   ],

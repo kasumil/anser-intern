@@ -55,7 +55,7 @@ function StepOne(props) {
         <StepOnePart>
           <div>
             <BoldWrite>Step 1:</BoldWrite>
-            <SpanTitle> Choose your date range.</SpanTitle>
+            <SpanTitle> 원하는 날짜의 범위를 선택하세요.</SpanTitle>
           </div>
           <DateRangeWrap>
             <DateRangeRow>
@@ -120,7 +120,7 @@ function StepOne(props) {
           <MarginTop>
             <div>
               <Strongtitle>Step 2:</Strongtitle>
-              <SpanContent> Apply your company codes.</SpanContent>
+              <SpanContent> 종목코드의 종류를 선택하세요.</SpanContent>
             </div>
             <div>
               <Unorderedlist>

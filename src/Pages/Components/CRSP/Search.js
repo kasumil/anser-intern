@@ -24,7 +24,7 @@ const Search = () => {
     <>
       <FormInline>
         <Title>
-          <p>Select an option for entering company codes</p>
+          <p>종목코드의 종류를 선택하세요.</p>
         </Title>
         <FormGroup className="right">
           <FormRadio>
@@ -50,15 +50,15 @@ const Search = () => {
             </RadioBtnBox>
             <InputBox
               type="text"
-              placeholder="Company Codes"
+              placeholder="종목코드"
               defaultValue={checkedData}
             />
             <InputNote>
               <small>
-                <p>Please enter Company codes separated by a space.</p>
+                <p>기업 코드를 공백으로 구분하여 입력해 주세요.</p>
                 <p>
-                  Example: ibm msft AAPL [{" "}
-                  <span onClick={handleModal}>Code Lookup</span> ]
+                예) 삼성전자, 현대자동차, 엘지전자 [{" "}
+                  <span onClick={handleModal}>종목코드 검색</span> ]
                 </p>
               </small>
             </InputNote>
@@ -74,7 +74,7 @@ const Search = () => {
             <InputGroup>
               <span className="inputGroupBtn">
                 <span className="btnBox">
-                  <FontAwesomeIcon icon={faFolderOpen} /> Browse...
+                  <FontAwesomeIcon icon={faFolderOpen} /> 찾기
                   <input
                     type="file"
                     name="options"
@@ -86,7 +86,7 @@ const Search = () => {
               </span>
               <InputBox
                 type="text"
-                placeholder={fileName ? `${fileName}` : "No file selected"}
+                placeholder={fileName ? `${fileName}` : "선택된 파일 없음"}
                 readOnly
                 name="options"
                 className="fileName"
@@ -95,7 +95,7 @@ const Search = () => {
             <InputNote>
               <small>
                 <p>
-                  Upload a plain text file (.txt), having one code per line.
+                  한 줄당 하나의 종목이 있는 텍스트 파일(.txt)을 업로드해 주세요.
                 </p>
               </small>
             </InputNote>
@@ -109,11 +109,11 @@ const Search = () => {
               </label>
             </RadioBtnBox>
             <InputBox as="select">
-              <option>---------Select Saved Codelists---------</option>
+              <option>---------저장된 종목코드 리스트---------</option>
             </InputBox>
             <InputNote>
               <small>
-                <p>Choose from your saved codelists.</p>
+                <p>저장한 종목코드 리스트 중에 선택하세요.</p>
               </small>
             </InputNote>
           </FormRadio>
@@ -124,15 +124,12 @@ const Search = () => {
               <label>
                 <input type="radio" name="options" value="entire" />
               </label>
-              <span>Search the entire database</span>
+              <span>전체 데이터베이스에서 탐색</span>
             </RadioBtnBox>
             <InputNote>
               <small>
                 <p>
-                  This method allows you to search the entire database of
-                  records. Please be aware that this method can take a very long
-                  time to run because it is dependent upon the size of the
-                  database.
+                  주의> 이 방법은 시간이 오래 걸릴 수 있습니다.
                 </p>
               </small>
             </InputNote>

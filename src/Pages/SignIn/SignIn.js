@@ -89,16 +89,15 @@ const SignIn = ({ loginStatus }) => {
       <Nav />
       <Page>
         <SignInFrame>
-          <p onClick={handleKakaoLogout}>로그아웃 테스트</p>
           <PageHeader>Sign In</PageHeader>
           <button>
             <i className="fas fa-sign-in-alt" />
-            Sign In
+            로그인
           </button>
           <Link to="/signup">
             <button className="registerBtn">
               <i className="fas fa-edit" />
-              Register
+              회원가입
             </button>
           </Link>
           <SignInSection>
@@ -108,21 +107,21 @@ const SignIn = ({ loginStatus }) => {
               src="/Images/kakao_login.png"
             />
             <GoogleLogin />
-            <p className="inputTitle">Email</p>
+            <p className="inputTitle">이메일</p>
             <input
               type="text"
               name="email"
-              placeholder="email"
+              placeholder="이메일"
               onChange={handleInput}
               onKeyUp={(e) => {
                 e.keyCode === 13 && handleLogin();
               }}
             />
-            <p className="inputTitle">Password</p>
+            <p className="inputTitle">비밀번호</p>
             <input
               type="password"
               name="password"
-              placeholder="password"
+              placeholder="비밀번호"
               onChange={handleInput}
               onKeyUp={(e) => {
                 e.keyCode === 13 && handleLogin();
@@ -131,21 +130,23 @@ const SignIn = ({ loginStatus }) => {
           </SignInSection>
           <SignInButton>
             <button className="loginBtn" onClick={handleLogin}>
-              Login
+              로그인
             </button>
           </SignInButton>
           <AccountButton>
             <Link to="" className="register">
               <i className="fas fa-edit" />
-              Register for a WRDS Account
+              아직 회원이 아니신가요?<br/>
+              <span className="littletyping">회원가입하기</span>
             </Link>
             <Link to="">
               <i className="fas fa-question-circle red" />
-              Forgot your password?
+              아이디/비밀번호를 잊으셨나요?
             </Link>
             <Link to="">
               <i className="fas fa-truck red" />
-              Request Account Transfer
+              기관을 옮기셨나요?<br/>
+              <span className="littletyping">계정 이관하기</span>
             </Link>
           </AccountButton>
         </SignInFrame>
@@ -312,6 +313,11 @@ const AccountButton = styled.ul`
 
   .register {
     font-weight: bolder;
+  }
+
+  .littletyping {
+    font-size: 15px;
+    font-weight: normal;
   }
 `;
 
