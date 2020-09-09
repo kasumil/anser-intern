@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { API } from "../../config";
@@ -35,6 +35,11 @@ const Verification = () => {
       res.data.message === "SUCCESS" && alert("인증에 성공했습니다.");
     });
   };
+
+  useEffect (() => {
+    sessionStorage.setItem("phone_number", checkNumber.phone_number);
+    sessionStorage.setItem("auth_number", checkNumber.auth_number);
+  }, [checkNumber])
 
   return (
     <VerificationFrame>

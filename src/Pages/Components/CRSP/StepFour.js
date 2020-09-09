@@ -46,7 +46,6 @@ function StepFour() {
         access_token,
       },
     })
-      // .then((res) => JSON.stringify())
       .then((res) => {
         const down = res.data.data.download;
         let a = document.createElement('a')
@@ -57,14 +56,14 @@ function StepFour() {
         document.body.removeChild(a)
       })
       .then((res) => {
-        // sessionStorage.removeItem(
-        //   "stock_code",
-        //   "comp",
-        //   "start_date",
-        //   "end_date"
-        // );
+        sessionStorage.removeItem(
+          "stock_code",
+          "comp",
+          "start_date",
+          "end_date"
+        );
         alert("요청하신 메일로 정상 발송되었습니다");
-        // window.location.reload();
+        window.location.reload();
       })
       .catch((e) => {
         console.log(e);
@@ -172,8 +171,8 @@ function StepFour() {
         <EmailRow>
           <EmailWrap>
             <EmailLabel>
-              E-Mail Address
-              <Smalltitle>(Optional)</Smalltitle>
+              이메일 주소
+              <Smalltitle>(옵션)</Smalltitle>
             </EmailLabel>
             <EmailTypingBox>
               <EmailTyping
@@ -181,7 +180,7 @@ function StepFour() {
                 maxlength="255"
                 name="email"
                 id="email"
-                placeholder="E-mail"
+                placeholder="이메일"
                 onChange={valuedetector}
               />
             </EmailTypingBox>

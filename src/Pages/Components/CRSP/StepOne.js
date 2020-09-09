@@ -83,7 +83,7 @@ function StepOne(props) {
                   />
                 </div>
                 <HiddenMiniDate mini={mini}>
-                  Minimum allowed date: 1925-12-31
+                  최소 검색 연한: 1925-12-31
                 </HiddenMiniDate>
                 <SpanBox>to</SpanBox>
                 <div
@@ -110,7 +110,7 @@ function StepOne(props) {
                   />
                 </div>
                 <HiddenMaxiDate className="maxi" maxi={maxi}>
-                  Maximum allowed date: {lastYear}-12-31
+                  최대 검색 연한: {lastYear}-12-31
                 </HiddenMaxiDate>
               </DateWrap>
             </DateRangeRow>

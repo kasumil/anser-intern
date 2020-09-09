@@ -15,7 +15,8 @@ const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
 const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
   const [value, setValue] = useState("");
   const [resultValue, setResultValue] = useState("");
-  const [searchValue, setSearchValue] = useState("start with");
+  const [searchValue, setSearchValue] = useState("로 시작하는 결과");
+  const [searchType, setSearchType] = useState("start with")
   const [data, setData] = useState([]);
   const [isSubmit, setIsSubmit] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -54,7 +55,7 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
       axios
         .post(CORPLIST, {
           search_word: value,
-          search_type: searchValue,
+          search_type: searchType,
         })
         .then((res) => {
           setData(res.data.data);
@@ -89,8 +90,9 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
   };
 
   const handleSearchValue = (e) => {
-    const { value } = e.target;
-    setSearchValue(value);
+    const { value, name } = e.target;
+    setSearchValue(name);
+    setSearchType(value)
   };
 
   const handleAddList = () => {
@@ -125,7 +127,7 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
         <i className="far fa-times-circle xBtn" onClick={handleModal} />
         <TitleBox>
           <Title>
-            <h3>CRSP Daily Stock Code Lookup</h3>
+            <h3>CRSP 종목코드 조회</h3>
           </Title>
         </TitleBox>
         <SearchFormBox>
@@ -135,17 +137,17 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
                 <CodeSearchForm onSubmit={handleSubmit}>
                   <input
                     type="text"
-                    placeholder="Enter a company name here or identifier such as ticker:ibm"
+                    placeholder="여기에 회사명이나 종목코드, 법인등록번호를 적어주세요."
                     value={value}
                     onChange={handleInput}
                     ref={focusTarget}
                   />
                   <InputGroupBtn>
-                    <button onClick={handleSearchValue} value="start with">
-                      Starts With
+                    <button onClick={handleSearchValue} value="start with" name="로 시작하는 ">
+                      로 시작하는 결과
                     </button>
-                    <button onClick={handleSearchValue} value="contains">
-                      Contains
+                    <button onClick={handleSearchValue} value="contains" name="를 포함하는 ">
+                      를 포함하는 결과
                     </button>
                     <button onClick={handleSearchValue} value="exact">
                       Is Exactly
@@ -185,7 +187,7 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
         <Row>
           {!isSubmit ? (
             <ColResult>
-              <p>No results yet. Search for something!</p>
+              <p>아직 검색을 하지 않으셨네요!</p>
             </ColResult>
           ) : (
             <ColResult>
@@ -195,14 +197,16 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
                     <div>
                       <p className="c-align">
                         <img alt="loading" src="/images/loading.gif" />
-                        Search in progress...
+                        검색 진행 중...
                       </p>
                     </div>
                   ) : (
                     <>
                       <span ref={focusResult}>
-                        {data.length} results found that {searchValue} "
-                        {resultValue}"
+                        {/* {data.length} results found that {searchValue} "
+                        {resultValue}" */}
+                        " {resultValue}"{searchValue} {data.length}개의 결과가 있습니다.
+                        {/* "~"를 포함하는 "number"개의 결과가 있습니다. */}
                       </span>
                       <ResultTable>
                         <Base>
@@ -222,9 +226,9 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
                                       />
                                     </th>
                                     <th className="companyName">CORP_CODE</th>
-                                    <th className="general">CORP_NAME</th>
-                                    <th className="general">STOCK_CODE</th>
-                                    <th className="general">FIRMCODE</th>
+                                    <th className="general">회사명</th>
+                                    <th className="general">종목코드</th>
+                                    <th className="general">법인등록번호</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -257,7 +261,7 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
             <ExcelFile
               element={
                 <div className="exportData">
-                  <span>Export all results as a spreadsheet</span>
+                  <span>엑셀 스프레드시트로 저장</span>
                 </div>
               }
               filename={`CodeSearchResults ${new Date().toLocaleString()}`}
@@ -272,10 +276,10 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
             <Row className="addBtn">
               <ColResult>
                 <button className="addBtn" onClick={handleAddList}>
-                  Add Codes to List
+                  목록에 추가하기
                 </button>
                 <button className="addBtn" onClick={findMoreCodes}>
-                  Find More Codes
+                  더 찾아보기
                 </button>
               </ColResult>
             </Row>

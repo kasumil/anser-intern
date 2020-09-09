@@ -95,7 +95,7 @@ const Search = () => {
             <InputNote>
               <small>
                 <p>
-                  한 줄당 하나의 종목이 있는 텍스트 파일(.txt)을 업로드해 주세요.
+                  한 줄당 하나의 종목이 있는 텍스트 파일(.txt)을<br/>업로드해 주세요.
                 </p>
               </small>
             </InputNote>
@@ -129,7 +129,7 @@ const Search = () => {
             <InputNote>
               <small>
                 <p>
-                  주의> 이 방법은 시간이 오래 걸릴 수 있습니다.
+                  주의→&nbsp;이 방법은 시간이 오래 걸릴 수 있습니다.
                 </p>
               </small>
             </InputNote>

@@ -2,22 +2,22 @@
   "data": [
     {
       "id": 1,
-      "category": "Identifying",
-      "name": "종목코드",
-      "kor": "회사코드"
+      "category": "기업 식별정보",
+      "name": "corp_code",
+      "kor": "종목코드"
     },
     {
       "id": 2,
-      "category": "Identifying",
-      "name": "회사명",
-      "kor": "회사이름"
+      "category": "기업 식별정보",
+      "name": "corp_name",
+      "kor": "회사명"
     },
-    { "id": 3, "category": "TimeSeries", "name": "시가", "kor": "시작가격" },
-    { "id": 4, "category": "TimeSeries", "name": "고가", "kor": "고가" },
-    { "id": 5, "category": "TimeSeries", "name": "저가", "kor": "저가" },
-    { "id": 6, "category": "TimeSeries", "name": "종가", "kor": "종가" },
-    { "id": 7, "category": "TimeSeries", "name": "전일대비등락", "kor": "전일 차이" },
-    { "id": 8, "category": "TimeSeries", "name": "거래량", "kor": "거래량" },
-    { "id": 9, "category": "Distribution", "name": "일자", "kor": "날짜" }
+    { "id": 3, "category": "시계열 정보", "name": "open", "kor": "시가" },
+    { "id": 4, "category": "시계열 정보", "name": "high", "kor": "고가" },
+    { "id": 5, "category": "시계열 정보", "name": "low", "kor": "저가" },
+    { "id": 6, "category": "시계열 정보", "name": "close", "kor": "종가" },
+    { "id": 7, "category": "시계열 정보", "name": "diff", "kor": "전일대비등락" },
+    { "id": 8, "category": "시계열 정보", "name": "volume", "kor": "거래량" },
+    { "id": 9, "category": "분포", "name": "date", "kor": "일자" }
   ]
 }
