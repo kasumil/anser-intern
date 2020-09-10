@@ -91,7 +91,7 @@ const SmallCRSP = () => {
             {!isSubmit ? (
               <ColResult>
                 <p className="c-align v-align">
-                  No results yet. Search for something!
+                  아직 검색을 하지 않으셨네요!
                 </p>
               </ColResult>
             ) : (

@@ -24,7 +24,7 @@ const EachQueries = ({ item, deleteItem, setDeleteItem }) => {
       <td>{item.created_at.substring(0, 10)}</td>
       <td>
         <Link to={"/CRSP"}>
-          <button>Rerun</button>
+          <button>재요청</button>
         </Link>
       </td>
     </tr>

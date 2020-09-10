@@ -15,14 +15,14 @@ const SelectColumn = ({ filtered, arr, setArr, selected, setSelected }) => {
   return (
     <SelectColumnFrame>
       <ColumnFrame>
-        <h3>Select</h3>
+        <h3>변수 추가하기</h3>
         <button
           onClick={() => {
             setArr([...arr.filter((e) => !filtered.includes(e))]);
             setSelected([...new Set([...selected, ...filtered])]);
           }}
         >
-          SELECT ALL
+          모두 선택하기
         </button>
       </ColumnFrame>
       <List>

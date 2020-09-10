@@ -18,7 +18,7 @@ const SecondModal = ({
               <SModalHeader>
                 <h3>
                   {modalCount === 1
-                    ? "Instructions"
+                    ? "안내"
                     : modalCount === 2
                     ? "Using Identifier Codes to Find Companies"
                     : "Available Identifier Codes"}
@@ -36,12 +36,12 @@ const SecondModal = ({
                   : ThirdBody}
               </SModalBody>
               <SModalFooter>
-                <button onClick={handleSecondModal}>Close</button>
+                <button onClick={handleSecondModal}>닫기</button>
                 {modalCount === 3 ? (
                   ""
                 ) : (
                   <button className="next" onClick={handleModalCount}>
-                    Next: How to Use Identifier Codes
+                    식별자 사용법 알아보기
                   </button>
                 )}
               </SModalFooter>
