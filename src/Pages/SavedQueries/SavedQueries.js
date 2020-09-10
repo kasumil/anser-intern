@@ -88,8 +88,8 @@ const SavedQueries = () => {
       <SavedQueriesFrame>
         <SavedQueriesTitle>
           <TitlePart>
-            <h1>저장된 쿼리 목록</h1>
-            <h3>{SavedQueries.length} 개의 저장된 쿼리가 있습니다.</h3>
+            <h1>저장된 요청 목록</h1>
+            <h3>{SavedQueries.length} 개의 저장된 요청이 있습니다.</h3>
           </TitlePart>
           {SavedQueries.length !== 0 && (
             <button onClick={() => deleteQuery()}>선택 삭제</button>
@@ -98,7 +98,7 @@ const SavedQueries = () => {
         {SavedQueries.length === 0 ? (
           <NoQuery>
             <i className="far fa-folder-open fa-2x" />
-            <h1>저장된 쿼리가 없습니다.</h1>
+            <h1>저장된 요청이 없습니다.</h1>
           </NoQuery>
         ) : (
           <QueriesTable>
@@ -122,7 +122,7 @@ const SavedQueries = () => {
                       handleOrder();
                     }}
                   >
-                    <span>Query Name</span>
+                    <span>제목</span>
                     {sortingField === "query_name" ? (
                       ascending ? (
                         <i className="fas fa-sort-alpha-up" />
@@ -142,7 +142,7 @@ const SavedQueries = () => {
                       handleOrder();
                     }}
                   >
-                    <span>Data Set</span>
+                    <span>데이터</span>
                     {sortingField === "data_set" ? (
                       ascending ? (
                         <i className="fas fa-sort-alpha-up" />
@@ -162,7 +162,7 @@ const SavedQueries = () => {
                       handleOrder();
                     }}
                   >
-                    <span>Query Run Date</span>
+                    <span>요청일자</span>
                     {sortingField === "created_at" ? (
                       ascending ? (
                         <i className="fas fa-sort-alpha-up" />
@@ -175,7 +175,7 @@ const SavedQueries = () => {
                   </ThFrame>
                 </th>
                 <th>
-                  <ThFrame>Functions</ThFrame>
+                  <ThFrame>기능</ThFrame>
                 </th>
               </tr>
             </thead>
@@ -194,7 +194,6 @@ const SavedQueries = () => {
           </QueriesTable>
         )}
       </SavedQueriesFrame>
-
       <Footer />
     </>
   );

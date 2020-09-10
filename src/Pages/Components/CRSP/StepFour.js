@@ -32,6 +32,7 @@ function StepFour() {
     const email = check.email;
     const format = check.format;
     const query_name = check.query_name;
+    console.log(stock_code)
     setIsLoading(true);
     axios({
       method: "POST",
@@ -232,7 +233,7 @@ function StepFour() {
                 <span>처리중...</span>
               </>
             ) : (
-              "질의 제출"
+              "요청 제출"
             )}
           </BtnSubmin>
         </SubmitBtnRow>

@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory, withRouter } from "react-router-dom";
-import { addMonths } from "date-fns";
 import validator from "email-validator";
 import styled from "styled-components";
 import Nav from "../../Components/Nav/Nav";
 import Verification from "./Verification";
-import DatePicker, { registerLocale } from "react-datepicker";
 import Footer from "../../Components/Footer/Footer";
-import moment from "moment";
 import { SUBMIT_POINT, UNIV_LIST } from "../../config";
-import ko from 'date-fns/locale/ko';
-import "react-datepicker/dist/react-datepicker.css";
-registerLocale("ko", ko);
 
 function Signup() {
   const [data, setData] = useState();
-  const [startDate, setStartDate] = useState(null);
   const [userInfo, setUserinfo] = useState({
     firstname: "",
     password: "",
@@ -23,11 +16,9 @@ function Signup() {
     email: "",
     subscriber: "",
     usertype: "",
-    expirationdate: "",
     department: "",
   });
   const [honest, setHonest] = useState("third");
-  const [calendar, setCalendar] = useState("jan");
   const [define, setDefine] = useState("one");
   const history = useHistory();
 
@@ -36,7 +27,6 @@ function Signup() {
     const emailValid = validator;
     const isEmailDetector = emailValid.validate(userInfo.email);
     const isEmail = userInfo.email.length === 0;
-    const isCalendarDetector = startDate === null;
     const isPassword = userInfo.password.length < 5;
     const isPasswordValid = userInfo.password === userInfo.password_check;
     if (isEmailDetector) {
@@ -48,11 +38,6 @@ function Signup() {
         setHonest("second");
       }
     }
-    if (isCalendarDetector) {
-      setCalendar("jan");
-    } else {
-      setCalendar("feb");
-    }
     if (isPassword) {
       setDefine("one");
     } else if (isPasswordValid) {
@@ -60,7 +45,7 @@ function Signup() {
     } else {
       setDefine("three");
     }
-  }, [userInfo, startDate, calendar]);
+  }, [userInfo]);
 
   //대학교, 유저타입 백엔드통신용
   useEffect(() => {
@@ -85,7 +70,6 @@ function Signup() {
       email,
       subscriber,
       usertype,
-      expirationdate,
       department,
     } = userInfo;
     const auth_number = sessionStorage.getItem("auth_number");
@@ -99,7 +83,6 @@ function Signup() {
         email,
         subscriber,
         usertype,
-        expirationdate,
         department,
         auth_number,
         phone_number,
@@ -115,7 +98,10 @@ function Signup() {
         } else if (res.message === "중복된 이메일입니다.") {
           alert("이메일과 비밀번호를 확인해주십시오");
         }
-        sessionStorage.removeItem("phone_number", "auth_number");
+        sessionStorage.removeItem(
+          "phone_number", 
+          "auth_number"
+        );
       });
   };
 
@@ -244,20 +230,6 @@ function Signup() {
                     가입하시는 분의 현재 신분을 선택해 주세요.
                   </SmallText>
                 </FormGroup>
-                {/* 만료기간 */}
-                <FormGroup>
-                  <LabelName>만료일</LabelName>
-                  <InputGroup>
-                    <ValidationBox>
-                      <SpanName calendar={calendar === "jan"}>
-                        만료일을 선택해 주세요(YYYY-MM-DD).
-                      </SpanName>
-                      <SpanName color="#5CB85C" calendar={calendar === "feb"}>
-                        유효한 만료일입니다.
-                      </SpanName>
-                    </ValidationBox>
-                  </InputGroup>
-                </FormGroup>
                 {/* 부서 */}
                 <FormGroup>
                   <LabelName type="id_department">부서</LabelName>
@@ -272,7 +244,7 @@ function Signup() {
                 <VerificationFlex>
                   {/* 휴대폰 인증 */}
                   <FormGroup>
-                    <LabelName>Verification</LabelName>
+                    <LabelName>본인인증</LabelName>
                     <Verification />
                   </FormGroup>
                 </VerificationFlex>
@@ -290,25 +262,6 @@ function Signup() {
                   가입하기
                 </SubmitBTN>
               </FormTag>
-              <DatePicker
-                className="calendarposition"
-                selected={startDate}
-                dateFormat="yyyy-MM-dd"
-                onChange={(date) => {
-                  setStartDate(date);
-                  setUserinfo({
-                    ...userInfo,
-                    expirationdate: moment(date).format("YYYY-MM-DD"),
-                  });
-                }}
-                locale="ko"
-                minDate={addMonths(new Date(), 6)}
-                maxDate={addMonths(new Date(), 12)}
-                onKeyDown={(e) => e.preventDefault()}
-                type="text"
-                name="expiration_date"
-                placeholderText="&nbsp;만료일"
-              />
             </BodyContainer>
           </InnerContent>
         </ContainerWrap>
@@ -359,33 +312,6 @@ const BodyContainer = styled.div`
   padding-left: 15px;
   width: 100%;
   max-width: 100%;
-
-  .calendarposition {
-    position: absolute;
-    display: block;
-    bottom: 338px;
-    padding: 0.2em 0.2em 0;
-    width: 1100px;
-    height: 36px;
-    min-height: 0;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #222;
-    background: #fff
-      url(https://code.jquery.com/ui/1.10.3/themes/smoothness/images/ui-bg_flat_75_ffffff_40x100.png)
-      50% 50% repeat-x;
-  }
-
-  .react-datepicker-popper {
-    top: -349px !important;
-  }
-
-  .react-datepicker__triangle {
-    display: none;
-  }
 `;
 
 // 폼 양식인 부분.
@@ -459,7 +385,7 @@ const ValidationBox = styled.div`
 // username 밸리데이션
 const SpanName = styled.span`
   display: ${(props) =>
-    props.honest || props.calendar || props.define
+    props.honest || props.define
       ? "block"
       : "none"};
   align-items: center;
@@ -521,7 +447,7 @@ const SubmitBTN = styled.button`
   vertical-align: middle;
   transition: color 0.15s ease-in-out;
   border: 1px solid transparent;
-  border-color: #004785;
+  margin-bottom: 10px;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),
     0 1px 1px rgba(0, 0, 0, 0);
   background-color: #004785;

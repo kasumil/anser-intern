@@ -4,6 +4,7 @@ import DatePicker, { registerLocale } from "react-datepicker";
 import ko from 'date-fns/locale/ko';
 import moment from "moment";
 import { INPUT_LIST } from "../../../config";
+import "react-datepicker/dist/react-datepicker.css";
 registerLocale("ko", ko);
 
 function StepOne(props) {
@@ -55,13 +56,12 @@ function StepOne(props) {
     <>
       <div>
         <StepOnePart>
-          <div>
+          <div className="marginBottom">
             <BoldWrite>Step 1:</BoldWrite>
             <SpanTitle> 원하는 날짜의 범위를 선택하세요.</SpanTitle>
           </div>
           <DateRangeWrap>
             <DateRangeRow>
-              <DateRangeTitle>Date range</DateRangeTitle>
               <DateWrap>
                 <div
                   onMouseEnter={() => setMini(true)}
@@ -159,6 +159,9 @@ export default StepOne;
 //Step One부분
 const StepOnePart = styled.div`
   margin-top: 30px;
+  .marginBottom{
+    margin-bottom: 10px;
+  }
 `;
 
 const BoldWrite = styled.strong`

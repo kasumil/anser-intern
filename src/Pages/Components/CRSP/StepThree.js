@@ -18,7 +18,7 @@ const StepThree = () => {
         </h3>
         <h4 className="howItWorks" onClick={handleHowItWorks}>
           <i className="far fa-question-circle" />
-          How does this work?
+          도움말
         </h4>
       </TitleFrame>
       {showHowWorks && (

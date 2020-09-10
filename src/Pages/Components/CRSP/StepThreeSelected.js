@@ -16,14 +16,14 @@ const SelectedColumn = ({ arr, setArr, selected, setSelected }) => {
   return (
     <SelectedColumnFrame>
       <ColumnFrame>
-        <h3>Selected</h3>
+        <h3>선택된 변수</h3>
         <button
           onClick={() => {
             setArr([...arr, ...selected]);
             setSelected([]);
           }}
         >
-          CLEAR ALL
+          모두 제거하기
         </button>
       </ColumnFrame>
       <List>
