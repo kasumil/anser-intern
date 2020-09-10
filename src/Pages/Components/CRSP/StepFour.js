@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { INPUT_LIST, CRSP_SUBMIT } from "../../../config";
 import axios from "axios";
@@ -7,6 +8,9 @@ function StepFour() {
   const [list, setList] = useState(); // 배열자료
   const [check, setCheck] = useState(); // format, 이메일, 쿼리내용 기입.
   const [query, setQuery] = useState(false); // 쿼리 체크값 확인용
+  const [isLoading, setIsLoading] = useState(false);
+
+  const history = useHistory();
 
   // 백엔드 통신용
   useEffect(() => {
@@ -28,6 +32,7 @@ function StepFour() {
     const email = check.email;
     const format = check.format;
     const query_name = check.query_name;
+    setIsLoading(true);
     axios({
       method: "POST",
       url: CRSP_SUBMIT,
@@ -48,12 +53,12 @@ function StepFour() {
     })
       .then((res) => {
         const down = res.data.data.download;
-        let a = document.createElement('a')
+        let a = document.createElement("a");
         a.href = down;
         a.download = down;
-        document.body.appendChild(a)
-        a.click()
-        document.body.removeChild(a)
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
       })
       .then((res) => {
         sessionStorage.removeItem(
@@ -62,8 +67,9 @@ function StepFour() {
           "start_date",
           "end_date"
         );
+        setIsLoading(false);
         alert("요청하신 메일로 정상 발송되었습니다");
-        window.location.reload();
+        history.push("/savedqueries");
       })
       .catch((e) => {
         console.log(e);
@@ -90,11 +96,14 @@ function StepFour() {
       <Body>
         <Typing>
           <Content>
-            원하는 파일의 형식을 선택하세요.<br/>
-            다운받으실 데이터의 양이 많다면,
-            더 빠른 다운로드를 위해 압축 형식을 선택해 주세요.<br/>
-            (옵션) 이메일 주소를 입력하시면, 
-            요청하신 데이터 처리가 끝난 이후 결과창으로<br/>
+            원하는 파일의 형식을 선택하세요.
+            <br />
+            다운받으실 데이터의 양이 많다면, 더 빠른 다운로드를 위해 압축 형식을
+            선택해 주세요.
+            <br />
+            (옵션) 이메일 주소를 입력하시면, 요청하신 데이터 처리가 끝난 이후
+            결과창으로
+            <br />
             연결되는 링크를 보내드립니다.
           </Content>
         </Typing>
@@ -217,7 +226,14 @@ function StepFour() {
         </EmailRow>
         <SubmitBtnRow>
           <BtnSubmin name="querysubmit" onClick={SubmitQuery}>
-            질의 제출
+            {isLoading ? (
+              <>
+                <img alt="loading" src="/images/loading2.gif" />
+                <span>처리중...</span>
+              </>
+            ) : (
+              "질의 제출"
+            )}
           </BtnSubmin>
         </SubmitBtnRow>
       </Body>
@@ -377,12 +393,16 @@ const QueryName2 = styled(QueryName)`
 
 //버튼
 const SubmitBtnRow = styled.div`
+  display: flex;
   margin: 15px 0 30px;
   padding-left: 15px;
   height: auto;
 `;
 
 const BtnSubmin = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #fff;
   background-color: #154281;
   border-color: #11376b;
@@ -396,6 +416,15 @@ const BtnSubmin = styled.button`
   font-size: 14px;
   line-height: 1.4;
   user-select: none;
+  width: 112.13px;
+  height: 37px;
+  outline: 0;
+
+  img {
+    width: 20%;
+    height: 100%;
+    object-fit: contain;
+  }
 `;
 
 // const MiddleBTN = styled(LeftBTN)``;

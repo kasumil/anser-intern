@@ -22,6 +22,10 @@ const Search = () => {
     }
   };
 
+  const handleSearchAll = (e) => {
+    sessionStorage.setItem("selected_all", e.target.value);
+  };
+
   return (
     <>
       <FormInline>
@@ -32,13 +36,18 @@ const Search = () => {
           <FormRadio>
             <RadioBtnBox>
               <label>
-                <input type="checkbox" name="options" value="codelist" />
+                <input
+                  type="radio"
+                  name="options"
+                  value="all"
+                  onClick={handleSearchAll}
+                />
               </label>
+              <span>전체 데이터베이스에서 탐색</span>
             </RadioBtnBox>
-            <InputBox type="text" placeholder="Code List Name" />
             <InputNote>
               <small>
-                <p>Save code list to Saved Codes</p>
+                <p>주의→ 이 방법은 시간이 오래 걸릴 수 있습니다.</p>
               </small>
             </InputNote>
           </FormRadio>
@@ -97,9 +106,14 @@ const Search = () => {
             <InputNote>
               <small>
                 <p>
+<<<<<<< HEAD
                   한 줄당 하나의 종목이 있는 텍스트 파일(.txt)을
                   <br />
                   업로드해 주세요.
+=======
+                  한 줄당 하나의 종목이 있는 텍스트 파일(.txt)을 업로드해
+                  주세요.
+>>>>>>> 5114240... Fix: 오류 수정
                 </p>
               </small>
             </InputNote>
@@ -122,28 +136,9 @@ const Search = () => {
             </InputNote>
           </FormRadio>
         </FormGroup>
-        <FormGroup className="last">
-          <FormRadio>
-            <RadioBtnBox>
-              <label>
-                <input type="radio" name="options" value="entire" />
-              </label>
-              <span>전체 데이터베이스에서 탐색</span>
-            </RadioBtnBox>
-            <InputNote>
-              <small>
-                <p>주의→&nbsp;이 방법은 시간이 오래 걸릴 수 있습니다.</p>
-              </small>
-            </InputNote>
-          </FormRadio>
-        </FormGroup>
       </FormInline>
       {modal && (
-        <CodeLookup
-          handleModal={handleModal}
-          checkedData={checkedData}
-          setCheckedData={setCheckedData}
-        />
+        <CodeLookup handleModal={handleModal} setCheckedData={setCheckedData} />
       )}
     </>
   );
@@ -177,10 +172,6 @@ const Title = styled.div`
 const FormGroup = styled(Title)`
   width: 50%;
   margin-bottom: 30px;
-
-  &.last {
-    width: 65%;
-  }
 
   &.right {
     float: right;
