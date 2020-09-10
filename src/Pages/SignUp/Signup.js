@@ -5,12 +5,13 @@ import validator from "email-validator";
 import styled from "styled-components";
 import Nav from "../../Components/Nav/Nav";
 import Verification from "./Verification";
-import DatePicker from "react-datepicker";
+import DatePicker, { registerLocale } from "react-datepicker";
 import Footer from "../../Components/Footer/Footer";
 import moment from "moment";
 import { SUBMIT_POINT, UNIV_LIST } from "../../config";
-
+import ko from 'date-fns/locale/ko';
 import "react-datepicker/dist/react-datepicker.css";
+registerLocale("ko", ko);
 
 function Signup() {
   const [data, setData] = useState();
@@ -300,6 +301,7 @@ function Signup() {
                     expirationdate: moment(date).format("YYYY-MM-DD"),
                   });
                 }}
+                locale="ko"
                 minDate={addMonths(new Date(), 6)}
                 maxDate={addMonths(new Date(), 12)}
                 onKeyDown={(e) => e.preventDefault()}
@@ -361,9 +363,9 @@ const BodyContainer = styled.div`
   .calendarposition {
     position: absolute;
     display: block;
-    bottom: 335px;
+    bottom: 338px;
     padding: 0.2em 0.2em 0;
-    width: 851px;
+    width: 1100px;
     height: 36px;
     min-height: 0;
     border: 1px solid #ced4da;
@@ -457,7 +459,7 @@ const ValidationBox = styled.div`
 // username 밸리데이션
 const SpanName = styled.span`
   display: ${(props) =>
-    props.valid || props.honest || props.calendar || props.define
+    props.honest || props.calendar || props.define
       ? "block"
       : "none"};
   align-items: center;

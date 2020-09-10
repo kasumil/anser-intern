@@ -28,7 +28,7 @@ function StepFour() {
     const end_date = sessionStorage.getItem("end_date");
     const selected = sessionStorage.getItem("selected").split(",");
     const access_token = sessionStorage.getItem("access_token");
-    const stock_code = sessionStorage.getItem("stock_code").split(",");
+    const stock_code = sessionStorage.getItem("corp_code").split(",");
     const email = check.email;
     const format = check.format;
     const query_name = check.query_name;
