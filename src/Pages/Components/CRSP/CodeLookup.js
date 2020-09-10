@@ -12,11 +12,11 @@ const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
 const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
 
-const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
+const CodeLookup = ({ handleModal, setCheckedData }) => {
   const [value, setValue] = useState("");
   const [resultValue, setResultValue] = useState("");
   const [searchValue, setSearchValue] = useState("로 시작하는 결과");
-  const [searchType, setSearchType] = useState("start with")
+  const [searchType, setSearchType] = useState("start with");
   const [data, setData] = useState([]);
   const [isSubmit, setIsSubmit] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -92,7 +92,7 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
   const handleSearchValue = (e) => {
     const { value, name } = e.target;
     setSearchValue(name);
-    setSearchType(value)
+    setSearchType(value);
   };
 
   const handleAddList = () => {
@@ -149,10 +149,18 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
                     ref={focusTarget}
                   />
                   <InputGroupBtn>
-                    <button onClick={handleSearchValue} value="start with" name="로 시작하는 ">
+                    <button
+                      onClick={handleSearchValue}
+                      value="start with"
+                      name="로 시작하는 "
+                    >
                       로 시작하는 결과
                     </button>
-                    <button onClick={handleSearchValue} value="contains" name="를 포함하는 ">
+                    <button
+                      onClick={handleSearchValue}
+                      value="contains"
+                      name="를 포함하는 "
+                    >
                       를 포함하는 결과
                     </button>
                     <button onClick={handleSearchValue} value="exact">
@@ -211,7 +219,8 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
                       <span ref={focusResult}>
                         {/* {data.length} results found that {searchValue} "
                         {resultValue}" */}
-                        " {resultValue}"{searchValue} {data.length}개의 결과가 있습니다.
+                        " {resultValue}"{searchValue} {data.length}개의 결과가
+                        있습니다.
                         {/* "~"를 포함하는 "number"개의 결과가 있습니다. */}
                       </span>
                       <ResultTable>

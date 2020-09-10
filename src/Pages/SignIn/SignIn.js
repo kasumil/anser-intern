@@ -46,13 +46,6 @@ const SignIn = ({ loginStatus }) => {
     });
   };
 
-  const handleKakaoLogout = () => {
-    Kakao.Auth.logout(function () {
-      sessionStorage.removeItem("access_token");
-      history.push("/");
-    });
-  };
-
   const handleLogin = () => {
     const { email, password } = inputValue;
     !email || !password
@@ -136,7 +129,8 @@ const SignIn = ({ loginStatus }) => {
           <AccountButton>
             <Link to="" className="register">
               <i className="fas fa-edit" />
-              아직 회원이 아니신가요?<br/>
+              아직 회원이 아니신가요?
+              <br />
               <span className="littletyping">회원가입하기</span>
             </Link>
             <Link to="">
@@ -145,7 +139,8 @@ const SignIn = ({ loginStatus }) => {
             </Link>
             <Link to="">
               <i className="fas fa-truck red" />
-              기관을 옮기셨나요?<br/>
+              기관을 옮기셨나요?
+              <br />
               <span className="littletyping">계정 이관하기</span>
             </Link>
           </AccountButton>
