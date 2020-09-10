@@ -7,7 +7,9 @@ import CodeLookup from "./CodeLookup";
 const Search = () => {
   const [modal, setModal] = useState(false);
   const [fileName, setFileName] = useState("");
-  const [checkedData, setCheckedData] = useState([]);
+  const [checkedData, setCheckedData] = useState(
+    sessionStorage.getItem("corp_code") || []
+  );
 
   const handleFileUpload = (e) => {
     setFileName(e.target.files[0].name);
@@ -57,7 +59,7 @@ const Search = () => {
               <small>
                 <p>기업 코드를 공백으로 구분하여 입력해 주세요.</p>
                 <p>
-                예) 삼성전자, 현대자동차, 엘지전자 [{" "}
+                  예) 삼성전자, 현대자동차, 엘지전자 [{" "}
                   <span onClick={handleModal}>종목코드 검색</span> ]
                 </p>
               </small>
@@ -95,7 +97,9 @@ const Search = () => {
             <InputNote>
               <small>
                 <p>
-                  한 줄당 하나의 종목이 있는 텍스트 파일(.txt)을<br/>업로드해 주세요.
+                  한 줄당 하나의 종목이 있는 텍스트 파일(.txt)을
+                  <br />
+                  업로드해 주세요.
                 </p>
               </small>
             </InputNote>
@@ -128,9 +132,7 @@ const Search = () => {
             </RadioBtnBox>
             <InputNote>
               <small>
-                <p>
-                  주의→&nbsp;이 방법은 시간이 오래 걸릴 수 있습니다.
-                </p>
+                <p>주의→&nbsp;이 방법은 시간이 오래 걸릴 수 있습니다.</p>
               </small>
             </InputNote>
           </FormRadio>

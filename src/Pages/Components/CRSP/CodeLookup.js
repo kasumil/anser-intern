@@ -100,14 +100,20 @@ const CodeLookup = ({ handleModal, checkedData, setCheckedData }) => {
       return checkStatus[i];
     });
 
-    setCheckedData(
+    setCheckedData([
+      sessionStorage.getItem("corp_code"),
       filteredData.map((el) => {
         return el.corp_code;
-      })
-    );
+      }),
+    ]);
 
     if (checkStatus.some((status) => status)) {
-      sessionStorage.setItem("stock_code", checkedData);
+      sessionStorage.setItem("corp_code", [
+        sessionStorage.getItem("corp_code"),
+        filteredData.map((el) => {
+          return el.corp_code;
+        }),
+      ]);
       alert(`Add ${filteredData.length} codes to your list.`);
       handleModal();
     } else if (!checkStatus.every((status) => status)) {
