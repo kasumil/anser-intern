@@ -64,9 +64,7 @@ const StepThreeContents = () => {
           {categories.map((item) => {
             return (
               <TabCategory
-                className={
-                  clickCategory === `${item.category}` && clickCategory
-                }
+                className={clickCategory === `${item.category}` && "clicked"}
                 onClick={() => {
                   setClickCetegory(`${item.category}`);
                 }}
@@ -166,10 +164,7 @@ const TabSlider = styled.ul`
     display: none;
   }
 
-  .SearchAll,
-  .Identifying,
-  .TimeSeries,
-  .Distribution {
+  .clicked {
     color: #002c77;
     background-color: white;
   }
