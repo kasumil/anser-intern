@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import DatePicker from "react-datepicker";
+import DatePicker, { registerLocale } from "react-datepicker";
+import ko from 'date-fns/locale/ko';
 import moment from "moment";
 import { INPUT_LIST } from "../../../config";
+registerLocale("ko", ko);
 
 function StepOne(props) {
   const date = new Date(); // 현재 날짜생성기
@@ -68,6 +70,7 @@ function StepOne(props) {
                   <DatePicker
                     className="datepickersize"
                     dateFormat="yyyy-MM-dd"
+                    locale="ko"
                     selected={startDate}
                     onChange={(date) => setStartDate(date)}
                     selectsStart
@@ -93,6 +96,7 @@ function StepOne(props) {
                   <DatePicker
                     className="datepickersize"
                     dateFormat="yyyy-MM-dd"
+                    locale="ko"
                     selected={endDate}
                     onChange={(date) => setEndDate(date)}
                     selectsEnd
